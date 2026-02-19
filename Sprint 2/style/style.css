@@ -151,6 +151,32 @@ button:hover {
     margin-top: 20px;
 }
 
+/* ===== LOGIN CENTER ===== */
+.auth-page {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #E5E5E5;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-card h2 {
+    margin-bottom: 25px;
+}
+
+.auth-card button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
 /* ===== FORMS ===== */
 form {
     max-width: 400px;
