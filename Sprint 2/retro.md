@@ -21,3 +21,6 @@
 ## Dejar de hacer
 - Cambiar decisiones de diseño sin motivo
 - Sobrepensar soluciones simples
+
+## Tablero de trabajo
+https://github.com/tuusuario/tu-repo/projects/1
