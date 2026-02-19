@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #f7f7f5;
+    color: #1c1c1c;
+}
+
+.navbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    border-bottom:1px solid #ddd;
+}
+
+.menu {
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+button {
+    background:#2B2B2B;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    cursor:pointer;
+}
+
+.card {
+    border:1px solid #ddd;
+    padding:20px;
+    background:white;
+}
