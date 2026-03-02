@@ -395,6 +395,27 @@ footer {
     font-weight: 500;
 }
 
+/* ===== LOGIN EXTRA ===== */
+
+.auth-extra {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-extra a {
+    text-decoration: none;
+    color: #555;
+}
+
+.auth-extra a:hover {
+    text-decoration: underline;
+}
+
+.remember {
+    margin-bottom: 25px;
+}
+
 /*======== RESPONSIVE ========*/
 
 @media (max-width: 768px) {
