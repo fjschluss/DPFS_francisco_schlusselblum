@@ -324,6 +324,77 @@ footer {
     color: #555;
 }
 
+/* ===== AUTH PAGES ===== */
+
+.auth-page {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.auth-card {
+    background: #ffffff;
+    padding: 50px;
+    border: 1px solid #E5E5E5;
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-card h1 {
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+/* Form */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #CCC;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border: 1px solid #1C1C1C;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.auth-link {
+    margin-top: 25px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.auth-link a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
 /*======== RESPONSIVE ========*/
 
 @media (max-width: 768px) {
