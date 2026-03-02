@@ -1,0 +1,85 @@
+/*======== HEADER ========*/
+
+header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.logo img {
+    height: 80px;   /* ajustable */
+    width: auto;
+    display: block;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #1C1C1C;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.menu a:hover {
+    opacity: 0.6;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-actions a {
+    text-decoration: none;
+    color: #1C1C1C;
+    font-weight: 500;
+}
+
+.cart-link {
+    padding: 8px 14px;
+    border: 1px solid #1C1C1C;
+    transition: all 0.2s ease;
+}
+
+.cart-link:hover {
+    background-color: #1C1C1C;
+    color: #ffffff;
+}
+
+.cart-icon img {
+    width: 24px;
+    height: auto;
+    transition: opacity 0.2s ease;
+}
+
+.cart-icon img:hover {
+    transform: scale(1.1);
+    transition: 0.2s ease;
+}
+
+/*======== RESPONSIVE ========*/
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 0;
+        gap: 15px;
+    }
+
+    .menu {
+        gap: 20px;
+    }
+}
