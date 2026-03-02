@@ -291,6 +291,59 @@ footer {
     border: 1px solid #1C1C1C;
 }
 
+/*======== AJUSTES FINALES DE CONSISTENCIA ========*/
+
+/* Espaciado uniforme entre secciones */
+section {
+    margin-bottom: 80px;
+}
+
+/* Títulos consistentes */
+h1 {
+    font-size: 34px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Botones alineados */
+button,
+.btn-primary,
+.btn-secondary {
+    border-radius: 0;
+}
+
+/* Links sin subrayado por defecto */
+a {
+    text-decoration: none;
+}
+
+/* Inputs más uniformes */
+input {
+    font-family: inherit;
+    font-size: 14px;
+}
+
+/* Evitar saltos raros */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Transiciones suaves globales */
+button,
+a {
+    transition: all 0.2s ease;
+}
+
 /*======== RESPONSIVE ========*/
 
 /*===== TABLET =====*/
