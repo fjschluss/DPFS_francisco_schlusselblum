@@ -21,3 +21,25 @@
 ## Dejar de hacer
 - Cambiar decisiones de diseño sin motivo
 - Sobrepensar soluciones simples
+
+# Retrospectiva Sprint 2 – LuBo
+
+## ¿Qué hicimos bien?
+- Se completó el maquetado de todas las vistas principales.
+- Se logró coherencia visual con la identidad de la marca.
+- Se organizaron correctamente los estilos CSS.
+- Se mantuvo el orden en el repositorio y los commits.
+
+## ¿Qué hicimos mal?
+- Se repitió código en múltiples vistas (header, footer, head).
+- No se modularizó desde el inicio.
+- Algunas rutas quedaron acopladas al HTML estático.
+
+## ¿Qué deberíamos empezar a hacer?
+- Separar componentes reutilizables.
+- Utilizar un motor de plantillas.
+- Pensar en escalabilidad desde la estructura.
+
+## ¿Qué deberíamos dejar de hacer?
+- Copiar y pegar estructuras repetidas.
+- Mezclar estructura visual con lógica.
