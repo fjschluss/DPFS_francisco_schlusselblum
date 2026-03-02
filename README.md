@@ -36,3 +36,6 @@ El diseño del sitio utiliza una paleta de colores neutros con acentos suaves,
 adaptada para ser accesible y apta para usuarios con daltonismo.
 Se prioriza el contraste, la jerarquía tipográfica y una estética editorial minimalista.
 Los lineamientos visuales se encuentran en la carpeta `/design`.
+
+## Tablero de trabajo
+[**LuBo Project**](https://github.com/users/fjschluss/projects/14/views/1)
