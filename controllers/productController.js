@@ -22,13 +22,13 @@ const products = [
 const productController = {
 
     list: (req, res) => {
-        res.render('productList', { products });
+        res.render('products/productList', { products });
     },
 
     detail: (req, res) => {
         const id = parseInt(req.params.id);
         const product = products.find(p => p.id === id);
-        res.render('productDetail', { product });
+        res.render('products/productDetail', { product });
     },
 
 };
