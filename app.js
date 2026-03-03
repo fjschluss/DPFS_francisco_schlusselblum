@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Importar rutas
+var mainRoutes = require("./routes/mainRoutes");
+var productRoutes = require("./routes/productRoutes");
+var userRoutes = require("./routes/userRoutes");
 
 var app = express();
 
@@ -19,8 +21,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Usar rutas
+app.use("/", mainRoutes);
+app.use("/products", productRoutes);
+app.use("/users", userRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
