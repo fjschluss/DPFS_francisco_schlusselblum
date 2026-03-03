@@ -1,11 +1,11 @@
 const userController = {
 
     login: (req, res) => {
-        res.render("users/login");
+        res.render("login");
     },
 
     register: (req, res) => {
-        res.render("users/register");
+        res.render("register");
     }
 
 };
