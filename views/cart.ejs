@@ -1,41 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuBo</title>
-    <link rel="stylesheet" href="/stylesheets/main.css">
-</head>
+<%- include("partials/head", { title: "Carrito" }) %>
 
 <body>
 
     <!-- HEADER -->
-    <header>
-        <nav class="navbar container">
-
-            <div class="logo">
-                <a href="/">
-                    <img src="/images/logo.png" alt="LuBo - Ludmila Borrelli">
-                </a>
-            </div>
-
-            <ul class="menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="#">Comprar</a></li>
-                <li><a href="#">Sobre Mi</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <a href="/users/login">Login</a>
-                <a href="/users/register">Registrarse</a>
-                <a href="/cart" class="cart-icon">
-                    <img src="/images/Carrito.png" alt="Carrito">
-                </a>
-            </div>
-                
-        </nav>
-    </header>
+    <%- include("partials/header") %>
 
     <!-- MAIN -->
     <main class="container cart-page">
@@ -101,24 +72,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container footer-content">
-
-            <div class="footer-brand">
-                <img src="/images/logo.png" alt="LuBo - Ludmila Borrelli">
-            </div>
-
-            <div class="footer-links">
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos y Condiciones</a>
-                <a href="#">Contacto</a>
-            </div>
-
-            <div class="footer-copy">
-                <p>© 2026 LuBo — Ludmila Borrelli</p>
-            </div>
-        </div>
-    </footer>
+    <%- include("partials/footer") %>
 
 </body>
 </html>
