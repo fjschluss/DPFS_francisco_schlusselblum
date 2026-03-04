@@ -20,13 +20,11 @@
 
         <!-- Información -->
         <div class="product-info">
-            <h1>Tech Pack Camisa Oversize</h1>
-            <p class="price">$20 USD</p>
+            <h1><%= product.name %></h1>
+            <p><%= product.description %></p>
+            <p><strong>Precio: $<%= product.price %></strong></p>
 
-            <p class="description">
-                Plantilla profesional editable para producción de camisa oversize.
-                Incluye ficha técnica completa, especificaciones y medidas.
-            </p>
+            <a href="/products">Volver al listado</a>
 
             <button class="btn-primary">Agregar al carrito</button>
 

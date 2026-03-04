@@ -1,59 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-<%- include("../partials/head", { title: "Lista de Producto" }) %>
+    <%- include("../partials/head", { title: "Productos" }) %>
 
-<body>
+    <body>
 
-    <!-- HEADER -->
-    <%- include("../partials/header") %>
+        <%- include("../partials/header") %>
 
-    <!-- MAIN -->
-    <main class="container">
-        <!-- PRODUCTOS -->
-        <section id="productos" class="products">
+        <main>
+            <h1>Listado de Productos</h1>
 
-            <div class="card">
-                <h3>Tech Pack Camisa Oversize</h3>
-                <p class="price">$20 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+            <a href="/products/create">
+                Crear nuevo producto
+            </a>
 
-            <div class="card">
-                <h3>Molde Pantalón Sastrero</h3>
-                <p class="price">$25 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+            <hr>
 
-            <div class="card">
-                <h3>Ficha Técnica Vestido Midi</h3>
-                <p class="price">$18 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+            <% products.forEach(product => { %>
+                <div>
+                    <h2><%= product.name %></h2>
+                    <p><%= product.description %></p>
+                    <p>Precio: $<%= product.price %></p>
 
-            <div class="card">
-                <h3>Molde Blazer Clásico</h3>
-                <p class="price">$30 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+                    <a href="/products/<%= product.id %>">
+                        Ver detalle
+                    </a>
 
-            <div class="card">
-                <h3>Pack Básicos Mujer</h3>
-                <p class="price">$45 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+                    <a href="/products/<%= product.id %>/edit">
+                        Editar
+                    </a>
+                </div>
 
-            <div class="card">
-                <h3>Plantilla Excel Producción</h3>
-                <p class="price">$15 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+                <hr>
+            <% }) %>
 
-        </section>
-    </main>
-    
-    <!-- FOTTER -->
-    <%- include("../partials/footer") %>
+        </main>
 
-</body>
+        <%- include("../partials/footer") %>
+
+    </body>
 </html>
