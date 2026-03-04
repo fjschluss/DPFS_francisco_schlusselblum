@@ -32,8 +32,14 @@ const productController = {
     },
 
     create: (req, res) => {
-        res.render("products/productCreate");
+        res.render('products/productCreate');
     },
+
+    edit: (req, res) => {
+        const id = parseInt(req.params.id);
+        const product = products.find(p => p.id === id);
+        res.render('products/productEdit', { product });
+    }
 
 };
 
