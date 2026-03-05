@@ -68,12 +68,21 @@ const productController = {
     },
 
     edit: (req, res) => {
+
         const products = JSON.parse(
             fs.readFileSync(productsFilePath, "utf-8")
         );
-        const id = parseInt(req.params.id);
-        const product = products.find(p => p.id === id);
-        res.render('products/productEdit', { product });
+
+        const product = products.find(
+            p => p.id == req.params.id
+        );
+
+        if (!product) {
+            return res.send("Producto no encontrado");
+        }
+
+        res.render("products/productEdit", { product });
+
     }
 
 };

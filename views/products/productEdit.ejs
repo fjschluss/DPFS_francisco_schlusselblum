@@ -9,29 +9,32 @@
 
         <main class="form-container">
 
-            <h1>Editar producto</h1>
+            <h1>Editar Producto</h1>
 
-            <form action="/products/<%= product.id %>" method="POST">
+            <form action="/products/<%= product.id %>?_method=PUT" method="POST">
 
-                <label>Nombre del producto</label>
+                <label>Nombre:</label>
                 <input type="text" name="name" value="<%= product.name %>" required>
 
-                <label>Descripción</label>
+                <label>Descripción:</label>
                 <textarea name="description" required><%= product.description %></textarea>
 
-                <label>Imagen</label>
-                <input type="text" name="image" value="<%= product.image %>">
+                <label>Imagen:</label>
+                <input type="text" name="image" value="<%= product.image %>" required>
 
-                <label>Categoría</label>
-                <input type="text" name="category" value="<%= product.category %>">
+                <label>Categoría:</label>
+                <input type="text" name="category" value="<%= product.category %>" required>
 
-                <label>Colores</label>
-                <input type="text" name="colors" value="<%= product.colors %>">
+                <label>Colores (separados por coma):</label>
+                <input type="text" name="colors" value="<%= product.colors.join(', ') %>" required>
 
-                <label>Precio</label>
-                <input type="number" name="price" step="0.01" value="<%= product.price %>" required>
+                <label>Talles (separados por coma):</label>
+                <input type="text" name="sizes" value="<%= product.sizes.join(', ') %>" required>
 
-                <button type="submit">Guardar cambios</button>
+                <label>Precio:</label>
+                <input type="number" name="price" value="<%= product.price %>" required>
+
+                <button type="submit">Guardar Cambios</button>
 
                 <a href="/products/<%= product.id %>" class="cancel-btn">
                     Cancelar
