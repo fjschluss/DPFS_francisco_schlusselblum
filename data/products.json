@@ -364,10 +364,12 @@
       "verde"
     ],
     "sizes": [
+      "S",
       "M",
       "L",
-      "XL"
+      "XL",
+      "XXL"
     ],
-    "price": 34990
+    "price": 40000
   }
 ]

@@ -83,6 +83,40 @@ const productController = {
 
         res.render("products/productEdit", { product });
 
+    },
+
+    update: (req, res) => {
+
+        const products = JSON.parse(
+            fs.readFileSync(productsFilePath, "utf-8")
+        );
+
+        const productIndex = products.findIndex(
+            p => p.id == req.params.id
+        );
+
+        if (productIndex === -1) {
+            return res.send("Producto no encontrado");
+        }
+
+        products[productIndex] = {
+            ...products[productIndex],
+            name: req.body.name,
+            description: req.body.description,
+            image: req.body.image,
+            category: req.body.category,
+            colors: req.body.colors.split(",").map(color => color.trim()),
+            sizes: req.body.sizes.split(",").map(size => size.trim()),
+            price: Number(req.body.price)
+        };
+
+        fs.writeFileSync(
+            productsFilePath,
+            JSON.stringify(products, null, 2)
+        );
+
+        res.redirect(`/products/${req.params.id}`);
+
     }
 
 };
