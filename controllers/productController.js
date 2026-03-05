@@ -37,6 +37,36 @@ const productController = {
         res.render('products/productCreate');
     },
 
+    store: (req, res) => {
+
+        const products = JSON.parse(
+            fs.readFileSync(productsFilePath, "utf-8")
+        );
+
+        const lastProduct = products[products.length - 1];
+
+        const newProduct = {
+            id: lastProduct ? lastProduct.id + 1 : 1,
+            name: req.body.name,
+            description: req.body.description,
+            image: req.body.image,
+            category: req.body.category,
+            colors: req.body.colors.split(",").map(color => color.trim()),
+            sizes: req.body.sizes.split(",").map(size => size.trim()),
+            price: Number(req.body.price)
+        };
+
+        products.push(newProduct);
+
+        fs.writeFileSync(
+            productsFilePath,
+            JSON.stringify(products, null, 2)
+        );
+
+        res.redirect("/products");
+
+    },
+
     edit: (req, res) => {
         const products = JSON.parse(
             fs.readFileSync(productsFilePath, "utf-8")
