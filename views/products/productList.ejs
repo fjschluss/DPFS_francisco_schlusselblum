@@ -32,6 +32,12 @@
 
                         <a href="/products/<%= product.id %>/edit">Editar</a>
 
+                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="margin-top: 20px;">
+                            <button type="submit" onclick="return confirm('¿Estás seguro que querés eliminar este producto?')">
+                                Eliminar Producto
+                            </button>
+                        </form>
+
                     </div>
 
                 <% }) %>

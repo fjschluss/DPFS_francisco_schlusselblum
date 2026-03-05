@@ -351,23 +351,5 @@
     "price": 99000,
     "collection": "SS26",
     "stock": 14
-  },
-  {
-    "id": 21,
-    "name": "Buzo Hoodie Classic",
-    "description": "Buzo con capucha de algodón frizado, ideal para días fríos.",
-    "image": "buzo-hoodie-classic.jpg",
-    "category": "Buzos",
-    "colors": [
-      "negro",
-      "azul",
-      "verde"
-    ],
-    "sizes": [
-      "M",
-      "L",
-      "XL"
-    ],
-    "price": 34990
   }
 ]
