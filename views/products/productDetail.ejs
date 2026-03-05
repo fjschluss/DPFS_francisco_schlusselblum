@@ -14,27 +14,32 @@
         <!-- Imagen / Preview -->
         <div class="product-image">
             <div class="image-placeholder">
-                Imagen del producto
+                <img src="/images/<%= product.image %>" alt="<%= product.name %>">
             </div>
         </div>
 
         <!-- Información -->
         <div class="product-info">
             <h1><%= product.name %></h1>
-            <p><%= product.description %></p>
-            <p><strong>Precio: $<%= product.price %></strong></p>
 
-            <a href="/products">Volver al listado</a>
+            <div class="product-detail">
 
-            <button class="btn-primary">Agregar al carrito</button>
+                <p><%= product.description %></p>
 
-            <div class="product-details-extra">
-                <h3>Incluye:</h3>
-                <ul>
-                    <li>Ficha técnica editable</li>
-                    <li>Tabla de medidas</li>
-                    <li>Guía de producción</li>
-                </ul>
+                <p><strong>Categoría:</strong> <%= product.category %></p>
+
+                <p><strong>Colores:</strong>
+                    <%= product.colors.join(", ") %>
+                </p>
+
+                <p><strong>Talles:</strong>
+                    <%= product.sizes.join(", ") %>
+                </p>
+
+                <h3>$ <%= product.price %></h3>
+
+                <a href="/products">Volver al listado</a>
+
             </div>
         </div>
 
@@ -46,23 +51,23 @@
         <h2>Productos relacionados</h2>
 
         <div class="products">
-            <div class="card">
-                <h3>Molde Pantalón Sastrero</h3>
-                <p class="price">$25 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
 
-            <div class="card">
-                <h3>Molde Blazer Clásico</h3>
-                <p class="price">$30 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+            <% relatedProducts.forEach(product => { %>
 
-            <div class="card">
-                <h3>Ficha Técnica Vestido Midi</h3>
-                <p class="price">$18 USD</p>
-                <a href="/products/productDetail" class="btn-secondary">Ver detalle</a>
-            </div>
+                <div class="product-card">
+
+                    <h3><%= product.name %></h3>
+
+                    <p class="price">$<%= product.price %></p>
+
+                    <a href="/products/<%= product.id %>" class="btn-secondary">
+                        Ver detalle
+                    </a>
+
+                </div>
+
+            <% }) %>
+
         </div>
 
     </section>
