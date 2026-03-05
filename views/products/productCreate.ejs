@@ -9,29 +9,32 @@
 
         <main class="form-container">
 
-            <h1>Crear nuevo producto</h1>
+            <h1>Crear Nuevo Producto</h1>
 
             <form action="/products" method="POST">
 
-                <label>Nombre del producto</label>
+                <label>Nombre:</label>
                 <input type="text" name="name" required>
 
-                <label>Descripción</label>
+                <label>Descripción:</label>
                 <textarea name="description" required></textarea>
 
-                <label>Imagen</label>
-                <input type="text" name="image">
+                <label>Imagen:</label>
+                <input type="text" name="image" required>
 
-                <label>Categoría</label>
-                <input type="text" name="category">
+                <label>Categoría:</label>
+                <input type="text" name="category" required>
 
-                <label>Colores</label>
-                <input type="text" name="colors">
+                <label>Colores (separados por coma):</label>
+                <input type="text" name="colors" required>
 
-                <label>Precio</label>
-                <input type="number" name="price" step="0.01" required>
+                <label>Talles (separados por coma):</label>
+                <input type="text" name="sizes" required>
 
-                <button type="submit">Crear producto</button>
+                <label>Precio:</label>
+                <input type="number" name="price" required>
+
+                <button type="submit">Crear Producto</button>
 
                 <a href="/products" class="cancel-btn">
                     Cancelar
