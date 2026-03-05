@@ -117,6 +117,25 @@ const productController = {
 
         res.redirect(`/products/${req.params.id}`);
 
+    },
+
+    destroy: (req, res) => {
+
+        const products = JSON.parse(
+            fs.readFileSync(productsFilePath, "utf-8")
+        );
+
+        const filteredProducts = products.filter(
+            p => p.id != req.params.id
+        );
+
+        fs.writeFileSync(
+            productsFilePath,
+            JSON.stringify(filteredProducts, null, 2)
+        );
+
+        res.redirect("/products");
+
     }
 
 };
