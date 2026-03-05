@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "firstName": "Lucía",
+    "lastName": "Martínez",
+    "email": "lucia@email.com",
+    "password": "123456",
+    "category": "admin",
+    "image": "user1.jpg"
+  },
+  {
+    "id": 2,
+    "firstName": "Sofía",
+    "lastName": "Gómez",
+    "email": "sofia@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user2.jpg"
+  },
+  {
+    "id": 3,
+    "firstName": "Valentina",
+    "lastName": "Pérez",
+    "email": "valentina@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user3.jpg"
+  },
+  {
+    "id": 4,
+    "firstName": "Martina",
+    "lastName": "López",
+    "email": "martina@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user4.jpg"
+  },
+  {
+    "id": 5,
+    "firstName": "Camila",
+    "lastName": "Fernández",
+    "email": "camila@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user5.jpg"
+  },
+  {
+    "id": 6,
+    "firstName": "Agustina",
+    "lastName": "Rodríguez",
+    "email": "agustina@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user6.jpg"
+  },
+  {
+    "id": 7,
+    "firstName": "Julieta",
+    "lastName": "Sánchez",
+    "email": "julieta@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user7.jpg"
+  },
+  {
+    "id": 8,
+    "firstName": "Florencia",
+    "lastName": "Torres",
+    "email": "florencia@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user8.jpg"
+  },
+  {
+    "id": 9,
+    "firstName": "Victoria",
+    "lastName": "Ruiz",
+    "email": "victoria@email.com",
+    "password": "123456",
+    "category": "admin",
+    "image": "user9.jpg"
+  },
+  {
+    "id": 10,
+    "firstName": "Emilia",
+    "lastName": "Morales",
+    "email": "emilia@email.com",
+    "password": "123456",
+    "category": "cliente",
+    "image": "user10.jpg"
+  }
+]
