@@ -6,6 +6,10 @@ const userController = {
 
     register: (req, res) => {
         res.render('users/register');
+    },
+
+    profile: (req, res) => {
+        return res.render('users/profile');
     }
 
 };
