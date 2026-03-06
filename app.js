@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var methodOverride = require("method-override");
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
@@ -21,6 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(cookieParser());
+app.use(session({
+    secret: 'secreto-super',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use((req, res, next) => {
+    res.locals.userLogged = req.session.userLogged;
+    next();
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Usar rutas

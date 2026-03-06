@@ -8,8 +8,12 @@
         <%- include("../partials/header") %>
 
         <main class="form-container">
-            <h1>Perfil</h1>
-        </main>
+            <h2>Perfil de Usuario</h2>
+
+            <p>Nombre: <%= user.firstName %> <%= user.lastName %></p>
+            <p>Email: <%= user.email %></p>
+
+            <img src="/images/users/<%= user.image %>" width="150">
 
         <%- include("../partials/footer") %>
 
