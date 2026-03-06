@@ -1,10 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const userController = require("../controllers/userController");
+const usersController = require('../controllers/usersController');
 
-router.get('/register', userController.register);
-router.get('/login', usesController.login);
-router.get('/profile', userController.profile);
+const upload = require('../middlewares/multerUsers');
+
+router.get('/register', usersController.register);
+router.post('/register', upload.single('image'), usersController.processRegister);
+
+router.get('/login', usersController.login);
+
+router.get('/profile', usersController.profile);
 
 module.exports = router;
