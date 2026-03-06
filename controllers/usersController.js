@@ -42,9 +42,40 @@ const usersController = {
         res.render('users/login');
     },
 
+    processLogin: (req, res) => {
+
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+
+        let userToLogin = users.find(user => user.email === req.body.email);
+
+        if (userToLogin) {
+
+            let passwordOk = bcrypt.compareSync(req.body.password, userToLogin.password);
+
+            if (passwordOk) {
+
+                req.session.userLogged = {
+                    id: userToLogin.id,
+                    firstName: userToLogin.firstName,
+                    lastName: userToLogin.lastName,
+                    email: userToLogin.email,
+                    image: userToLogin.image
+                };
+
+                return res.redirect('/users/profile');
+            }
+
+            return res.send("Contraseña incorrecta");
+        }
+
+        return res.send("Usuario no encontrado");
+    },
+
     profile: (req, res) => {
-        return res.render('users/profile');
-    }
+        return res.render('users/profile', {
+            user: req.session.userLogged
+        });
+    },
 
 };
 
