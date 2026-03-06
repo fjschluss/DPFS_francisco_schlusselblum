@@ -43,3 +43,19 @@
 ## ¿Qué deberíamos dejar de hacer?
 - Copiar y pegar estructuras repetidas.
 - Mezclar estructura visual con lógica.
+
+# Sprint 5 – Retrospectiva
+
+## Qué salió bien
+La implementación de sesiones y middlewares permitió estructurar correctamente la autenticación.
+
+## Qué fue desafiante
+Comprender el flujo entre cookies, sesiones y middlewares.
+
+## Qué mejoraría
+Separar mejor responsabilidades entre controlador y middleware.
+
+## Qué aprendí
+- Encriptación con bcrypt.
+- Manejo de sesiones con express-session.
+- Protección de rutas.
