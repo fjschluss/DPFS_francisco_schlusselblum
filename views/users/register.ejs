@@ -10,15 +10,21 @@
         <main class="form-container">
             <h1>Registro</h1>
 
-            <form>
+            <form action="/users/register" method="POST" enctype="multipart/form-data">
                 <label>Nombre</label>
-                <input type="text" required>
+                <input type="text" name="firstName" placeholder="Nombre" required>
+
+                <label>Apellido</label>
+                <input type="text" name="lastName" placeholder="Apellido" required>
 
                 <label>Email</label>
-                <input type="email" required>
+                <input type="email" name="email" placeholder="Email" required>
 
                 <label>Contraseña</label>
-                <input type="password" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+
+                Imagen de Perfil
+                <input type="file" name="image" required>
 
                 <button type="submit">Registrarse</button>
             </form>
