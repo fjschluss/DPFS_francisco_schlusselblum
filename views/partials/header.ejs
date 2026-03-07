@@ -9,19 +9,34 @@
 
         <ul class="menu">
             <li><a href="/">Inicio</a></li>
-            <li><a href="/Products">Productos</a></li>
+            <li><a href="/products">Productos</a></li>
             <li><a href="#">Comprar</a></li>
             <li><a href="#">Sobre Mi</a></li>
         </ul>
 
         <div class="nav-actions">
-            <a href="/users/login">Login</a>
-            <a href="/users/register">Registrarse</a>
-            <a href="/users/profile">Perfil</a>
+
+            <% if (!userLogged) { %>
+
+                <a href="/users/login">Login</a>
+                <a href="/users/register">Registrarse</a>
+
+            <% } else { %>
+
+                <span>Hola <%= userLogged.firstName %></span>
+                <a href="/users/profile">Perfil</a>
+
+                <form action="/users/logout" method="POST" style="display:inline;">
+                    <button type="submit">Logout</button>
+                </form>
+
+            <% } %>
+
             <a href="/cart" class="cart-icon">
                 <img src="/images/Carrito.png" alt="Carrito">
             </a>
+
         </div>
-            
+
     </nav>
 </header>
