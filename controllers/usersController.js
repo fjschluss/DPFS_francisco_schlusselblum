@@ -83,6 +83,13 @@ const usersController = {
         });
     },
 
+    logout: (req, res) => {
+        req.session.destroy(() => {
+            res.clearCookie('userEmail'); // cookie de "recordarme"
+            return res.redirect('/');
+        });
+    }
+
 };
 
 module.exports = usersController;
