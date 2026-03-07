@@ -8,12 +8,19 @@
         <%- include("../partials/header") %>
 
         <main class="form-container">
-            <h2>Perfil de Usuario</h2>
 
-            <p>Nombre: <%= user.firstName %> <%= user.lastName %></p>
-            <p>Email: <%= user.email %></p>
+            <h2>Perfil</h2>
 
-            <img src="/images/users/<%= user.image %>" width="150">
+            <p><strong>Nombre:</strong> <%= user.firstName %> <%= user.lastName %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+
+            <img src="/images/users/<%= user.image %>" alt="Foto de perfil" width="150">
+
+            <form action="/users/logout" method="POST">
+                <button type="submit">Cerrar sesión</button>
+            </form>
+
+        </main>
 
         <%- include("../partials/footer") %>
 
