@@ -4,6 +4,7 @@ var path = require('path');
 var methodOverride = require("method-override");
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 var logger = require('morgan');
 
 // Importar rutas
@@ -27,6 +28,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use(userLoggedMiddleware);
 app.use((req, res, next) => {
     res.locals.userLogged = req.session.userLogged;
     next();
