@@ -7,7 +7,7 @@
 
         <%- include("../partials/header") %>
 
-        <main class="form-container">
+        <main class="form-container auth-page">
             <h1>Iniciar sesión</h1>
 
             <form action="/users/login" method="POST">
@@ -17,10 +17,12 @@
                 <label>Contraseña</label>
                 <input type="password" name="password" placeholder="Contraseña" required>
 
+                <div class="remember">
                     <label>
                         <input type="checkbox" name="remember">
                         Recordarme
                     </label>
+                </div>
 
                 <button type="submit">Ingresar</button>
             </form>
