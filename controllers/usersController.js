@@ -62,6 +62,12 @@ const usersController = {
                     image: userToLogin.image
                 };
 
+                if (req.body.remember) {
+                    res.cookie('userEmail', userToLogin.email, {
+                        maxAge: 1000 * 60 * 60 * 24
+                    });
+                }
+
                 return res.redirect('/users/profile');
             }
 
