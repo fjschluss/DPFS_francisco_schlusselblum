@@ -4,13 +4,17 @@ const router = express.Router();
 const usersController = require('../controllers/usersController');
 
 const upload = require('../middlewares/multerUsers');
+const authMiddleware = require('../middlewares/authMiddleware');
+const guestMiddleware = require('../middlewares/guestMiddleware');
 
-router.get('/register', usersController.register);
-router.post('/register', upload.single('image'), usersController.processRegister);
+// Solo huéspedes
+router.get('/register', guestMiddleware, usersController.register);
+router.post('/register', guestMiddleware, upload.single('image'), usersController.processRegister);
 
-router.get('/login', usersController.login);
-router.post('/login', usersController.processLogin);
+router.get('/login', guestMiddleware, usersController.login);
+router.post('/login', guestMiddleware, usersController.processLogin);
 
-router.get('/profile', usersController.profile);
+// Solo usuarios logueados
+router.get('/profile', authMiddleware, usersController.profile);
 
 module.exports = router;
