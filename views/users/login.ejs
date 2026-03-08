@@ -11,18 +11,19 @@
             <h1>Iniciar sesión</h1>
 
             <form action="/users/login" method="POST">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" name="email" value="<%= oldData.email ? oldData.email : '' %>" placeholder="Email">
+                <% if (errors.email) { %>
+                    <p class="error"><%= errors.email.msg %></p>
+                <% } %>
 
-                <label>Contraseña</label>
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <input type="password" name="password" placeholder="Contraseña">
+                <% if (errors.password) { %>
+                    <p class="error"><%= errors.password.msg %></p>
+                <% } %>
 
-                <div class="remember">
-                    <label>
-                        <input type="checkbox" name="remember">
-                        Recordarme
-                    </label>
-                </div>
+                <label>
+                    <input type="checkbox" name="remember"> Recordarme
+                </label>
 
                 <button type="submit">Ingresar</button>
             </form>

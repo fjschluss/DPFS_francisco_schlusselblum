@@ -11,20 +11,24 @@
             <h1>Registro</h1>
 
             <form action="/users/register" method="POST" enctype="multipart/form-data">
-                <label>Nombre</label>
-                <input type="text" name="firstName" placeholder="Nombre" required>
+                <input type="text" name="firstName" value="<%= oldData.firstName ? oldData.firstName : '' %>" placeholder="Nombre">
+                <% if (errors.firstName) { %>
+                    <p class="error"><%= errors.firstName.msg %></p>
+                <% } %>
 
-                <label>Apellido</label>
-                <input type="text" name="lastName" placeholder="Apellido" required>
+                <input type="text" name="lastName" value="<%= oldData.lastName ? oldData.lastName : '' %>" placeholder="Apellido">
 
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" name="email" value="<%= oldData.email ? oldData.email : '' %>" placeholder="Email">
+                <% if (errors.email) { %>
+                    <p class="error"><%= errors.email.msg %></p>
+                <% } %>
 
-                <label>Contraseña</label>
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <input type="password" name="password" placeholder="Contraseña">
+                <% if (errors.password) { %>
+                    <p class="error"><%= errors.password.msg %></p>
+                <% } %>
 
-                Imagen de Perfil
-                <input type="file" name="image" required>
+                <input type="file" name="image">
 
                 <button type="submit">Registrarse</button>
             </form>
