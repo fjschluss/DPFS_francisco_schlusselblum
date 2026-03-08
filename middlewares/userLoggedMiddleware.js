@@ -4,19 +4,25 @@ const path = require('path');
 const usersFilePath = path.join(__dirname, '../data/users.json');
 
 function userLoggedMiddleware(req, res, next) {
+  const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
-    if (req.cookies.userEmail && !req.session.userLogged) {
+  res.locals.userLogged = null;
 
-        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+  if (req.session && req.session.userLogged) {
+    res.locals.userLogged = req.session.userLogged;
+    return next();
+  }
 
-        let userFromCookie = users.find(user => user.email === req.cookies.userEmail);
+  if (req.cookies && req.cookies.userEmail) {
+    const userFromCookie = users.find(user => user.email === req.cookies.userEmail);
 
-        if (userFromCookie) {
-            req.session.userLogged = userFromCookie;
-        }
+    if (userFromCookie) {
+      req.session.userLogged = userFromCookie;
+      res.locals.userLogged = userFromCookie;
     }
+  }
 
-    next();
+  next();
 }
 
 module.exports = userLoggedMiddleware;
