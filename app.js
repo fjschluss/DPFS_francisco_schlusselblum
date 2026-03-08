@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -24,9 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(session({
-    secret: 'secreto-super',
-    resave: false,
-    saveUninitialized: false
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
 }));
 app.use(userLoggedMiddleware);
 app.use((req, res, next) => {
