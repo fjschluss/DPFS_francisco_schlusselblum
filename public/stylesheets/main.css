@@ -59,6 +59,7 @@ a:hover {
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
+    gap: 20px;
 }
 
 .logo img {
@@ -73,6 +74,45 @@ a:hover {
 
 .menu a {
     font-weight: 500;
+}
+
+/*======== SEARCH (HEADER) ========*/
+
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-top: 0;         /* 🔥 evita que baje */
+    max-width: none;       /* 🔥 evita límite del form global */
+}
+
+/* input */
+.search-form input {
+    width: 200px;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    font-size: 14px;
+}
+
+/* botón */
+.search-form button {
+    height: 34px;
+    width: 36px;
+    padding: 0;
+    border-radius: 0 6px 6px 0;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: var(--color-accent);
 }
 
 /*======== NAV ACTIONS ========*/
@@ -164,6 +204,12 @@ form {
     margin-top: 20px;
 }
 
+/* 🔥 EXCEPCIÓN PARA HEADER */
+.search-form {
+    max-width: none;
+    margin-top: 0;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -193,10 +239,9 @@ input:focus {
     width: auto;
     transform: scale(1.1);
     cursor: pointer;
-
 }
 
-/*======== AUTH PAGES (login / register / profile) ========*/
+/*======== AUTH PAGES ========*/
 
 .auth-page {
     min-height: 70vh;
@@ -206,7 +251,6 @@ input:focus {
     align-items: center;
 }
 
-/* formulario */
 .auth-page form {
     width: 100%;
     max-width: 400px;
@@ -216,7 +260,6 @@ input:focus {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* título */
 .auth-page h2 {
     margin-bottom: 20px;
 }
@@ -231,7 +274,6 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
-/* estructura */
 .footer-content {
     display: flex;
     justify-content: space-between;
@@ -240,14 +282,12 @@ footer {
     gap: 20px;
 }
 
-/* logo */
 .footer-brand img {
     height: 45px;
     opacity: 0.9;
     filter: brightness(1.1);
 }
 
-/* links */
 .footer-links {
     display: flex;
     gap: 20px;
@@ -263,7 +303,6 @@ footer {
     color: var(--color-accent);
 }
 
-/* copyright */
 .footer-copy p {
     font-size: 13px;
     color: #CFCFCF;
@@ -279,7 +318,7 @@ footer {
 
     .navbar{
         flex-direction:column;
-        gap:10px;
+        gap: 10px;
     }
 
     .footer-content{

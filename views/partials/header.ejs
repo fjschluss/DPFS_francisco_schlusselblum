@@ -14,6 +14,16 @@
             <li><a href="#">Sobre Mi</a></li>
         </ul>
 
+        <form action="/products/search" method="GET" class="search-form">
+            <input 
+                type="text" 
+                name="keyword" 
+                placeholder="Buscar productos..." 
+                required
+            >
+            <button type="submit">🔍</button>
+        </form>
+
         <div class="nav-actions">
 
             <% if (!userLogged) { %>
