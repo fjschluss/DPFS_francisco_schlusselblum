@@ -14,29 +14,21 @@
         <!-- Imagen / Preview -->
         <div class="product-image">
             <div class="image-placeholder">
-                <img src="/images/<%= product.image %>" alt="<%= product.name %>">
+                <img src="/images/<%= producto.imagen %>" alt="<%= producto.nombre %>">
             </div>
         </div>
 
         <!-- Información -->
         <div class="product-info">
-            <h1><%= product.name %></h1>
+            <h1><%= producto.nombre %></h1>
 
             <div class="product-detail">
 
-                <p><%= product.description %></p>
+                <p><strong>Descripción:</strong> <%= producto.descripcion %></p>
 
-                <p><strong>Categoría:</strong> <%= product.category %></p>
+                <p><strong>Categoría:</strong> <%= producto.id_categorias %></p>
 
-                <p><strong>Colores:</strong>
-                    <%= product.colors.join(", ") %>
-                </p>
-
-                <p><strong>Talles:</strong>
-                    <%= product.sizes.join(", ") %>
-                </p>
-
-                <h3>$ <%= product.price %></h3>
+                <h3>$<%= producto.precio %></h3>
 
                 <a href="/products">Volver al listado</a>
 
@@ -52,15 +44,15 @@
 
         <div class="products">
 
-            <% relatedProducts.forEach(product => { %>
+            <% relacionados.forEach(producto => { %>
 
                 <div class="product-card">
 
-                    <h3><%= product.name %></h3>
+                    <h3><%= producto.nombre %></h3>
 
-                    <p class="price">$<%= product.price %></p>
+                    <p class="price">$<%= producto.precio %></p>
 
-                    <a href="/products/<%= product.id %>" class="btn-secondary">
+                    <a href="/products/<%= producto.id_productos %>" class="btn-secondary">
                         Ver detalle
                     </a>
 

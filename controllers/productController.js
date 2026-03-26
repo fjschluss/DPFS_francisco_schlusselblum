@@ -1,141 +1,134 @@
-const fs = require("fs");
-const path = require("path");
-
-const productsFilePath = path.join(__dirname, "../data/products.json");
+const db = require('../database/models');
 
 const productController = {
 
-    list: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
-        res.render('products/productList', { products });
-    },
+    // 🟢 LISTADO
+    list: async (req, res) => {
+        try {
+            const productos = await db.Producto.findAll({
+                include: ['categoria', 'brand']
+            });
 
-    detail: (req, res) => {
+            res.render('products/productList', { productos });
 
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
-
-        const id = parseInt(req.params.id);
-
-        const product = products.find(p => p.id === id);
-
-        const relatedProducts = products
-            .filter(p => p.id !== product.id)
-            .slice(0, 3);
-
-        res.render("products/productDetail", {
-            product,
-            relatedProducts
-        });
-
-    },
-
-    create: (req, res) => {
-        res.render('products/productCreate');
-    },
-
-    store: (req, res) => {
-
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
-
-        const lastProduct = products[products.length - 1];
-
-        const newProduct = {
-            id: lastProduct ? lastProduct.id + 1 : 1,
-            name: req.body.name,
-            description: req.body.description,
-            image: req.body.image,
-            category: req.body.category,
-            colors: req.body.colors.split(",").map(color => color.trim()),
-            sizes: req.body.sizes.split(",").map(size => size.trim()),
-            price: Number(req.body.price)
-        };
-
-        products.push(newProduct);
-
-        fs.writeFileSync(
-            productsFilePath,
-            JSON.stringify(products, null, 2)
-        );
-
-        res.redirect("/products");
-
-    },
-
-    edit: (req, res) => {
-
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
-
-        const product = products.find(
-            p => p.id == req.params.id
-        );
-
-        if (!product) {
-            return res.send("Producto no encontrado");
+        } catch (error) {
+            console.log(error);
+            res.send('Error al cargar productos');
         }
-
-        res.render("products/productEdit", { product });
-
     },
 
-    update: (req, res) => {
+    // 🟢 DETALLE
+    detail: async (req, res) => {
+        try {
+            const producto = await db.Producto.findByPk(req.params.id, {
+                include: ['categoria', 'brand']
+            });
 
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
+            const relacionados = await db.Producto.findAll({
+                where: {
+                    id_productos: {
+                        [db.Sequelize.Op.ne]: req.params.id
+                    }
+                },
+                limit: 3
+            });
 
-        const productIndex = products.findIndex(
-            p => p.id == req.params.id
-        );
+            res.render('products/productDetail', {
+                producto,
+                relacionados
+            });
 
-        if (productIndex === -1) {
-            return res.send("Producto no encontrado");
+        } catch (error) {
+            console.log(error);
+            res.send('Error en detalle');
         }
-
-        products[productIndex] = {
-            ...products[productIndex],
-            name: req.body.name,
-            description: req.body.description,
-            image: req.body.image,
-            category: req.body.category,
-            colors: req.body.colors.split(",").map(color => color.trim()),
-            sizes: req.body.sizes.split(",").map(size => size.trim()),
-            price: Number(req.body.price)
-        };
-
-        fs.writeFileSync(
-            productsFilePath,
-            JSON.stringify(products, null, 2)
-        );
-
-        res.redirect(`/products/${req.params.id}`);
-
     },
 
-    destroy: (req, res) => {
+    // 🟢 FORM CREATE
+    create: async (req, res) => {
+        try {
+            const categorias = await db.Categoria.findAll();
+            const brands = await db.Brand.findAll();
 
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, "utf-8")
-        );
+            res.render('products/productCreate', {
+                categorias,
+                brands
+            });
 
-        const filteredProducts = products.filter(
-            p => p.id != req.params.id
-        );
+        } catch (error) {
+            console.log(error);
+        }
+    },
 
-        fs.writeFileSync(
-            productsFilePath,
-            JSON.stringify(filteredProducts, null, 2)
-        );
+    // 🟢 GUARDAR
+    store: async (req, res) => {
+        try {
+            await db.Producto.create({
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                precio: req.body.precio,
+                imagen: req.file ? req.file.filename : "default.png",
+                id_categorias: req.body.categoria,
+                id_brands: req.body.brand
+            });
 
-        res.redirect("/products");
+            res.redirect('/products');
 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    // 🟢 FORM EDIT
+    edit: async (req, res) => {
+        try {
+            const producto = await db.Producto.findByPk(req.params.id);
+            const categorias = await db.Categoria.findAll();
+            const brands = await db.Brand.findAll();
+
+            res.render('products/productEdit', {
+                producto,
+                categorias,
+                brands
+            });
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    // 🟢 UPDATE
+    update: async (req, res) => {
+        try {
+            await db.Producto.update({
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                precio: req.body.precio,
+                id_categorias: req.body.categoria,
+                id_brands: req.body.brand
+            }, {
+                where: { id_productos: req.params.id }
+            });
+
+            res.redirect('/products/' + req.params.id);
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    // 🟢 DELETE
+    destroy: async (req, res) => {
+        try {
+            await db.Producto.destroy({
+                where: { id_productos: req.params.id }
+            });
+
+            res.redirect('/products');
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 };

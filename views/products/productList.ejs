@@ -18,21 +18,25 @@
 
             <div class="products-container">
 
-                <% products.forEach(product => { %>
+                <% productos.forEach(producto => { %>
 
                     <div class="product-card">
 
-                        <img src="/images/<%= product.image %>" alt="<%= product.name %>">
+                        <img src="/images/<%= producto.imagen %>" alt="<%= producto.nombre %>">
 
-                        <h3><%= product.name %></h3>
+                        <h3><%= producto.nombre %></h3>
 
-                        <p>$ <%= product.price %></p>
+                        <p>$ <%= producto.precio %></p>
 
-                        <a href="/products/<%= product.id %>">Ver detalle</a>
+                        <p>Categoría: <%= producto.categoria ? producto.categoria.nombre : "Sin categoría" %></p>
 
-                        <a href="/products/<%= product.id %>/edit">Editar</a>
+                        <p>Marca: <%= producto.brand ? producto.brand.nombre : "Sin marca" %></p>
 
-                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="margin-top: 20px;">
+                        <a href="/products/<%= producto.id_productos %>">Ver detalle</a>
+
+                        <a href="/products/<%= producto.id_productos %>/edit">Editar</a>
+
+                        <form action="/products/<%= producto.id_productos %>?_method=DELETE" method="POST" style="margin-top: 20px;">
                             <button type="submit" onclick="return confirm('¿Estás seguro que querés eliminar este producto?')">
                                 Eliminar Producto
                             </button>
