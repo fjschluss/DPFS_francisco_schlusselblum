@@ -1,4 +1,7 @@
 const db = require('../database/models');
+const Producto = db.Producto;
+const Categoria = db.Categoria;
+const Brand = db.Brand;
 
 const productController = {
 
@@ -128,6 +131,31 @@ const productController = {
 
         } catch (error) {
             console.log(error);
+        }
+    },
+
+    // 🟢 BUSCAR
+
+    search: async (req, res) => {
+        try {
+            const { Op } = db.Sequelize;
+
+            const resultados = await db.Producto.findAll({
+                where: {
+                    nombre: {
+                        [Op.like]: `%${req.query.keyword}%`
+                    }
+                },
+                include: ['categoria', 'brand']
+            });
+
+            res.render('products/productList', {
+                productos: resultados
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.send('Error en búsqueda');
         }
     }
 

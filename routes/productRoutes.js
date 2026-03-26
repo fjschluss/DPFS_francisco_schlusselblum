@@ -10,5 +10,6 @@ router.get("/:id/edit", productController.edit);
 router.put("/:id", productController.update);
 router.delete("/:id", productController.destroy);
 router.get("/:id", productController.detail);
+router.get('/search', productController.search);
 
 module.exports = router;
