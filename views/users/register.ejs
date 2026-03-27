@@ -32,6 +32,10 @@
                 <% } %>
 
                 <input type="file" name="image">
+                <% if (errors.image) { %>
+                    <p class="error"><%= errors.image.msg %></p>
+                <% } %>
+
 
                 <button type="submit">Registrarse</button>
             </form>

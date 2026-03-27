@@ -11,17 +11,17 @@ router.get('/search', productController.search);
 router.get('/', productController.list);
 
 // CREATE
-router.get('/create', authMiddleware, productsController.create);
-router.post('/create', authMiddleware, productsController.store);
+router.get('/create', authMiddleware, productController.create);
+router.post('/create', authMiddleware, productController.store);
 
 // DETAIL (SIEMPRE DESPUÉS)
 router.get('/:id', productController.detail);
 
 // EDIT
-router.get('/:id/edit', authMiddleware, productsController.edit);
-router.put('/:id', authMiddleware, productsController.update);
+router.get('/:id/edit', authMiddleware, productController.edit);
+router.put('/:id', authMiddleware, productController.update);
 
 // DELETE
-router.delete('/:id', authMiddleware, productsController.destroy);
+router.delete('/:id', authMiddleware, productController.destroy);
 
 module.exports = router;

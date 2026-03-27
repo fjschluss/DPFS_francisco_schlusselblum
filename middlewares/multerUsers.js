@@ -20,7 +20,8 @@ const fileFilter = (req, file, cb) => {
     return cb(null, true);
   }
 
-  cb(new Error('Formato de archivo no permitido. Solo JPG, JPEG, PNG y GIF.'));
+  req.fileValidationError = 'Formato de archivo no permitido. Solo JPG, JPEG, PNG y GIF.';
+  return cb(null, false);
 };
 
 const upload = multer({

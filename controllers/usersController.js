@@ -39,6 +39,15 @@ const usersController = {
         try {
             const errors = validationResult(req);
 
+            if (req.fileValidationError) {
+                return res.render("users/register", {
+                    errors: {
+                        image: { msg: req.fileValidationError }
+                    },
+                    oldData: req.body
+                });
+            }
+
             if (!errors.isEmpty()) {
                 return res.render("users/register", {
                     errors: errors.mapped(),
