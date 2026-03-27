@@ -16,6 +16,6 @@ router.post('/login', guestMiddleware, usersController.processLogin);
 
 // Solo usuarios logueados
 router.get('/profile', authMiddleware, usersController.profile);
-router.post('/logout', usersController.logout);
+router.post('/logout', authMiddleware, usersController.logout);
 
 module.exports = router;
