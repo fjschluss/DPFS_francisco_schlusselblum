@@ -37,5 +37,5 @@ adaptada para ser accesible y apta para usuarios con daltonismo.
 Se prioriza el contraste, la jerarquía tipográfica y una estética editorial minimalista.
 Los lineamientos visuales se encuentran en la carpeta `/design`.
 
-## Tablero de trabajo
+## Tablero de Trabajo - 🛡️ Sprint 7 – Validaciones
 [**LuBo Project**](https://github.com/users/fjschluss/projects/14/views/1)
