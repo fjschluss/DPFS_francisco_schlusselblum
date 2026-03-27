@@ -9,38 +9,69 @@
 
         <main class="form-container">
 
-            <h1>Crear Nuevo Producto</h1>
+            <div class="create">
 
-            <form action="/products" method="POST">
+                <h1>Crear Producto</h1>
 
-                <label>Nombre:</label>
-                <input type="text" name="name" required>
+                <form action="/products" method="POST">
 
-                <label>Descripción:</label>
-                <textarea name="description" required></textarea>
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" required>
+                    </div>
 
-                <label>Imagen:</label>
-                <input type="text" name="image" required>
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea name="descripcion" required></textarea>
+                    </div>
 
-                <label>Categoría:</label>
-                <input type="text" name="category" required>
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="text" name="imagen">
+                    </div>
 
-                <label>Colores (separados por coma):</label>
-                <input type="text" name="colors" required>
+                    <div class="form-row">
 
-                <label>Talles (separados por coma):</label>
-                <input type="text" name="sizes" required>
+                        <div class="form-group">
+                            <label>Categoría:</label>
+                            <select name="categoria" required>
+                                <% categorias.forEach(cat => { %>
+                                    <option value="<%= cat.id_categorias %>">
+                                        <%= cat.nombre %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
 
-                <label>Precio:</label>
-                <input type="number" name="price" required>
+                        <div class="form-group">
+                            <label>Marca:</label>
+                            <select name="brand" required>
+                                <% brands.forEach(brand => { %>
+                                    <option value="<%= brand.id_brands %>">
+                                        <%= brand.nombre %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
 
-                <button type="submit">Crear Producto</button>
+                        <div class="form-group">
+                            <label>Precio:</label>
+                            <input type="number" name="precio" required>
+                        </div>
 
-                <a href="/products" class="cancel-btn">
-                    Cancelar
-                </a>
+                    </div>
 
-            </form>
+                    <div class="form-actions">
+                        <button type="submit">Crear Producto</button>
+
+                        <a href="/products" class="cancel-btn">
+                            Cancelar
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
 
         </main>
 

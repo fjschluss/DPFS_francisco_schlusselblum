@@ -9,38 +9,71 @@
 
         <main class="form-container">
 
-            <h1>Editar Producto</h1>
+            <div class="edit">
 
-            <form action="/products/<%= product.id %>?_method=PUT" method="POST">
+                <h1>Editar Producto</h1>
 
-                <label>Nombre:</label>
-                <input type="text" name="name" value="<%= product.name %>" required>
+                <form action="/products/<%= producto.id_productos %>?_method=PUT" method="POST">
 
-                <label>Descripción:</label>
-                <textarea name="description" required><%= product.description %></textarea>
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" value="<%= producto.nombre %>" required>
+                    </div>
 
-                <label>Imagen:</label>
-                <input type="text" name="image" value="<%= product.image %>" required>
+                    <div class="form-group">
+                        <label>Descripción:</label>
+                        <textarea name="descripcion" required><%= producto.descripcion %></textarea>
+                    </div>
 
-                <label>Categoría:</label>
-                <input type="text" name="category" value="<%= product.category %>" required>
+                    <div class="form-group">
+                        <label>Imagen:</label>
+                        <input type="text" name="imagen" value="<%= producto.imagen %>">
+                    </div>
 
-                <label>Colores (separados por coma):</label>
-                <input type="text" name="colors" value="<%= product.colors.join(', ') %>" required>
+                    <div class="form-row">
 
-                <label>Talles (separados por coma):</label>
-                <input type="text" name="sizes" value="<%= product.sizes.join(', ') %>" required>
+                        <div class="form-group">
+                            <label>Categoría:</label>
+                            <select name="categoria" required>
+                                <% categorias.forEach(cat => { %>
+                                    <option value="<%= cat.id_categorias %>" 
+                                        <%= producto.id_categorias == cat.id_categorias ? 'selected' : '' %>>
+                                        <%= cat.nombre %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
 
-                <label>Precio:</label>
-                <input type="number" name="price" value="<%= product.price %>" required>
+                        <div class="form-group">
+                            <label>Marca:</label>
+                            <select name="brand" required>
+                                <% brands.forEach(brand => { %>
+                                    <option value="<%= brand.id_brands %>" 
+                                        <%= producto.id_brands == brand.id_brands ? 'selected' : '' %>>
+                                        <%= brand.nombre %>
+                                    </option>
+                                <% }) %>
+                            </select>
+                        </div>
 
-                <button type="submit">Guardar Cambios</button>
+                        <div class="form-group">
+                            <label>Precio:</label>
+                            <input type="number" name="precio" value="<%= producto.precio %>" required>
+                        </div>
 
-                <a href="/products/<%= product.id %>" class="cancel-btn">
-                    Cancelar
-                </a>
+                    </div>
 
-            </form>
+                    <div class="form-actions">
+                        <button type="submit">Guardar Cambios</button>
+
+                        <a href="/products/<%= producto.id_productos %>" class="cancel-btn">
+                            Cancelar
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
 
         </main>
 
