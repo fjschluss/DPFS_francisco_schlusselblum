@@ -9,7 +9,7 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 
 // Solo huéspedes
 router.get('/register', guestMiddleware, usersController.register);
-router.post('/register', guestMiddleware, upload.single('image'), usersController.processRegister);
+router.post('/register', guestMiddleware, upload.single('image'), usersController.store);
 
 router.get('/login', guestMiddleware, usersController.login);
 router.post('/login', guestMiddleware, usersController.processLogin);
