@@ -11,10 +11,10 @@
 
             <h2>Perfil</h2>
 
-            <p><strong>Nombre:</strong> <%= user.firstName %> <%= user.lastName %></p>
-            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Nombre:</strong> <%= usuario.nombre %> <%= usuario.apellido %></p>
+            <p><strong>Email:</strong> <%= usuario.email %></p>
 
-            <img src="/images/users/<%= user.image %>" alt="Foto de perfil" width="150">
+            <img src="/images/users/<%= usuario.imagen %>" alt="Foto de perfil" width="150">
 
             <form action="/users/logout" method="POST">
                 <button type="submit">Cerrar sesión</button>

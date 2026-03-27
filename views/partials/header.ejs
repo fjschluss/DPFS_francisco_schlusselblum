@@ -17,7 +17,7 @@
         <form action="/products/search" method="GET" class="search-form">
             <input 
                 type="text" 
-                name="keyword" 
+                name="keywords" 
                 placeholder="Buscar productos..." 
                 required
             >
@@ -33,7 +33,7 @@
 
             <% } else { %>
 
-                <span>Hola <%= userLogged.firstName %></span>
+                <span>Hola <%= userLogged.nombre %></span>
                 <a href="/users/profile">Perfil</a>
 
                 <form action="/users/logout" method="POST" style="display:inline;">

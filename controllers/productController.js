@@ -1,7 +1,5 @@
 const db = require('../database/models');
-const Producto = db.Producto;
-const Categoria = db.Categoria;
-const Brand = db.Brand;
+const { Op } = require('sequelize');
 
 const productController = {
 
@@ -22,10 +20,15 @@ const productController = {
 
     // 🟢 DETALLE
     detail: async (req, res) => {
+
         try {
             const producto = await db.Producto.findByPk(req.params.id, {
                 include: ['categoria', 'brand']
             });
+
+            if (!producto) {
+                return res.send("Producto no encontrado");
+            }
 
             const relacionados = await db.Producto.findAll({
                 where: {
@@ -36,14 +39,14 @@ const productController = {
                 limit: 3
             });
 
-            res.render('products/productDetail', {
+            res.render("products/productDetail", {
                 producto,
                 relacionados
             });
 
         } catch (error) {
             console.log(error);
-            res.send('Error en detalle');
+            res.send("Error");
         }
     },
 
@@ -70,7 +73,7 @@ const productController = {
                 nombre: req.body.nombre,
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
-                imagen: req.file ? req.file.filename : "default.png",
+                imagen: req.body.imagen,
                 id_categorias: req.body.categoria,
                 id_brands: req.body.brand
             });
@@ -107,6 +110,7 @@ const productController = {
                 nombre: req.body.nombre,
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
+                imagen: req.body.imagen,
                 id_categorias: req.body.categoria,
                 id_brands: req.body.brand
             }, {
@@ -134,29 +138,25 @@ const productController = {
         }
     },
 
-    // 🟢 BUSCAR
-
     search: async (req, res) => {
-        try {
-            const { Op } = db.Sequelize;
 
-            const resultados = await db.Producto.findAll({
+        try {
+            const productos = await db.Producto.findAll({
                 where: {
                     nombre: {
-                        [Op.like]: `%${req.query.keyword}%`
+                        [Op.like]: `%${req.query.keywords}%`
                     }
                 },
                 include: ['categoria', 'brand']
             });
 
-            res.render('products/productList', {
-                productos: resultados
-            });
+            res.render("products/productList", { productos });
 
         } catch (error) {
             console.log(error);
-            res.send('Error en búsqueda');
+            res.send("Error en búsqueda");
         }
+
     }
 
 };

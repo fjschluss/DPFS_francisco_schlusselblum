@@ -11,12 +11,12 @@
             <h1>Registro</h1>
 
             <form action="/users/register" method="POST" enctype="multipart/form-data">
-                <input type="text" name="firstName" value="<%= oldData.firstName ? oldData.firstName : '' %>" placeholder="Nombre">
+                <input type="text" name="nombre" value="<%= oldData.nombre ? oldData.nombre : '' %>" placeholder="Nombre">
                 <% if (errors.firstName) { %>
-                    <p class="error"><%= errors.firstName.msg %></p>
+                    <p class="error"><%= errors.nombre.msg %></p>
                 <% } %>
 
-                <input type="text" name="lastName" value="<%= oldData.lastName ? oldData.lastName : '' %>" placeholder="Apellido">
+                <input type="text" name="apellido" value="<%= oldData.apellido ? oldData.apellido : '' %>" placeholder="Apellido">
 
                 <input type="email" name="email" value="<%= oldData.email ? oldData.email : '' %>" placeholder="Email">
                 <% if (errors.email) { %>
