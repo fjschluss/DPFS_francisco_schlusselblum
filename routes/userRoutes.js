@@ -6,10 +6,11 @@ const usersController = require('../controllers/usersController');
 const upload = require('../middlewares/multerUsers');
 const authMiddleware = require('../middlewares/authMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
+const userRegisterValidation = require("../validations/userRegisterValidation");
 
 // Solo huéspedes
 router.get('/register', guestMiddleware, usersController.register);
-router.post('/register', guestMiddleware, upload.single('image'), usersController.store);
+router.post('/register', guestMiddleware, upload.single('image'), userRegisterValidation, usersController.store);
 
 router.get('/login', guestMiddleware, usersController.login);
 router.post('/login', guestMiddleware, usersController.processLogin);

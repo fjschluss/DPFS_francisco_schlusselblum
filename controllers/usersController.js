@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const Usuario = db.Usuario;
 const bcrypt = require('bcryptjs');
+const { validationResult } = require("express-validator");
 
 const usersController = {
 
@@ -36,15 +37,11 @@ const usersController = {
     // 🟢 CREAR USUARIO
     store: async (req, res) => {
         try {
-            const userInDb = await Usuario.findOne({
-                where: { email: req.body.email }
-            });
+            const errors = validationResult(req);
 
-            if (userInDb) {
+            if (!errors.isEmpty()) {
                 return res.render("users/register", {
-                    errors: {
-                        email: { msg: "El email ya está registrado" }
-                    },
+                    errors: errors.mapped(),
                     oldData: req.body
                 });
             }
