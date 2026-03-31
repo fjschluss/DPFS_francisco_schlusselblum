@@ -79,18 +79,18 @@ const usersController = {
     // 🟢 PROCESAR LOGIN
     processLogin: async (req, res) => {
         try {
-            const user = await Usuario.findOne({
-                where: { email: req.body.email }
-            });
+            const errors = validationResult(req);
 
-            if (!user) {
+            if (!errors.isEmpty()) {
                 return res.render("users/login", {
-                    errors: {
-                        email: { msg: "No existe un usuario con ese email" }
-                    },
+                    errors: errors.mapped(),
                     oldData: req.body
                 });
             }
+
+            const user = await Usuario.findOne({
+                where: { email: req.body.email }
+            });
 
             const isValidPassword = bcrypt.compareSync(
                 req.body.password,
