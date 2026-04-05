@@ -13,21 +13,30 @@
 
                 <h1>Crear Producto</h1>
 
-                <form action="/products" method="POST">
+                <form action="/products/create" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label>Nombre:</label>
-                        <input type="text" name="nombre" required>
+                        <input type="text" name="nombre" value="<%= oldData ? oldData.nombre : '' %>" required>
+                        <% if (errors && errors.nombre) { %>
+                            <p class="error"><%= errors.nombre.msg %></p>
+                        <% } %>
                     </div>
 
                     <div class="form-group">
                         <label>Descripción:</label>
-                        <textarea name="descripcion" required></textarea>
+                        <textarea name="descripcion" required><%= oldData ? oldData.descripcion : '' %></textarea>
+                        <% if (errors && errors.descripcion) { %>
+                            <p class="error"><%= errors.descripcion.msg %></p>
+                        <% } %>
                     </div>
 
                     <div class="form-group">
                         <label>Imagen:</label>
-                        <input type="text" name="imagen">
+                        <input type="file" name="imagen">
+                        <% if (errors && errors.imagen) { %>
+                            <p class="error"><%= errors.imagen.msg %></p>
+                        <% } %>
                     </div>
 
                     <div class="form-row">
@@ -56,7 +65,7 @@
 
                         <div class="form-group">
                             <label>Precio:</label>
-                            <input type="number" name="precio" required>
+                            <input type="number" name="precio" value="<%= oldData ? oldData.precio : '' %>" required>
                         </div>
 
                     </div>
