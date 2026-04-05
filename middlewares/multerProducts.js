@@ -1,0 +1,32 @@
+const path = require('path');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, '../public/images/products'));
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const extension = path.extname(file.originalname);
+    cb(null, 'product-' + uniqueSuffix + extension);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+  const fileExtension = path.extname(file.originalname).toLowerCase();
+
+  if (acceptedExtensions.includes(fileExtension)) {
+    return cb(null, true);
+  }
+
+  req.fileValidationError = 'Formato de archivo no permitido. Solo JPG, JPEG, PNG y GIF.';
+  return cb(null, false);
+};
+
+const upload = multer({
+  storage,
+  fileFilter
+});
+
+module.exports = upload;

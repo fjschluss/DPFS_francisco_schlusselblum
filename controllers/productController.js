@@ -1,5 +1,6 @@
 const db = require('../database/models');
 const { Op } = require('sequelize');
+const { validationResult } = require("express-validator");
 
 const productController = {
 
@@ -58,7 +59,9 @@ const productController = {
 
             res.render('products/productCreate', {
                 categorias,
-                brands
+                brands,
+                errors: {},
+                oldData: {}
             });
 
         } catch (error) {
@@ -69,11 +72,37 @@ const productController = {
     // 🟢 GUARDAR
     store: async (req, res) => {
         try {
+
+            const categorias = await db.Categoria.findAll();
+            const brands = await db.Brand.findAll();
+
+            if (req.fileValidationError) {
+                return res.render("products/productCreate", {
+                    errors: {
+                        imagen: { msg: req.fileValidationError }
+                    },
+                    oldData: req.body,
+                    categorias,
+                    brands
+                });
+            }
+            
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                return res.render("products/productCreate", {
+                    errors: errors.mapped(),
+                    oldData: req.body,
+                    categorias,
+                    brands
+                });
+            }
+
             await db.Producto.create({
                 nombre: req.body.nombre,
                 descripcion: req.body.descripcion,
                 precio: req.body.precio,
-                imagen: req.body.imagen,
+                imagen: req.file ? req.file.filename : "default.png",
                 id_categorias: req.body.categoria,
                 id_brands: req.body.brand
             });
@@ -81,7 +110,12 @@ const productController = {
             res.redirect('/products');
 
         } catch (error) {
-            console.log(error);
+            return res.render("products/productCreate", {
+                errors: {
+                    imagen: { msg: error.message }
+                },
+                oldData: req.body
+            });
         }
     },
 
