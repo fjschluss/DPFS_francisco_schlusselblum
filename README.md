@@ -10,3 +10,7 @@ El sitio ofrecerá productos descargables orientados al desarrollo y producción
 - Diseños técnicos (flats)
 - Moldes y patrones
 - Recursos digitales para diseñadores y emprendimientos de moda
+
+## Público objetivo
+El sitio está dirigido a diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños emprendimientos
+que buscan profesionalizar sus procesos de diseño y producción mediante recursos digitales listos para usar.
