@@ -21,3 +21,9 @@ que buscan profesionalizar sus procesos de diseño y producción mediante recurs
 3. https://theassemblylineshop.com/collections/digital-patterns — referencia por patrones digitales.
 4. https://thefoldline.com/ — referencia por estructura de marketplace y UX.
 5. https://jpfashionstudio.com/collections/tech-pack — referencia por plantillas de fichas técnicas.
+
+## Boceto y diseño visual (opcional)
+El diseño del sitio utiliza una paleta de colores neutros con acentos suaves,
+adaptada para ser accesible y apta para usuarios con daltonismo.
+Se prioriza el contraste, la jerarquía tipográfica y una estética editorial minimalista.
+Los lineamientos visuales se encuentran en la carpeta `/design`.
