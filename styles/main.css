@@ -1,18 +1,103 @@
 /* ============================================
-   LuBo — Header & Nav
+   LuBo — index.css
+   Estilos para index.html
    ============================================ */
 
-/* --- Contenedor principal del header --- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ===========================================
+   VARIABLES
+   =========================================== */
+:root {
+  --cream: #F5F1EB;
+  --ink: #1A1714;
+  --warm-gray: #8C8480;
+  --soft-tan: #D6CFC6;
+  --accent: #B5673A;
+  --accent-light: #E8C4A8;
+  --white: #FDFCFB;
+  --error: #C0392B;
+  --success: #2E7D52;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --radius: 2px;
+  --transition: 200ms ease;
+  --shadow: 0 1px 3px rgba(26,23,20,0.08), 0 4px 16px rgba(26,23,20,0.06);
+  --shadow-hover: 0 4px 12px rgba(26,23,20,0.14), 0 12px 32px rgba(26,23,20,0.1);
+}
+
+/* ===========================================
+   RESET & BASE
+   =========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: var(--font-body); }
+input, textarea, select { font-family: var(--font-body); }
+
+/* ===========================================
+   TIPOGRAFÍA
+   =========================================== */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+
+p { max-width: 65ch; }
+
+/* ===========================================
+   LAYOUT
+   =========================================== */
+.container {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.section { padding: 5rem 0; }
+.section-sm { padding: 3rem 0; }
+.section-header { margin-bottom: 3rem; }
+
+/* ===========================================
+   HEADER & NAV
+   =========================================== */
 .site-header {
-  background: #fff;
-  border-bottom: 1px solid #D6CFC6;
+  background: var(--white);
+  border-bottom: 1px solid var(--soft-tan);
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
 }
 
-/* --- Fila interior del nav: ocupa todo el ancho con padding lateral mínimo --- */
 .nav-inner {
   display: flex;
   align-items: center;
@@ -22,13 +107,12 @@
   box-sizing: border-box;
 }
 
-/* --- Logo (imagen) — alineado a la izquierda --- */
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
-  margin-right: auto; /* empuja el resto hacia la derecha */
+  margin-right: auto;
 }
 
 .logo img {
@@ -37,7 +121,6 @@
   display: block;
 }
 
-/* --- Links de navegación — centrados entre logo y acciones --- */
 .nav-links {
   display: flex;
   gap: 2.5rem;
@@ -56,56 +139,31 @@
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #8C8480;
+  color: var(--warm-gray);
   text-decoration: none;
-  transition: color 200ms ease;
+  transition: color var(--transition);
 }
 
 .nav-links a:hover {
-  color: #1A1714;
+  color: var(--ink);
 }
 
-/* --- Acciones — pegadas a la derecha --- */
 .nav-actions {
   display: flex;
   gap: 1.2rem;
   align-items: center;
   flex-shrink: 0;
-  margin-left: auto; /* empuja el bloque hacia la derecha */
+  margin-left: auto;
 }
 
-/* --- Botón "Ingresar" --- */
-.btn-nav-login {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #1A1714;
-  border: 1px solid #1A1714;
-  background: transparent;
-  text-decoration: none;
-  border-radius: 2px;
-  transition: background 200ms ease, color 200ms ease;
-  white-space: nowrap;
-}
-
-.btn-nav-login:hover {
-  background: #1A1714;
-  color: #fff;
-}
-
-/* --- Botón ícono (carrito) --- */
 .btn-icon {
   background: none;
   border: none;
   padding: 0.4rem;
-  color: #1A1714;
+  color: var(--ink);
   font-size: 1.3rem;
   position: relative;
-  transition: opacity 200ms ease;
+  transition: opacity var(--transition);
   cursor: pointer;
   text-decoration: none;
   display: flex;
@@ -116,13 +174,12 @@
   opacity: 0.6;
 }
 
-/* --- Badge contador del carrito --- */
 .cart-count {
   position: absolute;
   top: -2px;
   right: -4px;
-  background: #B5673A;
-  color: #fff;
+  background: var(--accent);
+  color: var(--white);
   font-size: 0.6rem;
   width: 15px;
   height: 15px;
@@ -133,24 +190,321 @@
   font-weight: 600;
 }
 
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .nav-inner {
-    padding: 0.5rem 1rem;
-  }
+/* ===========================================
+   BOTONES
+   =========================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius);
+  transition: all var(--transition);
+  cursor: pointer;
+  text-decoration: none;
 }
 
-/* ============================================
-   LuBo — Footer
-   ============================================ */
+.btn-primary {
+  background: var(--ink);
+  color: var(--white);
+}
 
+.btn-primary:hover {
+  background: #333;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.btn-accent:hover {
+  background: #9e5230;
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.btn-sm {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.75rem;
+}
+
+/* ===========================================
+   UTILIDADES VISUALES
+   =========================================== */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+/* ===========================================
+   PRODUCT CARD
+   =========================================== */
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+  border: 1px solid var(--soft-tan);
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+}
+
+.product-card-img {
+  aspect-ratio: 4/3;
+  background: var(--soft-tan);
+  overflow: hidden;
+}
+
+.product-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.product-card:hover .product-card-img img {
+  transform: scale(1.04);
+}
+
+.product-card-body { padding: 1.2rem; }
+
+.product-category {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 0.3rem;
+}
+
+.product-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.product-desc {
+  font-size: 0.85rem;
+  color: var(--warm-gray);
+  margin: 0.4rem 0 0.8rem;
+  max-width: none;
+}
+
+.product-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===========================================
+   HOME — HERO
+   =========================================== */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  padding: 7rem 0 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: 'LuBo';
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(10rem, 22vw, 22rem);
+  font-weight: 600;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 2.5rem;
+  max-width: 50ch;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===========================================
+   HOME — CATEGORIES STRIP
+   =========================================== */
+.categories-strip {
+  background: var(--accent);
+  padding: 0.9rem 0;
+  overflow: hidden;
+}
+
+.categories-scroll {
+  display: flex;
+  gap: 3rem;
+  white-space: nowrap;
+}
+
+.categories-scroll span {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.categories-scroll span::before {
+  content: '✦';
+  font-size: 0.55rem;
+  opacity: 0.7;
+}
+
+/* ===========================================
+   HOME — FEATURED SECTION
+   =========================================== */
+.featured-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ===========================================
+   HOME — PROMO BANNER
+   =========================================== */
+.promo-banner {
+  background: var(--soft-tan);
+  border-radius: var(--radius);
+  padding: 3.5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 5rem 0;
+}
+
+.promo-text h2 { margin-bottom: 0.8rem; }
+.promo-text p { color: var(--warm-gray); font-size: 0.95rem; }
+
+/* ===========================================
+   HOME — HOW IT WORKS
+   =========================================== */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.step {
+  padding: 2rem;
+  background: var(--white);
+  border: 1px solid var(--soft-tan);
+  border-radius: var(--radius);
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--soft-tan);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.step h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.step p { font-size: 0.9rem; color: var(--warm-gray); max-width: 28ch; }
+
+/* ===========================================
+   FOOTER
+   =========================================== */
 .site-footer {
-  background: #1A1714;
-  color: #D6CFC6;
+  background: var(--ink);
+  color: var(--soft-tan);
   padding: 5rem 4rem 2.5rem;
 }
 
@@ -162,14 +516,12 @@
   align-items: start;
 }
 
-/* --- Columna logo + descripción --- */
 .footer-brand {
   display: flex;
   align-items: flex-start;
   gap: 1.5rem;
 }
 
-/* --- Logo --- */
 .footer-logo {
   flex-shrink: 0;
 }
@@ -181,7 +533,6 @@
   filter: invert(1);
 }
 
-/* --- Descripción --- */
 .footer-desc {
   font-size: 0.88rem;
   color: #6B6560;
@@ -191,19 +542,17 @@
   flex: 1;
 }
 
-/* --- Título de columna --- */
 .footer-col-title {
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #FDFCFB;
+  color: var(--white);
   margin-bottom: 1.4rem;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* --- Links --- */
 .footer-links {
   display: flex;
   flex-direction: column;
@@ -213,24 +562,21 @@
   margin: 0;
 }
 
-.footer-links li {
-  list-style: none;
-}
+.footer-links li { list-style: none; }
 
 .footer-links a {
   font-size: 0.88rem;
   color: #6B6560;
   text-decoration: none;
-  transition: color 200ms ease, padding-left 200ms ease;
+  transition: color var(--transition), padding-left var(--transition);
   display: inline-block;
 }
 
 .footer-links a:hover {
-  color: #FDFCFB;
+  color: var(--white);
   padding-left: 4px;
 }
 
-/* --- Barra inferior --- */
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.07);
   padding-top: 2rem;
@@ -242,7 +588,9 @@
   letter-spacing: 0.03em;
 }
 
-/* --- Responsive footer --- */
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
 @media (max-width: 900px) {
   .site-footer {
     padding: 4rem 2rem 2rem;
@@ -252,6 +600,16 @@
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-inner { padding: 0.5rem 1rem; }
+
+  .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .steps-grid { grid-template-columns: 1fr; }
+  .promo-banner { padding: 2rem; }
+  .featured-header { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 600px) {
