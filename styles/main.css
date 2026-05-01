@@ -1,0 +1,145 @@
+/* ============================================
+   LuBo — Header & Nav
+   ============================================ */
+
+/* --- Contenedor principal del header --- */
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #D6CFC6;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+/* --- Fila interior del nav: ocupa todo el ancho con padding lateral mínimo --- */
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Logo (imagen) — alineado a la izquierda --- */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: auto; /* empuja el resto hacia la derecha */
+}
+
+.logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+/* --- Links de navegación — centrados entre logo y acciones --- */
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  list-style: none;
+  margin: 0 3rem;
+  padding: 0;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8C8480;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.nav-links a:hover {
+  color: #1A1714;
+}
+
+/* --- Acciones — pegadas a la derecha --- */
+.nav-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto; /* empuja el bloque hacia la derecha */
+}
+
+/* --- Botón "Ingresar" --- */
+.btn-nav-login {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1A1714;
+  border: 1px solid #1A1714;
+  background: transparent;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 200ms ease, color 200ms ease;
+  white-space: nowrap;
+}
+
+.btn-nav-login:hover {
+  background: #1A1714;
+  color: #fff;
+}
+
+/* --- Botón ícono (carrito) --- */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  color: #1A1714;
+  font-size: 1.3rem;
+  position: relative;
+  transition: opacity 200ms ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon:hover {
+  opacity: 0.6;
+}
+
+/* --- Badge contador del carrito --- */
+.cart-count {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background: #B5673A;
+  color: #fff;
+  font-size: 0.6rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-inner {
+    padding: 0.5rem 1rem;
+  }
+}
