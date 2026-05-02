@@ -7,7 +7,7 @@ Alumno: Francisco Schlusselblum
 
 ## 🗂 Tablero de trabajo
 
-📋 [Ver tablero en GitHub Projects](https://github.com/fjschluss/DPFS_francisco_schlusselblum/projects)
+📋 [Ver tablero en GitHub Projects](https://github.com/users/fjschluss/projects/16/views/1)
 
 ---
 
