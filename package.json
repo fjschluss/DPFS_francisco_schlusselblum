@@ -1,0 +1,29 @@
+{
+  "name": "dpfs_francisco_schlusselblum",
+  "version": "1.0.0",
+  "description": "**Desafío Profesional Full Stack — Digital House**  \r Alumno: Francisco Schlusselblum",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjschluss/DPFS_francisco_schlusselblum.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fjschluss/DPFS_francisco_schlusselblum/issues"
+  },
+  "homepage": "https://github.com/fjschluss/DPFS_francisco_schlusselblum#readme",
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
