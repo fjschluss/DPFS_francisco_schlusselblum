@@ -1,0 +1,13 @@
+# Dependencias
+node_modules/
+
+# Logs
+npm-debug.log*
+nodemon-debug.log*
+
+# Sistema operativo (Windows)
+Thumbs.db
+desktop.ini
+
+# Sistema operativo (Mac)
+.DS_Store
