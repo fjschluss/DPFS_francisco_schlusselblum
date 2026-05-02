@@ -1,41 +1,95 @@
-# DPFS_francisco_schlusselblum
-Desafío Final del Curso de Full Stack de Digital House
+# LuBo — Marketplace de recursos para diseño de indumentaria
 
-# LuBo — Market Place de recursos para diseño de indumentaria
+**Desafío Profesional Full Stack — Digital House**  
+Alumno: Francisco Schlusselblum
+
+---
+
+## 🗂 Tablero de trabajo
+
+📋 [Ver tablero en GitHub Projects](https://github.com/fjschluss/DPFS_francisco_schlusselblum/projects)
+
+---
 
 ## Temática del sitio
+
 LuBo es un marketplace de recursos digitales creado por la diseñadora de indumentaria Ludmila Borrelli.
-El sitio ofrecerá productos descargables orientados al desarrollo y producción de prendas, tales como:
+El sitio ofrece productos descargables orientados al desarrollo y producción de prendas:
+
 - Fichas técnicas (tech packs)
 - Diseños técnicos (flats)
 - Moldes y patrones
 - Recursos digitales para diseñadores y emprendimientos de moda
 
 ## Público objetivo
-El sitio está dirigido a diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños emprendimientos
-que buscan profesionalizar sus procesos de diseño y producción mediante recursos digitales listos para usar.
 
-## Breve descripción personal
-Soy Francisco Schlusselblum y este proyecto forma parte del Desafío Profesional Full Stack,
-utilizando Node.js y React, con foco en una experiencia clara, accesible y profesional.
+Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños emprendimientos que buscan profesionalizar sus procesos.
 
-## Referentes e inspiración
-1. https://hydnstudio.com/ — inspiración principal por su estética minimalista y venta de recursos digitales.
-2. https://techpacker.com/ — referencia por el concepto de tech packs y documentación técnica.
-3. https://theassemblylineshop.com/collections/digital-patterns — referencia por patrones digitales.
-4. https://thefoldline.com/ — referencia por estructura de marketplace y UX.
-5. https://jpfashionstudio.com/collections/tech-pack — referencia por plantillas de fichas técnicas.
+---
 
-## Wireframes
-Los wireframes se encuentran en la carpeta `/wireframes` e incluyen:
-- [**Home**](https://github.com/fjschluss/DPFS_francisco_schlusselblum/blob/main/wireframes/home.png)
-- [**Detalle de producto**](https://github.com/fjschluss/DPFS_francisco_schlusselblum/blob/main/wireframes/product-detail.png)
-- [**Carrito de Compras**](https://github.com/fjschluss/DPFS_francisco_schlusselblum/blob/main/wireframes/cart.png)
-- [**Formulario de Registro**](https://github.com/fjschluss/DPFS_francisco_schlusselblum/blob/main/wireframes/register.png)
-- [**Formulario Login**](https://github.com/fjschluss/DPFS_francisco_schlusselblum/blob/main/wireframes/login.png)
+## 🛠 Tecnologías utilizadas
 
-## Boceto y diseño visual (opcional)
-El diseño del sitio utiliza una paleta de colores neutros con acentos suaves,
-adaptada para ser accesible y apta para usuarios con daltonismo.
-Se prioriza el contraste, la jerarquía tipográfica y una estética editorial minimalista.
-Los lineamientos visuales se encuentran en la carpeta `/design`.
+| Capa | Tecnología |
+|------|-----------|
+| Markup | HTML5 semántico |
+| Estilos | CSS3 (variables, grid, flexbox) |
+| Tipografías | Google Fonts: Cormorant Garamond + DM Sans |
+| Backend (próximo) | Node.js + Express.js |
+| ORM (próximo) | Sequelize |
+| Base de datos (próximo) | MySQL |
+| Frontend framework (próximo) | React |
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+DPFS_francisco_schlusselblum/
+├── views/
+│   ├── index.html          ← Home
+│   ├── productDetail.html  ← Detalle de producto
+│   ├── cart.html           ← Carrito de compras
+│   ├── register.html       ← Formulario de registro
+│   └── login.html          ← Formulario de login
+├── styles/
+│   └── main.css            ← Estilos globales
+├── design/                 ← Lineamientos visuales
+├── wireframes/             ← Bocetos iniciales
+├── retro.md                ← Retrospectiva Sprint 1
+└── README.md
+```
+
+---
+
+## 🔗 Páginas del sitio
+
+| Página | Archivo | Descripción |
+|--------|---------|-------------|
+| Home | `views/index.html` | Portada con hero, catálogo y pasos |
+| Detalle de producto | `views/productDetail.html` | Info completa + galería + relacionados |
+| Carrito | `views/cart.html` | Resumen de compra y checkout |
+| Registro | `views/register.html` | Formulario con validación de estados |
+| Login | `views/login.html` | Ingreso con estados de error |
+
+---
+
+## 🎨 Diseño visual
+
+Paleta editorial minimalista con acentos cálidos, accesible para daltonismo.  
+Tipografía: **Cormorant Garamond** (display) + **DM Sans** (body).
+
+---
+
+## 📌 Referentes
+
+1. [hydnstudio.com](https://hydnstudio.com/) — Estética minimalista, venta de recursos digitales
+2. [techpacker.com](https://techpacker.com/) — Concepto de tech packs
+3. [theassemblylineshop.com](https://theassemblylineshop.com/collections/digital-patterns) — Patrones digitales
+4. [thefoldline.com](https://thefoldline.com/) — UX de marketplace
+5. [jpfashionstudio.com](https://jpfashionstudio.com/collections/tech-pack) — Fichas técnicas
+
+---
+
+## 👤 Autor
+
+Francisco Schlusselblum · Digital House · Certificado Full Stack
