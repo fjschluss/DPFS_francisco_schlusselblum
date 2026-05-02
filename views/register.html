@@ -11,20 +11,25 @@
     <!-- HEADER -->
     <header class="site-header">
         <nav class="container nav-inner">
-        <a href="index.html" class="logo">
-            <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="productDetail.html">Productos</a></li>
-            <li><a href="#about">Nosotros</a></li>
-        </ul>
-        <div class="nav-actions">
-            <a href="login.html" class="btn btn-outline btn-sm">Ingresar</a>
-            <a href="cart.html" class="btn-icon" title="Carrito">
-                <img src="../assets/image/carrito.svg" alt="Carrito">
+            <a href="index.html" class="logo">
+                <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
             </a>
-        </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productDetail.html">Productos</a></li>
+                <li><a href="#about">Nosotros</a></li>
+            </ul>
+            <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Ingresar</a>
+                <a href="cart.html" class="btn-icon" title="Carrito">
+                    <img src="../assets/image/carrito.svg" alt="Carrito">
+                </a>
+            </div>
         </nav>
     </header>
 
