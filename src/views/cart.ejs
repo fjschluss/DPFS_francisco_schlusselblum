@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito — LuBo</title>
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+    
+    <!-- HEADER -->
+    <header class="site-header">
+        <nav class="container nav-inner">
+            <a href="index.html" class="logo">
+                <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productDetail.html">Productos</a></li>
+                <li><a href="#about">Nosotros</a></li>
+            </ul>
+            <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Ingresar</a>
+                <a href="cart.html" class="btn-icon" title="Carrito">
+                    <img src="../assets/image/carrito.svg" alt="Carrito">
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container cart-page">
+ 
+        <h1 class="page-title">Mi carrito</h1>
+        <p class="cart-count-label">2 productos</p>
+    
+        <div class="cart-layout">
+    
+            <div>
+                <div class="cart-items">
+        
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="https://placehold.co/80x80/E8DDD4/8C8480?text=TP" alt="Tech Pack" />
+                        </div>
+                        <div class="cart-item-info">
+                            <p class="cart-item-category">Tech Pack</p>
+                            <h3 class="cart-item-name">Tech Pack Básico — Remeras</h3>
+                            <p class="cart-item-format">.xlsx + .pdf editable</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <span class="cart-item-price">$1.200</span>
+                            <button class="btn-remove">✕ Eliminar</button>
+                        </div>
+                    </div>
+            
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="https://placehold.co/80x80/DDD5CC/8C8480?text=FP" alt="Flat Pack" />
+                        </div>
+                        <div class="cart-item-info">
+                            <p class="cart-item-category">Diseños Técnicos</p>
+                            <h3 class="cart-item-name">Pack Flats — Pantalones</h3>
+                            <p class="cart-item-format">12 archivos .ai vectorizados</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <span class="cart-item-price">$2.800</span>
+                            <button class="btn-remove">✕ Eliminar</button>
+                        </div>
+                    </div>  
+        
+                </div>
+        
+                <div class="cart-back">
+                    <a href="productDetail.html" class="btn btn-outline btn-sm">← Seguir comprando</a>
+                </div>
+            </div>
+        
+            <div class="order-summary">
+                <h2 class="summary-title">Resumen del pedido</h2>
+        
+                <div class="summary-rows">
+                    <div class="summary-row">
+                        <span class="label">Tech Pack Básico</span>
+                        <span class="value">$1.200</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Pack Flats — Pantalones</span>
+                        <span class="value">$2.800</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="label">Descuento aplicado</span>
+                        <span class="value value-discount">−$600</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span class="label">Total</span>
+                        <span class="value">$3.400</span>
+                    </div>
+                </div>
+        
+                <div class="coupon-row">
+                    <input type="text" class="coupon-input" placeholder="Código de descuento" />
+                    <button class="btn btn-outline btn-sm">Aplicar</button>
+                </div>
+        
+                <a href="register.html" class="btn btn-accent btn-full btn-lg">Finalizar compra</a>
+        
+                <p class="security-note">🔒 Pago 100% seguro · Mercado Pago</p>
+            </div>
+    
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <a href="index.html">
+                            <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
+                        </a>
+                    </div>
+                    <p class="footer-desc">Marketplace de recursos digitales para diseñadores de indumentaria, creado por Ludmila Borrelli.</p>
+                </div>
+                <div>
+                    <p class="footer-col-title">Sitio</p>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productDetail.html">Productos</a></li>
+                        <li><a href="#about">Cómo funciona</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-col-title">Cuenta</p>
+                    <ul class="footer-links">
+                        <li><a href="register.html">Registrarme</a></li>
+                        <li><a href="login.html">Ingresar</a></li>
+                        <li><a href="cart.html">Mi carrito</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 LuBo — Ludmila Borrelli. Todos los derechos reservados.</span>
+                <span>Diseño por Francisco Schlusselblum · Digital House DPFS</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
