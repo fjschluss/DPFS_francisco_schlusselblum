@@ -1,8 +1,8 @@
-const usersController = {  
-    login: (req, res) => res.send('login - próximamente EJS'),
-    loginForm: (req, res) => res.send('login - próximamente EJS'),
-    register: (req, res) => res.send('register - próximamente EJS'),
-    registerForm: (req, res) => res.send('register - próximamente EJS'),
+const usersController = {
+    loginForm:    (req, res) => res.render('users/login',    { title: 'Iniciar Sesión – LuBo' }),
+    login:        (req, res) => res.redirect('/'),
+    registerForm: (req, res) => res.render('users/register', { title: 'Crear Cuenta – LuBo' }),
+    register:     (req, res) => res.redirect('/'),
 };
 
 module.exports = usersController;
