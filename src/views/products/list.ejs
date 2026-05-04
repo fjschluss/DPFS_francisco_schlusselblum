@@ -1,23 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <%- include('../partials/head') %>
-
 <body>
-    
-    <!-- HEADER -->
     <%- include('../partials/header') %>
 
-    <!-- MAIN -->
-    <main class="container">
-        <h1 class="page-title">Productos</h1>
-        <div class="product-grid">
-            <p>Próximamente los productos van acá.</p>
+    <main class="page-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Productos</h1>
+                <p>Recursos digitales para tu proceso de diseño y producción</p>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filters">
+                <a href="/products" class="filter-tag <%= !selectedCategory ? 'active' : '' %>">Todos</a>
+                <% categories.forEach(cat => { %>
+                    <a href="/products?category=<%= encodeURIComponent(cat) %>"
+                       class="filter-tag <%= selectedCategory === cat ? 'active' : '' %>">
+                        <%= cat %>
+                    </a>
+                <% }) %>
+            </div>
+
+            <!-- Grilla de productos -->
+            <% if (products.length === 0) { %>
+                <div class="empty-state">
+                    <p>No hay productos en esta categoría aún.</p>
+                    <a href="/products" class="btn-primary">Ver todos</a>
+                </div>
+            <% } else { %>
+                <div class="products-grid">
+                    <% products.forEach(product => { %>
+                        <%- include('../partials/product-card', { product }) %>
+                    <% }) %>
+                </div>
+            <% } %>
+
+            <!-- Acceso admin -->
+            <div class="admin-bar">
+                <a href="/products/create" class="btn-secondary">+ Agregar producto</a>
+            </div>
         </div>
     </main>
 
-    <!-- FOOTER -->
     <%- include('../partials/footer') %>
-
 </body>
 </html>
