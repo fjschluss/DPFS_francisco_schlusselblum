@@ -4,30 +4,34 @@
 <body>
     <%- include('../partials/header') %>
 
-    <main class="page-content">
-        <div class="container container--narrow">
-            <div class="page-header">
-                <h1>Nuevo Producto</h1>
-                <p>Completá el formulario para agregar un nuevo recurso al catálogo.</p>
-            </div>
+    <main class="section-sm">
+        <div class="container" style="max-width:680px;">
 
-            <form action="/products/create" method="POST" class="form-card">
+            <span class="eyebrow">Admin</span>
+            <h1 style="margin-bottom:0.5rem;">Nuevo Producto</h1>
+            <p style="color:var(--warm-gray); margin-bottom:2.5rem;">
+                Completá el formulario para agregar un recurso al catálogo.
+            </p>
+
+            <form action="/products/create" method="POST">
+
                 <div class="form-group">
-                    <label for="name">Nombre del producto *</label>
-                    <input type="text" id="name" name="name" required
-                           placeholder="Ej: Tech Pack Básico – Remera">
+                    <label class="form-label" for="name">Nombre del producto *</label>
+                    <input class="form-input" type="text" id="name" name="name" required
+                           placeholder="Ej: Tech Pack Básico — Remeras">
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Descripción *</label>
-                    <textarea id="description" name="description" rows="4" required
-                              placeholder="Describí el producto, qué incluye, para qué sirve..."></textarea>
+                    <label class="form-label" for="description">Descripción *</label>
+                    <textarea class="form-input" id="description" name="description"
+                              rows="4" required
+                              placeholder="Describí qué incluye el recurso..."></textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="category">Categoría *</label>
-                        <select id="category" name="category" required>
+                        <label class="form-label" for="category">Categoría *</label>
+                        <select class="form-input" id="category" name="category" required>
                             <option value="" disabled selected>Seleccionar...</option>
                             <option value="Fichas Técnicas">Fichas Técnicas</option>
                             <option value="Diseños Técnicos">Diseños Técnicos</option>
@@ -36,30 +40,31 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="price">Precio (ARS) *</label>
-                        <input type="number" id="price" name="price" required min="0" step="100"
-                               placeholder="Ej: 3500">
+                        <label class="form-label" for="price">Precio (ARS) *</label>
+                        <input class="form-input" type="number" id="price" name="price"
+                               required min="0" step="100" placeholder="Ej: 3500">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="image">URL de imagen</label>
-                    <input type="text" id="image" name="image"
+                    <label class="form-label" for="image">URL de imagen</label>
+                    <input class="form-input" type="text" id="image" name="image"
                            placeholder="/images/mi-producto.jpg">
-                    <span class="form-hint">Subí la imagen a la carpeta /public/images y pegá la ruta aquí.</span>
+                    <span class="form-hint">Ruta relativa dentro de /public/images/</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="colors">Colores / Talles disponibles</label>
-                    <input type="text" id="colors" name="colors"
-                           placeholder="Ej: Negro, Blanco, Gris (separados por comas)">
-                    <span class="form-hint">Escribí N/A si no aplica.</span>
+                    <label class="form-label" for="colors">Colores / Talles</label>
+                    <input class="form-input" type="text" id="colors" name="colors"
+                           placeholder="Ej: Negro, Blanco, Gris">
+                    <span class="form-hint">Separados por coma. Escribí N/A si no aplica.</span>
                 </div>
 
-                <div class="form-actions">
-                    <a href="/products" class="btn-ghost">Cancelar</a>
-                    <button type="submit" class="btn-primary">Crear producto</button>
+                <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:2rem;">
+                    <a href="/products" class="btn btn-outline">Cancelar</a>
+                    <button type="submit" class="btn btn-accent">Crear producto</button>
                 </div>
+
             </form>
         </div>
     </main>

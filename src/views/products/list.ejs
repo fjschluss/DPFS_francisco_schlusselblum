@@ -4,42 +4,56 @@
 <body>
     <%- include('../partials/header') %>
 
-    <main class="page-content">
+    <main class="section">
         <div class="container">
-            <div class="page-header">
-                <h1>Productos</h1>
-                <p>Recursos digitales para tu proceso de diseño y producción</p>
+
+            <div class="featured-header">
+                <div>
+                    <span class="eyebrow">Catálogo</span>
+                    <h1>Productos</h1>
+                </div>
+                <a href="/products/create" class="btn btn-outline btn-sm">+ Agregar producto</a>
             </div>
 
             <!-- Filtros -->
-            <div class="filters">
-                <a href="/products" class="filter-tag <%= !selectedCategory ? 'active' : '' %>">Todos</a>
+            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+                <a href="/products"
+                   class="btn btn-sm <%= !selectedCategory ? 'btn-accent' : 'btn-outline' %>">
+                    Todos
+                </a>
                 <% categories.forEach(cat => { %>
                     <a href="/products?category=<%= encodeURIComponent(cat) %>"
-                       class="filter-tag <%= selectedCategory === cat ? 'active' : '' %>">
+                       class="btn btn-sm <%= selectedCategory === cat ? 'btn-accent' : 'btn-outline' %>">
                         <%= cat %>
                     </a>
                 <% }) %>
             </div>
 
-            <!-- Grilla de productos -->
+            <!-- Grilla -->
             <% if (products.length === 0) { %>
-                <div class="empty-state">
-                    <p>No hay productos en esta categoría aún.</p>
-                    <a href="/products" class="btn-primary">Ver todos</a>
-                </div>
+                <p style="color:var(--warm-gray); padding:3rem 0;">No hay productos en esta categoría.</p>
             <% } else { %>
-                <div class="products-grid">
+                <div class="product-grid">
                     <% products.forEach(product => { %>
-                        <%- include('../partials/product-card', { product }) %>
+                        <article class="product-card">
+                            <a href="/products/<%= product.id %>">
+                                <div class="product-card-img">
+                                    <img src="<%= product.image %>"
+                                         alt="<%= product.name %>"
+                                         onerror="this.src='https://placehold.co/400x300/D6CFC6/8C8480?text=LuBo'">
+                                </div>
+                                <div class="product-card-body">
+                                    <p class="product-category"><%= product.category %></p>
+                                    <h3 class="product-name"><%= product.name %></h3>
+                                    <p class="product-desc"><%= product.description.substring(0, 90) %>...</p>
+                                    <p class="product-price">$<%= product.price.toLocaleString('es-AR') %></p>
+                                </div>
+                            </a>
+                        </article>
                     <% }) %>
                 </div>
             <% } %>
 
-            <!-- Acceso admin -->
-            <div class="admin-bar">
-                <a href="/products/create" class="btn-secondary">+ Agregar producto</a>
-            </div>
         </div>
     </main>
 

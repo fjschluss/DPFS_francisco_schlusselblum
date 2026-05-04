@@ -4,63 +4,72 @@
 <body>
     <%- include('../partials/header') %>
 
-    <main class="page-content">
-        <div class="container container--narrow">
-            <div class="page-header">
-                <h1>Editar Producto</h1>
-                <p>Modificá los datos del producto. Los campos con * son obligatorios.</p>
-            </div>
+    <main class="section-sm">
+        <div class="container" style="max-width:680px;">
 
-            <form action="/products/<%= product.id %>/edit" method="POST" class="form-card">
+            <span class="eyebrow">Admin</span>
+            <h1 style="margin-bottom:0.5rem;">Editar Producto</h1>
+            <p style="color:var(--warm-gray); margin-bottom:2.5rem;">
+                Modificá los datos del producto. Los campos con * son obligatorios.
+            </p>
+
+            <form action="/products/<%= product.id %>/edit" method="POST">
+
                 <div class="form-group">
-                    <label for="name">Nombre del producto *</label>
-                    <input type="text" id="name" name="name" required value="<%= product.name %>">
+                    <label class="form-label" for="name">Nombre del producto *</label>
+                    <input class="form-input" type="text" id="name" name="name"
+                           required value="<%= product.name %>">
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Descripción *</label>
-                    <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+                    <label class="form-label" for="description">Descripción *</label>
+                    <textarea class="form-input" id="description" name="description"
+                              rows="4" required><%= product.description %></textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="category">Categoría *</label>
-                        <select id="category" name="category" required>
-                            <option value="Fichas Técnicas" <%= product.category === 'Fichas Técnicas' ? 'selected' : '' %>>Fichas Técnicas</option>
+                        <label class="form-label" for="category">Categoría *</label>
+                        <select class="form-input" id="category" name="category" required>
+                            <option value="Fichas Técnicas"  <%= product.category === 'Fichas Técnicas'  ? 'selected' : '' %>>Fichas Técnicas</option>
                             <option value="Diseños Técnicos" <%= product.category === 'Diseños Técnicos' ? 'selected' : '' %>>Diseños Técnicos</option>
-                            <option value="Moldes y Patrones" <%= product.category === 'Moldes y Patrones' ? 'selected' : '' %>>Moldes y Patrones</option>
-                            <option value="Recursos Digitales" <%= product.category === 'Recursos Digitales' ? 'selected' : '' %>>Recursos Digitales</option>
+                            <option value="Moldes y Patrones"<%= product.category === 'Moldes y Patrones'? 'selected' : '' %>>Moldes y Patrones</option>
+                            <option value="Recursos Digitales"<%= product.category==='Recursos Digitales'?'selected':'' %>>Recursos Digitales</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="price">Precio (ARS) *</label>
-                        <input type="number" id="price" name="price" required min="0" step="100"
-                               value="<%= product.price %>">
+                        <label class="form-label" for="price">Precio (ARS) *</label>
+                        <input class="form-input" type="number" id="price" name="price"
+                               required min="0" step="100" value="<%= product.price %>">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="image">URL de imagen</label>
-                    <input type="text" id="image" name="image" value="<%= product.image %>">
+                    <label class="form-label" for="image">URL de imagen</label>
+                    <input class="form-input" type="text" id="image" name="image"
+                           value="<%= product.image %>">
                 </div>
 
                 <div class="form-group">
-                    <label for="colors">Colores / Talles disponibles</label>
-                    <input type="text" id="colors" name="colors"
+                    <label class="form-label" for="colors">Colores / Talles</label>
+                    <input class="form-input" type="text" id="colors" name="colors"
                            value="<%= product.colors.join(', ') %>">
-                    <span class="form-hint">Separados por coma. Ej: Negro, Blanco, Gris</span>
+                    <span class="form-hint">Separados por coma.</span>
                 </div>
 
-                <div class="form-actions">
-                    <a href="/products/<%= product.id %>" class="btn-ghost">Cancelar</a>
-                    <button type="submit" class="btn-primary">Guardar cambios</button>
+                <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:2rem;">
+                    <a href="/products/<%= product.id %>" class="btn btn-outline">Cancelar</a>
+                    <button type="submit" class="btn btn-accent">Guardar cambios</button>
                 </div>
+
             </form>
 
-            <div class="danger-zone">
-                <h4>Vista previa del producto</h4>
-                <a href="/products/<%= product.id %>" class="btn-text">Ver página del producto →</a>
+            <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--soft-tan);">
+                <a href="/products/<%= product.id %>" style="font-size:0.85rem; color:var(--warm-gray);">
+                    ← Ver página del producto
+                </a>
             </div>
+
         </div>
     </main>
 
