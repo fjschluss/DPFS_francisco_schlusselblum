@@ -1,0 +1,24 @@
+    <header class="site-header">
+        <nav class="container nav-inner">
+            <a href="/" class="logo">
+                <img src="/images/logo.svg" alt="LuBo - Ludmila Borrelli">
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/products">Productos</a></li>
+                <li><a href="#about">Nosotros</a></li>
+            </ul>
+            <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-actions">
+                <a href="/users/login" class="btn btn-outline btn-sm">Ingresar</a>
+                <a href="/users/register" class="btn-primary">Crear cuenta</a>
+                <a href="/cart" class="btn-icon" title="Carrito">
+                    <img src="/images/carrito.svg" alt="Carrito">
+                </a>
+            </div>
+        </nav>
+    </header>
