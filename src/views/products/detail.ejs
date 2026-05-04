@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Pack Básico — LuBo</title>
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     
     <!-- HEADER -->
     <header class="site-header">
         <nav class="container nav-inner">
-            <a href="index.html" class="logo">
-                <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
+            <a href="/" class="logo">
+                <img src="/images/logo.svg" alt="LuBo - Ludmila Borrelli">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="productDetail.html">Productos</a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/products">Productos</a></li>
                 <li><a href="#about">Nosotros</a></li>
             </ul>
             <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
@@ -25,9 +25,9 @@
                 <span></span>
             </button>
             <div class="nav-actions">
-                <a href="login.html" class="btn btn-outline btn-sm">Ingresar</a>
-                <a href="cart.html" class="btn-icon" title="Carrito">
-                    <img src="../assets/image/carrito.svg" alt="Carrito">
+                <a href="/users/login" class="btn btn-outline btn-sm">Ingresar</a>
+                <a href="/cart" class="btn-icon" title="Carrito">
+                    <img src="/images/carrito.svg" alt="Carrito">
                 </a>
             </div>
         </nav>
@@ -35,9 +35,9 @@
 
     <div class="container">
         <div class="breadcrumb">
-            <a href="index.html">Inicio</a>
+            <a href="/">Inicio</a>
             <span class="breadcrumb-sep">›</span>
-            <a href="productDetail.html">Productos</a>
+            <a href="/products">Productos</a>
             <span class="breadcrumb-sep">›</span>
             <span class="breadcrumb-current">Tech Pack Básico — Remeras</span>
         </div>
@@ -99,7 +99,7 @@
                     </div>
             
                     <div class="add-to-cart-section">
-                        <a href="cart.html" class="btn btn-accent btn-cart">Agregar al carrito</a>
+                        <a href="/cart" class="btn btn-accent btn-cart">Agregar al carrito</a>
                         <button class="btn btn-outline">♡ Guardar</button>
                     </div>
             
@@ -134,7 +134,7 @@
             </div>
             <div class="product-grid">
                 <article class="product-card">
-                    <a href="productDetail.html">
+                    <a href="/products/:id">
                         <div class="product-card-img">
                             <img src="https://placehold.co/400x300/DDD5CC/8C8480?text=Flat+Pack" alt="Pack Flats Pantalones" />
                         </div>
@@ -146,7 +146,7 @@
                     </a>
                 </article>
                 <article class="product-card">
-                    <a href="productDetail.html">
+                    <a href="/products">
                         <div class="product-card-img">
                             <img src="https://placehold.co/400x300/ECDFD5/8C8480?text=Moldes" alt="Moldes Base" />
                         </div>
@@ -158,7 +158,7 @@
                     </a>
                 </article>
                 <article class="product-card">
-                    <a href="productDetail.html">
+                    <a href="/products">
                         <div class="product-card-img">
                             <img src="https://placehold.co/400x300/E0D7CE/8C8480?text=Tech+Pack+Pro" alt="Tech Pack Pro" />
                         </div>
@@ -180,8 +180,8 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <a href="index.html">
-                            <img src="../assets/image/logo.svg" alt="LuBo - Ludmila Borrelli">
+                        <a href="/">
+                            <img src="/images/logo.svg" alt="LuBo - Ludmila Borrelli">
                         </a>
                     </div>
                     <p class="footer-desc">Marketplace de recursos digitales para diseñadores de indumentaria, creado por Ludmila Borrelli.</p>
@@ -189,17 +189,17 @@
                 <div>
                     <p class="footer-col-title">Sitio</p>
                     <ul class="footer-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="productDetail.html">Productos</a></li>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/products">Productos</a></li>
                         <li><a href="#about">Cómo funciona</a></li>
                     </ul>
                 </div>
                 <div>
                     <p class="footer-col-title">Cuenta</p>
                     <ul class="footer-links">
-                        <li><a href="register.html">Registrarme</a></li>
-                        <li><a href="login.html">Ingresar</a></li>
-                        <li><a href="cart.html">Mi carrito</a></li>
+                        <li><a href="/users/register">Registrarme</a></li>
+                        <li><a href="/users/login">Ingresar</a></li>
+                        <li><a href="/cart">Mi carrito</a></li>
                     </ul>
                 </div>
             </div>
