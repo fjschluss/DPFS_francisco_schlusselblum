@@ -98,3 +98,57 @@ El Sprint 1 fue útil para sentar las bases del proyecto. La temática quedó bi
 ## 📝 Conclusión general
 
 El Sprint 2 consolidó la identidad visual del proyecto y completó el maquetado de las páginas principales. La paleta, los wireframes y los referentes quedaron bien definidos. Para el Sprint 3 el foco va a estar en agregar dinamismo al sitio con Express y EJS: separar los componentes repetidos en partials, organizar las vistas en carpetas y conectar todo con controladores y rutas.
+
+---
+
+---
+
+# 🌟 Retrospectiva — Sprint 3
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria  
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Verificar que los formularios apunten a las rutas correctas antes de dar por cerrado un sprint.
+- Revisar que el README esté actualizado al final de cada sprint.
+- Testear el flujo completo (crear, editar, eliminar) antes de mergear a main.
+
+---
+
+## ➕ Hacer más
+
+- Aprovechar los partials de EJS para reducir aún más la duplicación de código.
+- Revisar la consistencia entre la documentación (README) y el código real.
+- Hacer pruebas manuales después de cada merge para detectar errores de integración.
+
+---
+
+## ✅ Continuar haciendo
+
+- Usar branches y pull requests para cada feature o fix.
+- Mantener mensajes de commit con prefijos convencionales (feat:, fix:, docs:, chore:).
+- Separar la lógica en controladores y rutas siguiendo MVC.
+- Usar EJS con includes para head, header y footer.
+
+---
+
+## ➖ Hacer menos
+
+- Dejar formularios con action="#" como placeholder sin reemplazarlo por la ruta real.
+- Hardcodear datos en las vistas cuando ya existe una fuente de datos disponible.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Asumir que el README del sprint anterior sigue siendo válido sin revisarlo.
+- Mezclar datos estáticos (.js) con la lógica de controladores sin una capa de abstracción.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 3 logró migrar el sitio a Express + EJS con una arquitectura MVC clara. Los partials eliminaron duplicación de código y las rutas/controladores organizaron bien la lógica. Los puntos débiles fueron la consistencia documental (README desactualizado, tipografía incorrecta) y los formularios con action="#" que no apuntaban a rutas reales. Para el Sprint 4 el foco está en pasar a JSON como fuente de datos, implementar persistencia con fs y completar el CRUD con métodos PUT y DELETE.
