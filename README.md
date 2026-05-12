@@ -33,8 +33,11 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 |------|-----------|
 | Markup | HTML5 semántico |
 | Estilos | CSS3 (variables, grid, flexbox) |
-| Tipografías | Google Fonts: Cormorant Garamond + DM Sans |
-| Backend (próximo) | Node.js + Express.js |
+| Tipografías | Google Fonts: Cormorant Garamond + Inter |
+| Backend | Node.js + Express.js |
+| Template Engine | EJS |
+| HTTP Methods | method-override (PUT/DELETE) |
+| Datos | JSON (products.json, users.json) |
 | ORM (próximo) | Sequelize |
 | Base de datos (próximo) | MySQL |
 | Frontend framework (próximo) | React |
@@ -43,33 +46,68 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 
 ## 📁 Estructura del proyecto
 
-```
 DPFS_francisco_schlusselblum/
-├── views/
-│   ├── index.html          ← Home
-│   ├── productDetail.html  ← Detalle de producto
-│   ├── cart.html           ← Carrito de compras
-│   ├── register.html       ← Formulario de registro
-│   └── login.html          ← Formulario de login
-├── styles/
-│   └── main.css            ← Estilos globales
-├── design/                 ← Lineamientos visuales
-├── wireframes/             ← Bocetos iniciales
-├── retro.md                ← Retrospectiva Sprint 1
+├── src/
+│   ├── controllers/
+│   │   ├── main.controller.js
+│   │   ├── products.controller.js
+│   │   └── users.controller.js
+│   ├── data/
+│   │   ├── products.json
+│   │   └── users.json
+│   ├── public/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   └── images/
+│   │       ├── logo.svg
+│   │       └── carrito.svg
+│   ├── routes/
+│   │   ├── main.routes.js
+│   │   ├── products.routes.js
+│   │   └── users.routes.js
+│   └── views/
+│       ├── partials/
+│       │   ├── head.ejs
+│       │   ├── header.ejs
+│       │   ├── footer.ejs
+│       │   └── product-card.ejs
+│       ├── products/
+│       │   ├── list.ejs
+│       │   ├── detail.ejs
+│       │   ├── create.ejs
+│       │   └── edit.ejs
+│       ├── users/
+│       │   ├── login.ejs
+│       │   └── register.ejs
+│       ├── index.ejs
+│       ├── cart.ejs
+│       └── 404.ejs
+├── design/
+├── wireframes/
+├── app.js
+├── package.json
+├── retro.md
 └── README.md
-```
 
 ---
 
-## 🔗 Páginas del sitio
+## 🔗 Rutas del sitio
 
-| Página | Archivo | Descripción |
-|--------|---------|-------------|
-| Home | `views/index.html` | Portada con hero, catálogo y pasos |
-| Detalle de producto | `views/productDetail.html` | Info completa + galería + relacionados |
-| Carrito | `views/cart.html` | Resumen de compra y checkout |
-| Registro | `views/register.html` | Formulario con validación de estados |
-| Login | `views/login.html` | Ingreso con estados de error |
+| Método | Ruta | Descripción |
+|--------|------|-------------|
+| GET | / | Home con productos destacados |
+| GET | /products | Listado de productos con filtro |
+| GET | /products/create | Formulario de creación |
+| POST | /products | Acción de creación |
+| GET | /products/:id | Detalle de producto |
+| GET | /products/:id/edit | Formulario de edición |
+| PUT | /products/:id | Acción de edición |
+| DELETE | /products/:id | Acción de eliminación |
+| GET | /users/login | Formulario de login |
+| POST | /users/login | Acción de login |
+| GET | /users/register | Formulario de registro |
+| POST | /users/register | Acción de registro |
+| GET | /cart | Carrito de compras |
 
 ---
 
