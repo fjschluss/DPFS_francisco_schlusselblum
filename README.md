@@ -76,7 +76,7 @@ DPFS_francisco_schlusselblum/
 ## 🎨 Diseño visual
 
 Paleta editorial minimalista con acentos cálidos, accesible para daltonismo.  
-Tipografía: **Cormorant Garamond** (display) + **DM Sans** (body).
+Tipografía: **Cormorant Garamond** (display) + **Inter** (body).
 
 ---
 
