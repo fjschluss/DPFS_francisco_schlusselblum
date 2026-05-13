@@ -36,8 +36,8 @@
 
                     <p class="description"><%= product.description %></p>
 
-                    <% if (product.colors && product.colors[0] !== 'N/A') { %>
-                        <div class="includes-list" style="margin-bottom:2rem;">
+                    <% if (product.colors && product.colors.length > 0) { %>
+                        <div class="includes-list" style="margin-bottom:1.5rem;">
                             <h4>Colores disponibles</h4>
                             <ul>
                                 <% product.colors.forEach(color => { %>
@@ -47,9 +47,29 @@
                         </div>
                     <% } %>
 
+                    <% if (product.sizes && product.sizes.length > 0) { %>
+                        <div class="includes-list" style="margin-bottom:2rem;">
+                            <h4>Talles disponibles</h4>
+                            <ul>
+                                <% product.sizes.forEach(size => { %>
+                                    <li><%= size %></li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    <% } %>
+
                     <div class="add-to-cart-section">
                         <button class="btn btn-accent btn-cart">Agregar al carrito</button>
                         <a href="/products/<%= product.id %>/edit" class="btn btn-outline">Editar producto</a>
+                    </div>
+
+                    <div style="margin-top:1rem;">
+                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST"
+                              onsubmit="return confirm('¿Estás seguro de que querés eliminar este producto?')">
+                            <button type="submit" class="btn btn-outline" style="color:#c0392b; border-color:#c0392b;">
+                                Eliminar producto
+                            </button>
+                        </form>
                     </div>
 
                     <div class="product-meta">
