@@ -4,9 +4,10 @@ const productsController = require('../controllers/products.controller');
 
 router.get('/', productsController.list);
 router.get('/create', productsController.createForm);
-router.post('/create', productsController.create);
+router.post('/', productsController.create);
 router.get('/:id/edit', productsController.editForm);
-router.post('/:id/edit', productsController.edit);
+router.put('/:id', productsController.edit);
+router.delete('/:id', productsController.destroy);
 router.get('/:id', productsController.detail);
 
 module.exports = router;
