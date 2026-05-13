@@ -1,5 +1,15 @@
 [
     {
+        "id": 1,
+        "name": "Tech Pack Básico – Remera",
+        "description": "Ficha técnica completa para remera con detalles de confección, avíos y especificaciones de tela. Lista para usar con tu taller o fábrica.",
+        "image": "/images/techpack-remera.jpg",
+        "category": "Fichas Técnicas",
+        "price": 3500,
+        "colors": ["Blanco", "Negro", "Gris"],
+        "sizes": ["S", "M", "L", "XL"]
+    },
+    {
         "id": 2,
         "name": "Flat Design – Colección Outerwear",
         "description": "Pack de 12 diseños técnicos (flats) de prendas de abrigo: camperas, blazers y tapados. Vectores editables en AI y PDF.",
