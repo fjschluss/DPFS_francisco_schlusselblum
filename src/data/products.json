@@ -1,22 +1,14 @@
 [
     {
-        "id": 1,
-        "name": "Tech Pack Básico – Remera",
-        "description": "Ficha técnica completa para remera con detalles de confección, avíos y especificaciones de tela. Lista para usar con tu taller o fábrica.",
-        "image": "/images/techpack-remera.jpg",
-        "category": "Fichas Técnicas",
-        "price": 3500,
-        "colors": ["Blanco", "Negro", "Gris"],
-        "sizes": ["S", "M", "L", "XL"]
-    },
-    {
         "id": 2,
         "name": "Flat Design – Colección Outerwear",
         "description": "Pack de 12 diseños técnicos (flats) de prendas de abrigo: camperas, blazers y tapados. Vectores editables en AI y PDF.",
         "image": "/images/flat-outerwear.jpg",
         "category": "Diseños Técnicos",
         "price": 5200,
-        "colors": ["Multicolor"],
+        "colors": [
+            "Multicolor"
+        ],
         "sizes": []
     },
     {
@@ -27,7 +19,11 @@
         "category": "Moldes y Patrones",
         "price": 2800,
         "colors": [],
-        "sizes": ["S", "M", "L"]
+        "sizes": [
+            "S",
+            "M",
+            "L"
+        ]
     },
     {
         "id": 4,
@@ -36,7 +32,11 @@
         "image": "/images/kit-lookbook.jpg",
         "category": "Recursos Digitales",
         "price": 4100,
-        "colors": ["Beige", "Negro", "Terracota"],
+        "colors": [
+            "Beige",
+            "Negro",
+            "Terracota"
+        ],
         "sizes": []
     },
     {
@@ -46,8 +46,18 @@
         "image": "/images/techpack-campera.jpg",
         "category": "Fichas Técnicas",
         "price": 5800,
-        "colors": ["Negro", "Verde Militar", "Azul Marino"],
-        "sizes": ["S", "M", "L", "XL", "XXL"]
+        "colors": [
+            "Negro",
+            "Verde Militar",
+            "Azul Marino"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ]
     },
     {
         "id": 6,
@@ -66,7 +76,9 @@
         "image": "/images/flat-casual-fem.jpg",
         "category": "Diseños Técnicos",
         "price": 4800,
-        "colors": ["Multicolor"],
+        "colors": [
+            "Multicolor"
+        ],
         "sizes": []
     },
     {
@@ -77,7 +89,14 @@
         "category": "Moldes y Patrones",
         "price": 3200,
         "colors": [],
-        "sizes": ["XS", "S", "M", "L", "XL", "XXL"]
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ]
     },
     {
         "id": 9,
@@ -86,8 +105,17 @@
         "image": "/images/techpack-jogger.jpg",
         "category": "Fichas Técnicas",
         "price": 4200,
-        "colors": ["Negro", "Gris Melange", "Azul"],
-        "sizes": ["S", "M", "L", "XL"]
+        "colors": [
+            "Negro",
+            "Gris Melange",
+            "Azul"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
     },
     {
         "id": 10,
@@ -96,7 +124,11 @@
         "image": "/images/etiquetas-minimal.jpg",
         "category": "Recursos Digitales",
         "price": 2500,
-        "colors": ["Blanco", "Negro", "Kraft"],
+        "colors": [
+            "Blanco",
+            "Negro",
+            "Kraft"
+        ],
         "sizes": []
     },
     {
@@ -106,7 +138,9 @@
         "image": "/images/flat-denim.jpg",
         "category": "Diseños Técnicos",
         "price": 5500,
-        "colors": ["Multicolor"],
+        "colors": [
+            "Multicolor"
+        ],
         "sizes": []
     },
     {
@@ -117,7 +151,12 @@
         "category": "Moldes y Patrones",
         "price": 4500,
         "colors": [],
-        "sizes": ["S", "M", "L", "XL"]
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
     },
     {
         "id": 13,
@@ -136,8 +175,17 @@
         "image": "/images/techpack-buzo.jpg",
         "category": "Fichas Técnicas",
         "price": 4800,
-        "colors": ["Negro", "Crudo", "Lila"],
-        "sizes": ["M", "L", "XL", "XXL"]
+        "colors": [
+            "Negro",
+            "Crudo",
+            "Lila"
+        ],
+        "sizes": [
+            "M",
+            "L",
+            "XL",
+            "XXL"
+        ]
     },
     {
         "id": 15,
@@ -147,7 +195,12 @@
         "category": "Moldes y Patrones",
         "price": 2600,
         "colors": [],
-        "sizes": ["XS", "S", "M", "L"]
+        "sizes": [
+            "XS",
+            "S",
+            "M",
+            "L"
+        ]
     },
     {
         "id": 16,
@@ -156,7 +209,9 @@
         "image": "/images/flat-interior.jpg",
         "category": "Diseños Técnicos",
         "price": 3800,
-        "colors": ["Multicolor"],
+        "colors": [
+            "Multicolor"
+        ],
         "sizes": []
     },
     {
@@ -176,8 +231,17 @@
         "image": "/images/techpack-camisa.jpg",
         "category": "Fichas Técnicas",
         "price": 5200,
-        "colors": ["Blanco", "Celeste", "Rosa"],
-        "sizes": ["S", "M", "L", "XL"]
+        "colors": [
+            "Blanco",
+            "Celeste",
+            "Rosa"
+        ],
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
     },
     {
         "id": 19,
@@ -187,7 +251,12 @@
         "category": "Moldes y Patrones",
         "price": 2000,
         "colors": [],
-        "sizes": ["S", "M", "L", "XL"]
+        "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL"
+        ]
     },
     {
         "id": 20,
