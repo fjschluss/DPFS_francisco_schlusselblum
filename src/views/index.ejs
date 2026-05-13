@@ -46,63 +46,23 @@
             </div>
         
             <div class="product-grid">
-        
-                <article class="product-card">
-                <a href="/products/1">
-                    <div class="product-card-img">
-                    <img src="https://placehold.co/400x300/E8DDD4/8C8480?text=Tech+Pack" alt="Tech Pack básico" />
-                    </div>
-                    <div class="product-card-body">
-                    <p class="product-category">Tech Pack</p>
-                    <h3 class="product-name">Tech Pack Básico — Remeras</h3>
-                    <p class="product-desc">Ficha técnica completa para remeras básicas, lista para completar.</p>
-                    <p class="product-price">$1.200</p>
-                    </div>
-                </a>
-                </article>
-        
-                <article class="product-card">
-                <a href="/products/2">
-                    <div class="product-card-img">
-                    <img src="https://placehold.co/400x300/DDD5CC/8C8480?text=Flat+Pack" alt="Pack de flats" />
-                    </div>
-                    <div class="product-card-body">
-                    <p class="product-category">Diseños Técnicos</p>
-                    <h3 class="product-name">Pack Flats — Pantalones</h3>
-                    <p class="product-desc">12 diseños técnicos vectorizados para pantalones de distintos cortes.</p>
-                    <p class="product-price">$2.800</p>
-                    </div>
-                </a>
-                </article>
-        
-                <article class="product-card">
-                <a href="/products/3">
-                    <div class="product-card-img">
-                    <img src="https://placehold.co/400x300/ECDFD5/8C8480?text=Moldes" alt="Moldes básicos" />
-                    </div>
-                    <div class="product-card-body">
-                    <p class="product-category">Moldes</p>
-                    <h3 class="product-name">Kit Moldes Base — Talle S a XL</h3>
-                    <p class="product-desc">Moldes base en PDF escalables para confección propia.</p>
-                    <p class="product-price">$3.500</p>
-                    </div>
-                </a>
-                </article>
-        
-                <article class="product-card">
-                <a href="/products/4">
-                    <div class="product-card-img">
-                    <img src="https://placehold.co/400x300/E0D7CE/8C8480?text=Template" alt="Template producción" />
-                    </div>
-                    <div class="product-card-body">
-                    <p class="product-category">Template</p>
-                    <h3 class="product-name">Template de Producción Excel</h3>
-                    <p class="product-desc">Planilla de seguimiento de producción para talleres y marcas.</p>
-                    <p class="product-price">$950</p>
-                    </div>
-                </a>
-                </article>
-        
+                <% featuredProducts.forEach(product => { %>
+                    <article class="product-card">
+                    <a href="/products/<%= product.id %>">
+                        <div class="product-card-img">
+                        <img src="<%= product.image %>"
+                             alt="<%= product.name %>"
+                             onerror="this.src='https://placehold.co/400x300/D6CFC6/8C8480?text=LuBo'" />
+                        </div>
+                        <div class="product-card-body">
+                        <p class="product-category"><%= product.category %></p>
+                        <h3 class="product-name"><%= product.name %></h3>
+                        <p class="product-desc"><%= product.description.substring(0, 90) %>...</p>
+                        <p class="product-price">$<%= product.price.toLocaleString('es-AR') %></p>
+                        </div>
+                    </a>
+                    </article>
+                <% }) %>
             </div>
             </div>
         </section>
