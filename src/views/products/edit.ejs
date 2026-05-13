@@ -13,7 +13,7 @@
                 Modificá los datos del producto. Los campos con * son obligatorios.
             </p>
 
-            <form action="/products/<%= product.id %>/edit" method="POST">
+            <form action="/products/<%= product.id %>?_method=PUT" method="POST">
 
                 <div class="form-group">
                     <label class="form-label" for="name">Nombre del producto *</label>
@@ -31,10 +31,10 @@
                     <div class="form-group">
                         <label class="form-label" for="category">Categoría *</label>
                         <select class="form-input" id="category" name="category" required>
-                            <option value="Fichas Técnicas"  <%= product.category === 'Fichas Técnicas'  ? 'selected' : '' %>>Fichas Técnicas</option>
-                            <option value="Diseños Técnicos" <%= product.category === 'Diseños Técnicos' ? 'selected' : '' %>>Diseños Técnicos</option>
-                            <option value="Moldes y Patrones"<%= product.category === 'Moldes y Patrones'? 'selected' : '' %>>Moldes y Patrones</option>
-                            <option value="Recursos Digitales"<%= product.category==='Recursos Digitales'?'selected':'' %>>Recursos Digitales</option>
+                            <option value="Fichas Técnicas"    <%= product.category === 'Fichas Técnicas'    ? 'selected' : '' %>>Fichas Técnicas</option>
+                            <option value="Diseños Técnicos"   <%= product.category === 'Diseños Técnicos'   ? 'selected' : '' %>>Diseños Técnicos</option>
+                            <option value="Moldes y Patrones"  <%= product.category === 'Moldes y Patrones'  ? 'selected' : '' %>>Moldes y Patrones</option>
+                            <option value="Recursos Digitales" <%= product.category === 'Recursos Digitales' ? 'selected' : '' %>>Recursos Digitales</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -51,9 +51,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="colors">Colores / Talles</label>
+                    <label class="form-label" for="colors">Colores</label>
                     <input class="form-input" type="text" id="colors" name="colors"
-                           value="<%= product.colors.join(', ') %>">
+                           value="<%= product.colors ? product.colors.join(', ') : '' %>">
+                    <span class="form-hint">Separados por coma.</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="sizes">Talles</label>
+                    <input class="form-input" type="text" id="sizes" name="sizes"
+                           value="<%= product.sizes ? product.sizes.join(', ') : '' %>">
                     <span class="form-hint">Separados por coma.</span>
                 </div>
 
