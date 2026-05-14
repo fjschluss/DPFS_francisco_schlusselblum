@@ -195,6 +195,27 @@ body {
   font-weight: 600;
 }
 
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.nav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--soft-tan);
+}
+
+.nav-username {
+  font-size: 0.82rem;
+  font-weight: 400;
+}
+
 /* ===========================================
    BOTONES
    =========================================== */

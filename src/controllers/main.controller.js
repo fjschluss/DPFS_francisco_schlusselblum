@@ -10,10 +10,14 @@ const mainController = {
         const featured = products.slice(0, 4);
         res.render('index', {
             title: 'LuBo – Recursos para Indumentaria',
-            featuredProducts: featured
+            featuredProducts: featured,
+            session: req.session
         });
     },
-    cart: (req, res) => res.render('cart', { title: 'Mi Carrito – LuBo' }),
+    cart: (req, res) => res.render('cart', {
+        title: 'Mi Carrito – LuBo',
+        session: req.session
+    }),
 };
 
 module.exports = mainController;
