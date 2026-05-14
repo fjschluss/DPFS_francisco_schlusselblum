@@ -5,11 +5,11 @@
     <%- include('../partials/header') %>
 
     <main class="section-sm">
-        <div class="container" style="max-width:680px;">
+        <div class="container container-narrow">
 
             <span class="eyebrow">Admin</span>
-            <h1 style="margin-bottom:0.5rem;">Nuevo Producto</h1>
-            <p style="color:var(--warm-gray); margin-bottom:2.5rem;">
+            <h1 class="form-title">Nuevo Producto</h1>
+            <p class="form-subtitle">
                 Completá el formulario para agregar un recurso al catálogo.
             </p>
 
@@ -67,7 +67,7 @@
                     <span class="form-hint">Separados por coma. Dejá vacío si no aplica.</span>
                 </div>
 
-                <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:2rem;">
+                <div class="form-actions">
                     <a href="/products" class="btn btn-outline">Cancelar</a>
                     <button type="submit" class="btn btn-accent">Crear producto</button>
                 </div>

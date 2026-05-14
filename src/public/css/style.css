@@ -1306,6 +1306,75 @@ body {
 }
 
 /* ===========================================
+   UTILIDADES DE FORMULARIO ADMIN
+   =========================================== */
+.container-narrow {
+  max-width: 680px;
+}
+
+.form-title {
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  color: var(--warm-gray);
+  margin-bottom: 2.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.form-back-link {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--soft-tan);
+}
+
+.form-back-link a {
+  font-size: 0.85rem;
+  color: var(--warm-gray);
+}
+
+/* ===========================================
+   UTILIDADES DE CATÁLOGO
+   =========================================== */
+.filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.empty-msg {
+  color: var(--warm-gray);
+  padding: 3rem 0;
+}
+
+/* ===========================================
+   BOTÓN PELIGRO (eliminar)
+   =========================================== */
+.btn-danger {
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.btn-danger:hover {
+  background: var(--error);
+  color: var(--white);
+}
+
+/* ===========================================
+   DETALLE DE PRODUCTO — SECCIÓN ELIMINAR
+   =========================================== */
+.detail-delete-section {
+  margin-top: 1rem;
+}
+
+/* ===========================================
    RESPONSIVE
    =========================================== */
 @media (max-width: 900px) {
