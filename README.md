@@ -38,6 +38,9 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 | Template Engine | EJS |
 | HTTP Methods | method-override (PUT/DELETE) |
 | Datos | JSON (products.json, users.json) |
+| Autenticación | express-session + bcryptjs |
+| Cookies | cookie-parser |
+| Upload de imagen | multer |
 | ORM (próximo) | Sequelize |
 | Base de datos (próximo) | MySQL |
 | Frontend framework (próximo) | React |
@@ -46,6 +49,7 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 
 ## 📁 Estructura del proyecto
 
+```bash
 DPFS_francisco_schlusselblum/
 ├── src/
 │   ├── controllers/
@@ -88,6 +92,7 @@ DPFS_francisco_schlusselblum/
 ├── package.json
 ├── retro.md
 └── README.md
+```
 
 ---
 
@@ -108,6 +113,8 @@ DPFS_francisco_schlusselblum/
 | GET | /users/register | Formulario de registro |
 | POST | /users/register | Acción de registro |
 | GET | /cart | Carrito de compras |
+| GET | /users/profile | Perfil del usuario autenticado |
+| POST | /users/logout | Cierre de sesión |
 
 ---
 
