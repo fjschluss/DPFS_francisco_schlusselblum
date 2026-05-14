@@ -1396,6 +1396,61 @@ body {
 }
 
 /* ===========================================
+   PERFIL DE USUARIO
+   =========================================== */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--white);
+  border: 1px solid var(--soft-tan);
+  border-radius: var(--radius);
+  margin: 2rem 0;
+}
+
+.profile-avatar-block {
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--soft-tan);
+}
+
+.profile-info h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  margin-bottom: 0.25rem;
+}
+
+.profile-email {
+  color: var(--warm-gray);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.profile-badge {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* ===========================================
    RESPONSIVE
    =========================================== */
 @media (max-width: 900px) {
