@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = 3000;
@@ -9,11 +11,20 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 
-// Middlewares
+// Middlewares base
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'src/public')));
 app.use(methodOverride('_method'));
+app.use(cookieParser());
+
+// Sesiones
+app.use(session({
+    secret: 'lubo-secret-key-2025',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 horas
+}));
 
 // Rutas
 const mainRouter = require('./src/routes/main.routes');
