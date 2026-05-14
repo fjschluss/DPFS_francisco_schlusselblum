@@ -26,23 +26,26 @@ const productsController = {
             title: 'Productos – LuBo',
             products: filtered,
             categories,
-            selectedCategory: category || null
+            selectedCategory: category || null,
+            session: req.session
         });
     },
 
     detail: (req, res) => {
         const products = getProducts();
         const product = products.find(p => p.id === parseInt(req.params.id));
-        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado' });
+        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
         res.render('products/detail', {
             title: `${product.name} – LuBo`,
-            product
+            product,
+            session: req.session
         });
     },
 
     createForm: (req, res) => {
         res.render('products/create', {
-            title: 'Nuevo Producto – LuBo'
+            title: 'Nuevo Producto – LuBo',
+            session: req.session
         });
     },
 
@@ -68,17 +71,18 @@ const productsController = {
     editForm: (req, res) => {
         const products = getProducts();
         const product = products.find(p => p.id === parseInt(req.params.id));
-        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado' });
+        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
         res.render('products/edit', {
             title: `Editar: ${product.name} – LuBo`,
-            product
+            product,
+            session: req.session
         });
     },
 
     edit: (req, res) => {
         const products = getProducts();
         const index = products.findIndex(p => p.id === parseInt(req.params.id));
-        if (index === -1) return res.status(404).render('404', { title: 'Producto no encontrado' });
+        if (index === -1) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
         const { name, description, image, category, colors, sizes, price } = req.body;
         products[index] = {
             ...products[index],

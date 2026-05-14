@@ -1,24 +1,37 @@
-    <header class="site-header">
-        <nav class="container nav-inner">
-            <a href="/" class="logo">
-                <img src="/images/logo.svg" alt="LuBo - Ludmila Borrelli">
-            </a>
-            <ul class="nav-links">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/products">Productos</a></li>
-                <li><a href="#about">Nosotros</a></li>
-            </ul>
-            <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-actions">
+<header class="site-header">
+    <nav class="container nav-inner">
+        <a href="/" class="logo">
+            <img src="/images/logo.svg" alt="LuBo - Ludmila Borrelli">
+        </a>
+        <ul class="nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/products">Productos</a></li>
+            <li><a href="#about">Nosotros</a></li>
+        </ul>
+        <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-actions">
+            <% if (typeof session !== 'undefined' && session.user) { %>
+                <a href="/users/profile" class="nav-user">
+                    <img src="<%= session.user.image %>"
+                         alt="<%= session.user.firstName %>"
+                         class="nav-avatar"
+                         onerror="this.src='https://placehold.co/36x36/D6CFC6/8C8480?text=U'">
+                    <span class="nav-username"><%= session.user.firstName %></span>
+                </a>
+                <form action="/users/logout?_method=POST" method="POST">
+                    <button type="submit" class="btn btn-outline btn-sm">Salir</button>
+                </form>
+            <% } else { %>
                 <a href="/users/login" class="btn btn-outline btn-sm">Ingresar</a>
                 <a href="/users/register" class="btn btn-outline btn-sm">Crear cuenta</a>
-                <a href="/cart" class="btn-icon" title="Carrito">
-                    <img src="/images/carrito.svg" alt="Carrito">
-                </a>
-            </div>
-        </nav>
-    </header>
+            <% } %>
+            <a href="/cart" class="btn-icon" title="Carrito">
+                <img src="/images/carrito.svg" alt="Carrito">
+            </a>
+        </div>
+    </nav>
+</header>
