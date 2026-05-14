@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+
+    <%- include('../partials/header') %>
+
+    <main class="section-sm">
+        <div class="container container-narrow">
+
+            <span class="eyebrow">Mi cuenta</span>
+            <h1 class="form-title">Mi perfil</h1>
+
+            <div class="profile-card">
+
+                <div class="profile-avatar-block">
+                    <img src="<%= user.image %>"
+                         alt="<%= user.firstName %>"
+                         class="profile-avatar"
+                         onerror="this.src='https://placehold.co/120x120/D6CFC6/8C8480?text=U'">
+                </div>
+
+                <div class="profile-info">
+                    <h2><%= user.firstName %> <%= user.lastName %></h2>
+                    <p class="profile-email"><%= user.email %></p>
+                    <span class="profile-badge"><%= user.category %></span>
+                </div>
+
+            </div>
+
+            <div class="profile-actions">
+                <form action="/users/logout?_method=POST" method="POST">
+                    <button type="submit" class="btn btn-outline btn-danger">Cerrar sesión</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+</body>
+</html>
