@@ -3,6 +3,7 @@ const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const { rememberMe } = require('./src/middlewares/auth.middleware');
 
 const app = express();
 const PORT = 3000;
@@ -23,8 +24,11 @@ app.use(session({
     secret: 'lubo-secret-key-2025',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 horas
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
+
+// Middleware de auto-login por cookie "recordarme"
+app.use(rememberMe);
 
 // Rutas
 const mainRouter = require('./src/routes/main.routes');
@@ -37,7 +41,7 @@ app.use('/users', usersRouter);
 
 // 404
 app.use((req, res) => {
-    res.status(404).render('404', { title: 'Página no encontrada' });
+    res.status(404).render('404', { title: 'Página no encontrada', session: req.session });
 });
 
 app.listen(PORT, () => {

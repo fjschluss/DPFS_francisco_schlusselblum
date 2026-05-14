@@ -76,7 +76,7 @@ const usersController = {
             category: newUser.category
         };
 
-        res.redirect('/');
+        res.redirect('/users/profile');
     },
 
     // ── Login ─────────────────────────────────────────────
@@ -120,7 +120,7 @@ const usersController = {
             });
         }
 
-        res.redirect('/');
+        res.redirect('/users/profile');
     },
 
     // ── Perfil ────────────────────────────────────────────
