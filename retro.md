@@ -152,3 +152,55 @@ El Sprint 2 consolidó la identidad visual del proyecto y completó el maquetado
 ## 📝 Conclusión general
 
 El Sprint 3 logró migrar el sitio a Express + EJS con una arquitectura MVC clara. Los partials eliminaron duplicación de código y las rutas/controladores organizaron bien la lógica. Los puntos débiles fueron la consistencia documental (README desactualizado, tipografía incorrecta) y los formularios con action="#" que no apuntaban a rutas reales. Para el Sprint 4 el foco está en pasar a JSON como fuente de datos, implementar persistencia con fs y completar el CRUD con métodos PUT y DELETE.
+
+---
+
+---
+
+# 🌟 Retrospectiva — Sprint 4
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Verificar que no queden estilos inline (`style=""`) en las vistas antes de cerrar el sprint.
+- Testear el flujo completo de creación, edición y eliminación antes de mergear a main.
+
+---
+
+## ➕ Hacer más
+
+- Documentar las decisiones de arquitectura (por qué `fs.readFileSync` sincrónico, por qué `Math.max` para IDs).
+- Agregar mensajes de feedback al usuario después de crear o editar un producto.
+
+---
+
+## ✅ Continuar haciendo
+
+- Separar la lógica de lectura/escritura en funciones helper (`getProducts`, `saveProducts`).
+- Usar branches y pull requests para cada feature del sprint.
+- Mantener mensajes de commit con prefijos convencionales.
+- Usar `method-override` para PUT y DELETE desde formularios HTML.
+
+---
+
+## ➖ Hacer menos
+
+- Hardcodear estilos directamente en el HTML en lugar de definir clases CSS reutilizables.
+- Dejar la deuda técnica para el sprint siguiente sin documentarla.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Usar `style=""` inline en las vistas — todo el estilo debe vivir en el CSS.
+- Generar datos de prueba en `users.json` con hashes falsos que no son bcrypt válidos.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 4 consolidó la capa de datos con JSON y completó el CRUD de productos con persistencia real usando `fs`. La arquitectura MVC quedó bien definida y el workflow de git fue consistente. El punto débil fue la acumulación de estilos inline en las vistas y los hashes falsos en `users.json`. Para el Sprint 5 el foco está en autenticación real: registro con bcrypt, login con sesiones y protección de rutas con middlewares.
