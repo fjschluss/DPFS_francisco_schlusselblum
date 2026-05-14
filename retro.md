@@ -204,3 +204,55 @@ El Sprint 3 logró migrar el sitio a Express + EJS con una arquitectura MVC clar
 ## 📝 Conclusión general
 
 El Sprint 4 consolidó la capa de datos con JSON y completó el CRUD de productos con persistencia real usando `fs`. La arquitectura MVC quedó bien definida y el workflow de git fue consistente. El punto débil fue la acumulación de estilos inline en las vistas y los hashes falsos en `users.json`. Para el Sprint 5 el foco está en autenticación real: registro con bcrypt, login con sesiones y protección de rutas con middlewares.
+
+---
+
+---
+
+# 🌟 Retrospectiva — Sprint 5
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria  
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Testear el flujo de logout desde todas las pantallas donde aparece (header y perfil) antes de cerrar el sprint.
+- Verificar que los hashes del seed sean válidos con bcrypt antes de commitear los datos.
+
+---
+
+## ➕ Hacer más
+
+- Pasar datos de sesión al header en todas las vistas de forma centralizada (middleware de res.locals) para no depender de que cada controlador lo pase manualmente.
+- Agregar mensajes de feedback visual después del registro y login.
+
+---
+
+## ✅ Continuar haciendo
+
+- Separar middlewares por responsabilidad (`rememberMe`, `isAuthenticated`, `isGuest`).
+- Ordenar los middlewares en `app.js` respetando el orden de dependencias (cookieParser → session → rememberMe).
+- Usar branches y pull requests para cada feature.
+- Mantener el `header.ejs` como único lugar donde se gestiona el estado de sesión visible.
+
+---
+
+## ➖ Hacer menos
+
+- Dejar bugs visuales simples (como el `?_method=POST` en el form de logout) sin revisar antes del cierre del sprint.
+- Generar datos de seed con hashes inválidos que bloquean el login de usuarios de prueba.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Commitear datos de seed sin verificar que el login funcione con ellos.
+- Tener inconsistencias entre el `"main"` de `package.json` y el entry point real del servidor.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 5 implementó el sistema de autenticación completo: registro con bcrypt y subida de imagen, login con sesiones, cookie "recordarme" y protección de rutas con middlewares. La arquitectura quedó limpia y bien separada. Los puntos débiles fueron un bug menor en el form de logout (`?_method=POST` innecesario) y hashes inválidos en el seed de usuarios. Para el Sprint 6 el foco está en migrar toda la capa de datos de JSON a MySQL con Sequelize, incluyendo el diseño del DER, los scripts SQL y la actualización de todos los controladores.

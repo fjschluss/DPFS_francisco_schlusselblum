@@ -37,13 +37,59 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 | Backend | Node.js + Express.js |
 | Template Engine | EJS |
 | HTTP Methods | method-override (PUT/DELETE) |
-| Datos | JSON (products.json, users.json) |
+| Base de datos | MySQL |
+| ORM | Sequelize |
 | Autenticación | express-session + bcryptjs |
 | Cookies | cookie-parser |
 | Upload de imagen | multer |
-| ORM (próximo) | Sequelize |
-| Base de datos (próximo) | MySQL |
 | Frontend framework (próximo) | React |
+
+---
+
+## ⚙️ Instalación y configuración
+
+### 1. Clonar el repositorio e instalar dependencias
+
+```bash
+git clone https://github.com/fjschluss/DPFS_francisco_schlusselblum.git
+cd DPFS_francisco_schlusselblum
+npm install
+```
+
+### 2. Crear la base de datos
+
+Desde MySQL Workbench o la terminal de MySQL, ejecutar en orden:
+
+```sql
+source database/structure.sql
+source database/data.sql
+```
+
+### 3. Configurar la conexión
+
+Editar `database/config/config.js` y reemplazar la contraseña con la de tu entorno local:
+
+```js
+development: {
+    username: 'root',
+    password: 'TU_CONTRASEÑA',   // ← modificar acá
+    database: 'lubo_db',
+    host: '127.0.0.1',
+    dialect: 'mysql',
+}
+```
+
+### 4. Iniciar el servidor
+
+```bash
+npm run dev
+```
+
+El sitio estará disponible en `http://localhost:3000`.
+
+**Credenciales de prueba** (usuarios del seed):  
+- Email: `ludmila@lubo.com` · Contraseña: `password123` (admin)  
+- Email: `valentina.martinez@gmail.com` · Contraseña: `password123` (cliente)
 
 ---
 
@@ -51,14 +97,30 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 
 ```bash
 DPFS_francisco_schlusselblum/
+├── app.js
+├── package.json
+├── .sequelizerc
+├── retro.md
+├── README.md
+├── database/
+│   ├── config/
+│   │   └── config.js
+│   ├── models/
+│   │   ├── index.js
+│   │   ├── User.js
+│   │   ├── Product.js
+│   │   ├── Category.js
+│   │   └── Brand.js
+│   ├── structure.sql
+│   ├── data.sql
+│   └── der.pdf
 ├── src/
 │   ├── controllers/
 │   │   ├── main.controller.js
 │   │   ├── products.controller.js
 │   │   └── users.controller.js
-│   ├── data/
-│   │   ├── products.json
-│   │   └── users.json
+│   ├── middlewares/
+│   │   └── auth.middleware.js
 │   ├── public/
 │   │   ├── css/
 │   │   │   └── style.css
@@ -82,39 +144,60 @@ DPFS_francisco_schlusselblum/
 │       │   └── edit.ejs
 │       ├── users/
 │       │   ├── login.ejs
-│       │   └── register.ejs
+│       │   ├── register.ejs
+│       │   └── profile.ejs
 │       ├── index.ejs
 │       ├── cart.ejs
 │       └── 404.ejs
 ├── design/
-├── wireframes/
-├── app.js
-├── package.json
-├── retro.md
-└── README.md
+└── wireframes/
 ```
 
 ---
 
 ## 🔗 Rutas del sitio
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| GET | / | Home con productos destacados |
-| GET | /products | Listado de productos con filtro |
-| GET | /products/create | Formulario de creación |
-| POST | /products | Acción de creación |
-| GET | /products/:id | Detalle de producto |
-| GET | /products/:id/edit | Formulario de edición |
-| PUT | /products/:id | Acción de edición |
-| DELETE | /products/:id | Acción de eliminación |
-| GET | /users/login | Formulario de login |
-| POST | /users/login | Acción de login |
-| GET | /users/register | Formulario de registro |
-| POST | /users/register | Acción de registro |
-| GET | /cart | Carrito de compras |
-| GET | /users/profile | Perfil del usuario autenticado |
-| POST | /users/logout | Cierre de sesión |
+| Método | Ruta | Descripción | Auth |
+|--------|------|-------------|------|
+| GET | / | Home con productos destacados | — |
+| GET | /products | Listado con filtro por categoría y búsqueda | — |
+| GET | /products/create | Formulario de creación | ✅ |
+| POST | /products | Acción de creación | ✅ |
+| GET | /products/:id | Detalle de producto | — |
+| GET | /products/:id/edit | Formulario de edición | ✅ |
+| PUT | /products/:id | Acción de edición | ✅ |
+| DELETE | /products/:id | Acción de eliminación | ✅ |
+| GET | /users/register | Formulario de registro | — |
+| POST | /users/register | Acción de registro | — |
+| GET | /users/login | Formulario de login | — |
+| POST | /users/login | Acción de login | — |
+| GET | /users/profile | Perfil del usuario autenticado | ✅ |
+| POST | /users/logout | Cierre de sesión | ✅ |
+| GET | /cart | Carrito de compras | — |
+
+---
+
+## 🗄 Base de datos
+
+El proyecto usa **MySQL** como motor de base de datos y **Sequelize** como ORM.
+
+### Diagrama de entidades
+
+Ver `database/der.pdf` para el diagrama completo de entidad-relación.
+
+### Tablas
+
+| Tabla | Descripción |
+|-------|-------------|
+| `users` | Usuarios registrados (clientes y admins) |
+| `categories` | Categorías de productos |
+| `brands` | Marcas/sellos de productos |
+| `products` | Recursos digitales a la venta |
+
+### Relaciones
+
+- `categories` → `products`: una categoría tiene muchos productos (1:N)
+- `brands` → `products`: una marca tiene muchos productos (1:N)
 
 ---
 
