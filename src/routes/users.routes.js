@@ -3,8 +3,8 @@ const router = express.Router();
 const path = require('path');
 const multer = require('multer');
 const usersController = require('../controllers/users.controller');
+const { isGuest, isAuthenticated } = require('../middlewares/auth.middleware');
 
-// Configuración de Multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, '../public/images/users'));
@@ -20,14 +20,16 @@ const fileFilter = (req, file, cb) => {
     allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error('Solo JPG, PNG o WEBP'), false);
 };
 
-const upload = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024 } });
+const upload = multer({ storage, fileFilter, limits: { fileSize: 2 * 1024 * 1024 } });
 
-// Rutas (middlewares de protección se agregan en Issue #79)
-router.get('/login',     usersController.loginForm);
-router.post('/login',    usersController.login);
-router.get('/register',  usersController.registerForm);
-router.post('/register', upload.single('image'), usersController.register);
-router.get('/profile',   usersController.profile);
-router.post('/logout',   usersController.logout);
+// Rutas de huéspedes
+router.get('/login', isGuest, usersController.loginForm);
+router.post('/login', isGuest, usersController.login);
+router.get('/register', isGuest, usersController.registerForm);
+router.post('/register', isGuest, upload.single('image'), usersController.register);
+
+// Rutas de usuarios
+router.get('/profile', isAuthenticated, usersController.profile);
+router.post('/logout', isAuthenticated, usersController.logout);
 
 module.exports = router;
