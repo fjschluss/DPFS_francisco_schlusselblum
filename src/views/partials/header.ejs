@@ -22,7 +22,7 @@
                          onerror="this.src='https://placehold.co/36x36/D6CFC6/8C8480?text=U'">
                     <span class="nav-username"><%= session.user.firstName %></span>
                 </a>
-                <form action="/users/logout?_method=POST" method="POST">
+                <form action="/users/logout" method="POST">
                     <button type="submit" class="btn btn-outline btn-sm">Salir</button>
                 </form>
             <% } else { %>
