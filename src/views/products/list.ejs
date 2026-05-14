@@ -15,8 +15,7 @@
                 <a href="/products/create" class="btn btn-outline btn-sm">+ Agregar producto</a>
             </div>
 
-            <!-- Filtros -->
-            <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+            <div class="filter-bar">
                 <a href="/products"
                    class="btn btn-sm <%= !selectedCategory ? 'btn-accent' : 'btn-outline' %>">
                     Todos
@@ -29,9 +28,8 @@
                 <% }) %>
             </div>
 
-            <!-- Grilla -->
             <% if (products.length === 0) { %>
-                <p style="color:var(--warm-gray); padding:3rem 0;">No hay productos en esta categoría.</p>
+                <p class="empty-msg">No hay productos en esta categoría.</p>
             <% } else { %>
                 <div class="product-grid">
                     <% products.forEach(product => { %>

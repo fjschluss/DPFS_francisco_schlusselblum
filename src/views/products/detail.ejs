@@ -37,7 +37,7 @@
                     <p class="description"><%= product.description %></p>
 
                     <% if (product.colors && product.colors.length > 0) { %>
-                        <div class="includes-list" style="margin-bottom:1.5rem;">
+                        <div class="includes-list">
                             <h4>Colores disponibles</h4>
                             <ul>
                                 <% product.colors.forEach(color => { %>
@@ -48,7 +48,7 @@
                     <% } %>
 
                     <% if (product.sizes && product.sizes.length > 0) { %>
-                        <div class="includes-list" style="margin-bottom:2rem;">
+                        <div class="includes-list">
                             <h4>Talles disponibles</h4>
                             <ul>
                                 <% product.sizes.forEach(size => { %>
@@ -63,10 +63,10 @@
                         <a href="/products/<%= product.id %>/edit" class="btn btn-outline">Editar producto</a>
                     </div>
 
-                    <div style="margin-top:1rem;">
+                    <div class="detail-delete-section">
                         <form action="/products/<%= product.id %>?_method=DELETE" method="POST"
                               onsubmit="return confirm('¿Estás seguro de que querés eliminar este producto?')">
-                            <button type="submit" class="btn btn-outline" style="color:#c0392b; border-color:#c0392b;">
+                            <button type="submit" class="btn btn-outline btn-danger">
                                 Eliminar producto
                             </button>
                         </form>
