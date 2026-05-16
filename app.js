@@ -4,6 +4,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { rememberMe } = require('./src/middlewares/auth.middleware');
+const { sequelize } = require('./database/models');
 
 const app = express();
 const PORT = 3000;
@@ -44,6 +45,15 @@ app.use((req, res) => {
     res.status(404).render('404', { title: 'Página no encontrada', session: req.session });
 });
 
-app.listen(PORT, () => {
-    console.log(`LuBo corriendo en http://localhost:${PORT}`);
-});
+// Iniciar servidor solo si la BD conecta
+sequelize.authenticate()
+    .then(() => {
+        console.log('✅ Conexión a MySQL establecida');
+        app.listen(PORT, () => {
+            console.log(`LuBo corriendo en http://localhost:${PORT}`);
+        });
+    })
+    .catch(err => {
+        console.error('❌ No se pudo conectar a MySQL:', err.message);
+        process.exit(1);
+    });
