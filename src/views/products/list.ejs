@@ -12,21 +12,55 @@
                     <span class="eyebrow">Catálogo</span>
                     <h1>Productos</h1>
                 </div>
-                <a href="/products/create" class="btn btn-outline btn-sm">+ Agregar producto</a>
+                <% if (session && session.user) { %>
+                    <a href="/products/create" class="btn btn-outline btn-sm">+ Agregar producto</a>
+                <% } %>
             </div>
 
-            <div class="filter-bar">
-                <a href="/products"
-                   class="btn btn-sm <%= !selectedCategory ? 'btn-accent' : 'btn-outline' %>">
-                    Todos
-                </a>
-                <% categories.forEach(cat => { %>
-                    <a href="/products?category=<%= encodeURIComponent(cat) %>"
-                       class="btn btn-sm <%= selectedCategory === cat ? 'btn-accent' : 'btn-outline' %>">
-                        <%= cat %>
+            <!-- Barra de búsqueda + filtros -->
+            <div class="catalog-controls">
+                <form action="/products" method="GET" class="search-form">
+                    <div class="search-input-wrap">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input class="form-input search-input"
+                               type="text"
+                               name="search"
+                               placeholder="Buscar recursos..."
+                               value="<%= search %>">
+                        <% if (search) { %>
+                            <a href="/products" class="search-clear">✕</a>
+                        <% } %>
+                    </div>
+                    <button type="submit" class="btn btn-accent">Buscar</button>
+                </form>
+                <br>
+                <div class="filter-bar">
+                    <a href="/products"
+                       class="btn btn-sm <%= !selectedCategory ? 'btn-accent' : 'btn-outline' %>">
+                        Todos
                     </a>
-                <% }) %>
+                    <% categories.forEach(cat => { %>
+                        <a href="/products?category=<%= encodeURIComponent(cat.name) %>"
+                           class="btn btn-sm <%= selectedCategory === cat.name ? 'btn-accent' : 'btn-outline' %>">
+                            <%= cat.name %>
+                        </a>
+                    <% }) %>
+                </div>
             </div>
+
+            <% if (search) { %>
+                <p class="search-results-info">
+                    <% if (products.length === 0) { %>
+                        Sin resultados para "<strong><%= search %></strong>"
+                    <% } else { %>
+                        <%= products.length %> resultado<%= products.length !== 1 ? 's' : '' %> para "<strong><%= search %></strong>"
+                    <% } %>
+                </p>
+            <% } %>
 
             <% if (products.length === 0) { %>
                 <p class="empty-msg">No hay productos en esta categoría.</p>
@@ -41,10 +75,10 @@
                                          onerror="this.src='https://placehold.co/400x300/D6CFC6/8C8480?text=LuBo'">
                                 </div>
                                 <div class="product-card-body">
-                                    <p class="product-category"><%= product.category %></p>
+                                    <p class="product-category"><%= product.category ? product.category.name : '' %></p>
                                     <h3 class="product-name"><%= product.name %></h3>
                                     <p class="product-desc"><%= product.description.substring(0, 90) %>...</p>
-                                    <p class="product-price">$<%= product.price.toLocaleString('es-AR') %></p>
+                                    <p class="product-price">$<%= Number(product.price).toLocaleString('es-AR') %></p>
                                 </div>
                             </a>
                         </article>

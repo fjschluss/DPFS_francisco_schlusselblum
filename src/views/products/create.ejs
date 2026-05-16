@@ -30,20 +30,29 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="category">Categoría *</label>
-                        <select class="form-input" id="category" name="category" required>
+                        <label class="form-label" for="categoryId">Categoría *</label>
+                        <select class="form-input" id="categoryId" name="categoryId" required>
                             <option value="" disabled selected>Seleccionar...</option>
-                            <option value="Fichas Técnicas">Fichas Técnicas</option>
-                            <option value="Diseños Técnicos">Diseños Técnicos</option>
-                            <option value="Moldes y Patrones">Moldes y Patrones</option>
-                            <option value="Recursos Digitales">Recursos Digitales</option>
+                            <% categories.forEach(cat => { %>
+                                <option value="<%= cat.id %>"><%= cat.name %></option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="price">Precio (ARS) *</label>
-                        <input class="form-input" type="number" id="price" name="price"
-                               required min="0" step="100" placeholder="Ej: 3500">
+                        <label class="form-label" for="brandId">Marca *</label>
+                        <select class="form-input" id="brandId" name="brandId" required>
+                            <option value="" disabled selected>Seleccionar...</option>
+                            <% brands.forEach(brand => { %>
+                                <option value="<%= brand.id %>"><%= brand.name %></option>
+                            <% }) %>
+                        </select>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="price">Precio (ARS) *</label>
+                    <input class="form-input" type="number" id="price" name="price"
+                           required min="0" step="100" placeholder="Ej: 3500">
                 </div>
 
                 <div class="form-group">
@@ -51,20 +60,6 @@
                     <input class="form-input" type="text" id="image" name="image"
                            placeholder="/images/mi-producto.jpg">
                     <span class="form-hint">Ruta relativa dentro de /public/images/</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="colors">Colores</label>
-                    <input class="form-input" type="text" id="colors" name="colors"
-                           placeholder="Ej: Negro, Blanco, Gris">
-                    <span class="form-hint">Separados por coma. Dejá vacío si no aplica.</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="sizes">Talles</label>
-                    <input class="form-input" type="text" id="sizes" name="sizes"
-                           placeholder="Ej: S, M, L, XL">
-                    <span class="form-hint">Separados por coma. Dejá vacío si no aplica.</span>
                 </div>
 
                 <div class="form-actions">

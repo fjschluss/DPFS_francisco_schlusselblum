@@ -29,39 +29,39 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="category">Categoría *</label>
-                        <select class="form-input" id="category" name="category" required>
-                            <option value="Fichas Técnicas"    <%= product.category === 'Fichas Técnicas'    ? 'selected' : '' %>>Fichas Técnicas</option>
-                            <option value="Diseños Técnicos"   <%= product.category === 'Diseños Técnicos'   ? 'selected' : '' %>>Diseños Técnicos</option>
-                            <option value="Moldes y Patrones"  <%= product.category === 'Moldes y Patrones'  ? 'selected' : '' %>>Moldes y Patrones</option>
-                            <option value="Recursos Digitales" <%= product.category === 'Recursos Digitales' ? 'selected' : '' %>>Recursos Digitales</option>
+                        <label class="form-label" for="categoryId">Categoría *</label>
+                        <select class="form-input" id="categoryId" name="categoryId" required>
+                            <% categories.forEach(cat => { %>
+                                <option value="<%= cat.id %>"
+                                    <%= product.categoryId === cat.id ? 'selected' : '' %>>
+                                    <%= cat.name %>
+                                </option>
+                            <% }) %>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="price">Precio (ARS) *</label>
-                        <input class="form-input" type="number" id="price" name="price"
-                               required min="0" step="100" value="<%= product.price %>">
+                        <label class="form-label" for="brandId">Marca *</label>
+                        <select class="form-input" id="brandId" name="brandId" required>
+                            <% brands.forEach(brand => { %>
+                                <option value="<%= brand.id %>"
+                                    <%= product.brandId === brand.id ? 'selected' : '' %>>
+                                    <%= brand.name %>
+                                </option>
+                            <% }) %>
+                        </select>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="price">Precio (ARS) *</label>
+                    <input class="form-input" type="number" id="price" name="price"
+                           required min="0" step="100" value="<%= product.price %>">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="image">URL de imagen</label>
                     <input class="form-input" type="text" id="image" name="image"
                            value="<%= product.image %>">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="colors">Colores</label>
-                    <input class="form-input" type="text" id="colors" name="colors"
-                           value="<%= product.colors ? product.colors.join(', ') : '' %>">
-                    <span class="form-hint">Separados por coma.</span>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="sizes">Talles</label>
-                    <input class="form-input" type="text" id="sizes" name="sizes"
-                           value="<%= product.sizes ? product.sizes.join(', ') : '' %>">
-                    <span class="form-hint">Separados por coma.</span>
                 </div>
 
                 <div class="form-actions">

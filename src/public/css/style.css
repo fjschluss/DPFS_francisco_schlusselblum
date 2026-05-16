@@ -1451,6 +1451,69 @@ body {
 }
 
 /* ===========================================
+   CATÁLOGO — BUSCADOR Y CONTROLES
+   =========================================== */
+.catalog-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.search-form {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.search-input-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-gray);
+    pointer-events: none;
+}
+
+.search-input {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+.search-clear {
+    position: absolute;
+    right: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--warm-gray);
+    font-size: 0.75rem;
+    line-height: 1;
+    transition: color var(--transition);
+}
+
+.search-clear:hover {
+    color: var(--ink);
+}
+
+.search-results-info {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    margin-bottom: 1.5rem;
+    margin-top: -1rem;
+}
+
+.search-results-info strong {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+/* ===========================================
    RESPONSIVE
    =========================================== */
 @media (max-width: 900px) {
