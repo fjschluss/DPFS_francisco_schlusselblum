@@ -1,109 +1,154 @@
-const fs = require('fs');
-const path = require('path');
-
-const productsFilePath = path.join(__dirname, '../data/products.json');
-
-function getProducts() {
-    const data = fs.readFileSync(productsFilePath, 'utf-8');
-    return JSON.parse(data);
-}
-
-function saveProducts(products) {
-    const data = JSON.stringify(products, null, 4);
-    fs.writeFileSync(productsFilePath, data, 'utf-8');
-}
+const { Product, Category, Brand } = require('../../database/models');
+const { Op } = require('sequelize');
 
 const productsController = {
-    list: (req, res) => {
-        const products = getProducts();
-        const { category } = req.query;
-        let filtered = products;
-        if (category) {
-            filtered = products.filter(p => p.category === category);
+
+    list: async (req, res) => {
+        try {
+            const { category, search } = req.query;
+            const where = {};
+
+            if (search) {
+                where.name = { [Op.like]: `%${search}%` };
+            }
+
+            if (category) {
+                const cat = await Category.findOne({ where: { name: category } });
+                if (cat) where.categoryId = cat.id;
+            }
+
+            const [products, categories] = await Promise.all([
+                Product.findAll({
+                    where,
+                    include: [
+                        { model: Category, as: 'category' },
+                        { model: Brand, as: 'brand' },
+                    ],
+                    order: [['createdAt', 'DESC']]
+                }),
+                Category.findAll()
+            ]);
+
+            res.render('products/list', {
+                title: 'Productos – LuBo',
+                products,
+                categories,
+                selectedCategory: category || null,
+                search: search || '',
+                session: req.session
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error', session: req.session });
         }
-        const categories = [...new Set(products.map(p => p.category))];
-        res.render('products/list', {
-            title: 'Productos – LuBo',
-            products: filtered,
-            categories,
-            selectedCategory: category || null,
-            session: req.session
-        });
     },
 
-    detail: (req, res) => {
-        const products = getProducts();
-        const product = products.find(p => p.id === parseInt(req.params.id));
-        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
-        res.render('products/detail', {
-            title: `${product.name} – LuBo`,
-            product,
-            session: req.session
-        });
+    detail: async (req, res) => {
+        try {
+            const product = await Product.findByPk(req.params.id, {
+                include: [
+                    { model: Category, as: 'category' },
+                    { model: Brand, as: 'brand' },
+                ]
+            });
+            if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
+            res.render('products/detail', {
+                title: `${product.name} – LuBo`,
+                product,
+                session: req.session
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error', session: req.session });
+        }
     },
 
-    createForm: (req, res) => {
-        res.render('products/create', {
-            title: 'Nuevo Producto – LuBo',
-            session: req.session
-        });
+    createForm: async (req, res) => {
+        try {
+            const [categories, brands] = await Promise.all([
+                Category.findAll(),
+                Brand.findAll()
+            ]);
+            res.render('products/create', {
+                title: 'Nuevo Producto – LuBo',
+                categories,
+                brands,
+                session: req.session
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error', session: req.session });
+        }
     },
 
-    create: (req, res) => {
-        const products = getProducts();
-        const { name, description, image, category, colors, sizes, price } = req.body;
-        const maxId = products.length > 0 ? Math.max(...products.map(p => p.id)) : 0;
-        const newProduct = {
-            id: maxId + 1,
-            name,
-            description,
-            image: image || '/images/placeholder.jpg',
-            category,
-            price: parseFloat(price),
-            colors: colors ? colors.split(',').map(c => c.trim()) : [],
-            sizes: sizes ? sizes.split(',').map(s => s.trim()) : []
-        };
-        products.push(newProduct);
-        saveProducts(products);
-        res.redirect('/products');
+    create: async (req, res) => {
+        try {
+            const { name, description, image, categoryId, brandId, price } = req.body;
+            await Product.create({
+                name,
+                description,
+                image: image || '/images/placeholder.jpg',
+                categoryId: parseInt(categoryId),
+                brandId: parseInt(brandId),
+                price: parseFloat(price),
+            });
+            res.redirect('/products');
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error al crear', session: req.session });
+        }
     },
 
-    editForm: (req, res) => {
-        const products = getProducts();
-        const product = products.find(p => p.id === parseInt(req.params.id));
-        if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
-        res.render('products/edit', {
-            title: `Editar: ${product.name} – LuBo`,
-            product,
-            session: req.session
-        });
+    editForm: async (req, res) => {
+        try {
+            const [product, categories, brands] = await Promise.all([
+                Product.findByPk(req.params.id),
+                Category.findAll(),
+                Brand.findAll()
+            ]);
+            if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
+            res.render('products/edit', {
+                title: `Editar: ${product.name} – LuBo`,
+                product,
+                categories,
+                brands,
+                session: req.session
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error', session: req.session });
+        }
     },
 
-    edit: (req, res) => {
-        const products = getProducts();
-        const index = products.findIndex(p => p.id === parseInt(req.params.id));
-        if (index === -1) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
-        const { name, description, image, category, colors, sizes, price } = req.body;
-        products[index] = {
-            ...products[index],
-            name,
-            description,
-            image: image || products[index].image,
-            category,
-            price: parseFloat(price),
-            colors: colors ? colors.split(',').map(c => c.trim()) : [],
-            sizes: sizes ? sizes.split(',').map(s => s.trim()) : []
-        };
-        saveProducts(products);
-        res.redirect(`/products/${products[index].id}`);
+    edit: async (req, res) => {
+        try {
+            const product = await Product.findByPk(req.params.id);
+            if (!product) return res.status(404).render('404', { title: 'Producto no encontrado', session: req.session });
+            const { name, description, image, categoryId, brandId, price } = req.body;
+            await product.update({
+                name,
+                description,
+                image: image || product.image,
+                categoryId: parseInt(categoryId),
+                brandId: parseInt(brandId),
+                price: parseFloat(price),
+            });
+            res.redirect(`/products/${product.id}`);
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error al editar', session: req.session });
+        }
     },
 
-    destroy: (req, res) => {
-        let products = getProducts();
-        const id = parseInt(req.params.id);
-        products = products.filter(p => p.id !== id);
-        saveProducts(products);
-        res.redirect('/products');
+    destroy: async (req, res) => {
+        try {
+            const product = await Product.findByPk(req.params.id);
+            if (product) await product.destroy();
+            res.redirect('/products');
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('404', { title: 'Error al eliminar', session: req.session });
+        }
     }
 };
 

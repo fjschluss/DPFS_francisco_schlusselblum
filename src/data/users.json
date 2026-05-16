@@ -88,5 +88,14 @@
         "password": "$2b$10$hij012klm345nop678qrs901tuv234wxy567zab890",
         "category": "admin",
         "image": "/images/users/default.jpg"
+    },
+    {
+        "id": 11,
+        "firstName": "Francisco Javier",
+        "lastName": "Schlusselblum",
+        "email": "fschlusselblum@gmail.com",
+        "password": "$2b$10$7BxyK8Dak2bkOaPfT7YBcugZ1uBu9s.1ljIIIfpuGva8.KGmAT3FW",
+        "category": "cliente",
+        "image": "/images/users/default.jpg"
     }
 ]
