@@ -1,17 +1,6 @@
-const fs = require('fs');
-const path = require('path');
+// src/controllers/users.controller.js
 const bcrypt = require('bcryptjs');
-
-const usersFilePath = path.join(__dirname, '../data/users.json');
-
-function getUsers() {
-    const data = fs.readFileSync(usersFilePath, 'utf-8');
-    return JSON.parse(data);
-}
-
-function saveUsers(users) {
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4), 'utf-8');
-}
+const { User } = require('../../database/models');
 
 const usersController = {
 
@@ -22,7 +11,6 @@ const usersController = {
 
     register: async (req, res) => {
         const { firstName, lastName, email, password, password2 } = req.body;
-        const users = getUsers();
         const errors = [];
 
         if (!firstName || !lastName || !email || !password || !password2) {
@@ -34,12 +22,12 @@ const usersController = {
         if (password && password.length < 8) {
             errors.push('La contraseña debe tener al menos 8 caracteres.');
         }
-        if (users.find(u => u.email === email)) {
-            errors.push('Ya existe una cuenta con ese correo electrónico.');
-        }
+
+        const existing = await User.findOne({ where: { email } });
+        if (existing) errors.push('Ya existe una cuenta con ese correo electrónico.');
 
         if (errors.length > 0) {
-            if (req.file) fs.unlinkSync(req.file.path);
+            if (req.file) require('fs').unlinkSync(req.file.path);
             return res.render('users/register', {
                 title: 'Crear Cuenta – LuBo',
                 errors,
@@ -48,24 +36,18 @@ const usersController = {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-
         const image = req.file
             ? `/images/users/${req.file.filename}`
             : '/images/users/default.jpg';
 
-        const maxId = users.length > 0 ? Math.max(...users.map(u => u.id)) : 0;
-        const newUser = {
-            id: maxId + 1,
+        const newUser = await User.create({
             firstName,
             lastName,
             email,
             password: hashedPassword,
             category: 'cliente',
             image
-        };
-
-        users.push(newUser);
-        saveUsers(users);
+        });
 
         req.session.user = {
             id: newUser.id,
@@ -86,9 +68,8 @@ const usersController = {
 
     login: async (req, res) => {
         const { email, password, remember } = req.body;
-        const users = getUsers();
 
-        const user = users.find(u => u.email === email);
+        const user = await User.findOne({ where: { email } });
         if (!user) {
             return res.render('users/login', {
                 title: 'Iniciar Sesión – LuBo',

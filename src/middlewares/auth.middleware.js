@@ -1,32 +1,28 @@
-const fs = require('fs');
-const path = require('path');
-
-const usersFilePath = path.join(__dirname, '../data/users.json');
-
-function getUsers() {
-    const data = fs.readFileSync(usersFilePath, 'utf-8');
-    return JSON.parse(data);
-}
+// src/middlewares/auth.middleware.js
+const { User } = require('../../database/models');
 
 // Middleware de aplicación: auto-login por cookie "recordarme"
-const rememberMe = (req, res, next) => {
+const rememberMe = async (req, res, next) => {
     if (req.session.user) return next();
 
-    const cookieEmail = req.cookies.userEmail;
+    const cookieEmail = req.cookies?.userEmail;
     if (!cookieEmail) return next();
 
-    const users = getUsers();
-    const user = users.find(u => u.email === cookieEmail);
-    if (!user) return next();
+    try {
+        const user = await User.findOne({ where: { email: cookieEmail } });
+        if (!user) return next();
 
-    req.session.user = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        image: user.image,
-        category: user.category
-    };
+        req.session.user = {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            image: user.image,
+            category: user.category
+        };
+    } catch (err) {
+        console.error('rememberMe error:', err);
+    }
 
     next();
 };
