@@ -55,7 +55,7 @@
                              onerror="this.src='https://placehold.co/400x300/D6CFC6/8C8480?text=LuBo'" />
                         </div>
                         <div class="product-card-body">
-                        <p class="product-category"><%= product.category %></p>
+                        <p class="product-category"><%= product.category ? product.category.name : '' %></p>
                         <h3 class="product-name"><%= product.name %></h3>
                         <p class="product-desc"><%= product.description.substring(0, 90) %>...</p>
                         <p class="product-price">$<%= product.price.toLocaleString('es-AR') %></p>
