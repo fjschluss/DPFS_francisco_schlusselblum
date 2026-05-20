@@ -256,3 +256,53 @@ El Sprint 4 consolidó la capa de datos con JSON y completó el CRUD de producto
 ## 📝 Conclusión general
 
 El Sprint 5 implementó el sistema de autenticación completo: registro con bcrypt y subida de imagen, login con sesiones, cookie "recordarme" y protección de rutas con middlewares. La arquitectura quedó limpia y bien separada. Los puntos débiles fueron un bug menor en el form de logout (`?_method=POST` innecesario) y hashes inválidos en el seed de usuarios. Para el Sprint 6 el foco está en migrar toda la capa de datos de JSON a MySQL con Sequelize, incluyendo el diseño del DER, los scripts SQL y la actualización de todos los controladores.
+
+---
+
+# 🌟 Retrospectiva — Sprint 6
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria  
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Usar variables de entorno desde el primer commit de cada sprint, no como corrección posterior.
+- Incluir un `.env.example` en el repo desde el inicio para documentar las variables necesarias.
+
+---
+
+## ➕ Hacer más
+
+- Verificar que cada partial recibe los datos completos de Sequelize (incluidos los `include`) antes de hacer el merge.
+- Revisar visualmente las vistas en el navegador después de cada migración de datos para detectar bugs de renderizado temprano.
+
+---
+
+## ✅ Continuar haciendo
+
+- Definir el DER antes de escribir los modelos de Sequelize.
+- Usar `sequelize.authenticate()` para validar la conexión antes de levantar el servidor.
+- Mantener las asociaciones (`belongsTo`, `hasMany`) explícitas con alias en los modelos.
+- Commitear `structure.sql` y `data.sql` como parte del entregable.
+
+---
+
+## ➖ Hacer menos
+
+- Dejar credenciales hardcodeadas en archivos de configuración que se commitean al repo público.
+- Avanzar al siguiente sprint sin revisar que los objetos de Sequelize lleguen correctamente a las vistas EJS.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Commitear archivos de configuración con passwords en texto plano en repositorios públicos.
+- Asumir que los objetos de Sequelize se comportan igual que los objetos JSON planos en las vistas.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 6 completó la migración de la capa de datos de JSON a MySQL con Sequelize. La estructura de modelos, asociaciones y el DER quedaron bien definidos, y el servidor valida la conexión antes de iniciar. El punto más crítico fue una credencial hardcodeada en `config.js` en un repo público, resuelta en el Sprint 7 como primera acción. Para el Sprint 7 el foco está en validaciones front-end y back-end con express-validator, cerrando la protección de todos los formularios del sitio.
