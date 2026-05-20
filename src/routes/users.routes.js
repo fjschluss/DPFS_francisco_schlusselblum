@@ -4,6 +4,7 @@ const path = require('path');
 const multer = require('multer');
 const usersController = require('../controllers/users.controller');
 const { isGuest, isAuthenticated } = require('../middlewares/auth.middleware');
+const { registerValidators, loginValidators } = require('../middlewares/validators/user.validators');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -16,20 +17,21 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    const allowed = ['image/jpeg', 'image/png', 'image/webp'];
-    allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error('Solo JPG, PNG o WEBP'), false);
+    const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error('Solo JPG, PNG, WEBP o GIF'), false);
 };
 
 const upload = multer({ storage, fileFilter, limits: { fileSize: 2 * 1024 * 1024 } });
 
 // Rutas de huéspedes
-router.get('/login', isGuest, usersController.loginForm);
-router.post('/login', isGuest, usersController.login);
-router.get('/register', isGuest, usersController.registerForm);
-router.post('/register', isGuest, upload.single('image'), usersController.register);
+router.get('/login',     isGuest, usersController.loginForm);
+router.post('/login',    isGuest, loginValidators, usersController.login);
 
-// Rutas de usuarios
-router.get('/profile', isAuthenticated, usersController.profile);
-router.post('/logout', isAuthenticated, usersController.logout);
+router.get('/register',  isGuest, usersController.registerForm);
+router.post('/register', isGuest, upload.single('image'), registerValidators, usersController.register);
+
+// Rutas de usuarios autenticados
+router.get('/profile',   isAuthenticated, usersController.profile);
+router.post('/logout',   isAuthenticated, usersController.logout);
 
 module.exports = router;

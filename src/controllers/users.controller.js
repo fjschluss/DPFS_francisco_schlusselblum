@@ -1,5 +1,6 @@
 // src/controllers/users.controller.js
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 const { User } = require('../../database/models');
 
 const usersController = {
@@ -10,28 +11,26 @@ const usersController = {
     },
 
     register: async (req, res) => {
-        const { firstName, lastName, email, password, password2 } = req.body;
-        const errors = [];
+        const result = validationResult(req);
 
-        if (!firstName || !lastName || !email || !password || !password2) {
-            errors.push('Todos los campos son obligatorios.');
-        }
-        if (password !== password2) {
-            errors.push('Las contraseñas no coinciden.');
-        }
-        if (password && password.length < 8) {
-            errors.push('La contraseña debe tener al menos 8 caracteres.');
-        }
-
-        const existing = await User.findOne({ where: { email } });
-        if (existing) errors.push('Ya existe una cuenta con ese correo electrónico.');
-
-        if (errors.length > 0) {
+        if (!result.isEmpty()) {
             if (req.file) require('fs').unlinkSync(req.file.path);
             return res.render('users/register', {
-                title: 'Crear Cuenta – LuBo',
-                errors,
-                old: req.body
+                title:  'Crear Cuenta – LuBo',
+                errors: result.array().map(e => e.msg),
+                old:    req.body
+            });
+        }
+
+        const { firstName, lastName, email, password } = req.body;
+
+        const existing = await User.findOne({ where: { email } });
+        if (existing) {
+            if (req.file) require('fs').unlinkSync(req.file.path);
+            return res.render('users/register', {
+                title:  'Crear Cuenta – LuBo',
+                errors: ['Ya existe una cuenta con ese correo electrónico.'],
+                old:    req.body
             });
         }
 
@@ -50,12 +49,12 @@ const usersController = {
         });
 
         req.session.user = {
-            id: newUser.id,
+            id:        newUser.id,
             firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            email: newUser.email,
-            image: newUser.image,
-            category: newUser.category
+            lastName:  newUser.lastName,
+            email:     newUser.email,
+            image:     newUser.image,
+            category:  newUser.category
         };
 
         res.redirect('/users/profile');
@@ -63,40 +62,49 @@ const usersController = {
 
     // ── Login ─────────────────────────────────────────────
     loginForm: (req, res) => {
-        res.render('users/login', { title: 'Iniciar Sesión – LuBo', error: null });
+        res.render('users/login', { title: 'Iniciar Sesión – LuBo', errors: [] });
     },
 
     login: async (req, res) => {
+        const result = validationResult(req);
+
+        if (!result.isEmpty()) {
+            return res.render('users/login', {
+                title:  'Iniciar Sesión – LuBo',
+                errors: result.array().map(e => e.msg)
+            });
+        }
+
         const { email, password, remember } = req.body;
 
         const user = await User.findOne({ where: { email } });
         if (!user) {
             return res.render('users/login', {
-                title: 'Iniciar Sesión – LuBo',
-                error: 'El correo o la contraseña son incorrectos.'
+                title:  'Iniciar Sesión – LuBo',
+                errors: ['El correo o la contraseña son incorrectos.']
             });
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
             return res.render('users/login', {
-                title: 'Iniciar Sesión – LuBo',
-                error: 'El correo o la contraseña son incorrectos.'
+                title:  'Iniciar Sesión – LuBo',
+                errors: ['El correo o la contraseña son incorrectos.']
             });
         }
 
         req.session.user = {
-            id: user.id,
+            id:        user.id,
             firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            image: user.image,
-            category: user.category
+            lastName:  user.lastName,
+            email:     user.email,
+            image:     user.image,
+            category:  user.category
         };
 
         if (remember) {
             res.cookie('userEmail', email, {
-                maxAge: 1000 * 60 * 60 * 24 * 30,
+                maxAge:   1000 * 60 * 60 * 24 * 30,
                 httpOnly: true
             });
         }
@@ -107,8 +115,8 @@ const usersController = {
     // ── Perfil ────────────────────────────────────────────
     profile: (req, res) => {
         res.render('users/profile', {
-            title: 'Mi Perfil – LuBo',
-            user: req.session.user,
+            title:   'Mi Perfil – LuBo',
+            user:    req.session.user,
             session: req.session
         });
     },
