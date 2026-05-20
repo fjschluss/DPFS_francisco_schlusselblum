@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
@@ -7,7 +8,7 @@ const { rememberMe } = require('./src/middlewares/auth.middleware');
 const { sequelize } = require('./database/models');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Motor de templates
 app.set('view engine', 'ejs');
@@ -22,7 +23,7 @@ app.use(cookieParser());
 
 // Sesiones
 app.use(session({
-    secret: 'lubo-secret-key-2025',
+    secret: process.env.SESSION_SECRET || 'lubo-secret-key-2025',
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 24 }
@@ -32,9 +33,9 @@ app.use(session({
 app.use(rememberMe);
 
 // Rutas
-const mainRouter = require('./src/routes/main.routes');
+const mainRouter     = require('./src/routes/main.routes');
 const productsRouter = require('./src/routes/products.routes');
-const usersRouter = require('./src/routes/users.routes');
+const usersRouter    = require('./src/routes/users.routes');
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
