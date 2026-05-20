@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="product-info">
-                    <p class="product-category"><%= product.category %></p>
+                    <p class="product-category"><%= product.category ? product.category.name : '' %></p>
                     <h1><%= product.name %></h1>
 
                     <div class="price-block">
@@ -83,7 +83,7 @@
                         </div>
                         <div class="meta-row">
                             <span class="meta-label">Categoría</span>
-                            <span class="meta-value"><%= product.category %></span>
+                            <span class="meta-value"><%= product.category ? product.category.name : '' %></span>
                         </div>
                     </div>
                 </div>

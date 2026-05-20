@@ -2,7 +2,7 @@
     <a href="/products/<%= product.id %>" class="card-image-link">
         <div class="card-image">
             <img src="<%= product.image %>" alt="<%= product.name %>" onerror="this.src='/images/placeholder.jpg'">
-            <span class="card-category"><%= product.category %></span>
+            <span class="card-category"><%= product.category ? product.category.name : '' %></span>
         </div>
     </a>
     <div class="card-body">
@@ -11,8 +11,8 @@
         </h3>
         <p class="card-description"><%= product.description.substring(0, 90) %>...</p>
         <div class="card-footer">
-            <span class="card-price">$<%= product.price.toLocaleString('es-AR') %></span>
-            <a href="/products/<%= product.id %>" class="btn-primary btn-sm">Ver más</a>
+            <span class="card-price">$<%= Number(product.price).toLocaleString('es-AR') %></span>
+            <a href="/products/<%= product.id %>" class="btn btn-primary btn-sm">Ver más</a>
         </div>
     </div>
 </article>

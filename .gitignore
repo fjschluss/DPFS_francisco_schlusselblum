@@ -11,3 +11,6 @@ desktop.ini
 
 # Sistema operativo (Mac)
 .DS_Store
+
+# Variables de entorno
+.env
