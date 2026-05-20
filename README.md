@@ -30,7 +30,7 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 ## 🛠 Tecnologías utilizadas
 
 | Capa | Tecnología |
-|------|-----------|
+|------|-----------| 
 | Markup | HTML5 semántico |
 | Estilos | CSS3 (variables, grid, flexbox) |
 | Tipografías | Google Fonts: Cormorant Garamond + Inter |
@@ -42,6 +42,8 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 | Autenticación | express-session + bcryptjs |
 | Cookies | cookie-parser |
 | Upload de imagen | multer |
+| Validaciones | express-validator |
+| Variables de entorno | dotenv |
 | Frontend framework (próximo) | React |
 
 ---
@@ -65,18 +67,22 @@ source database/structure.sql
 source database/data.sql
 ```
 
-### 3. Configurar la conexión
+### 3. Configurar variables de entorno
 
-Editar `database/config/config.js` y reemplazar la contraseña con la de tu entorno local:
+Copiar el archivo de ejemplo y completar con los datos de tu entorno local:
 
-```js
-development: {
-    username: 'root',
-    password: 'TU_CONTRASEÑA',   // ← modificar acá
-    database: 'lubo_db',
-    host: '127.0.0.1',
-    dialect: 'mysql',
-}
+```bash
+cp .env.example .env
+```
+
+Editar `.env`:
+
+```bash
+DB_HOST=127.0.0.1
+DB_USER=root
+DB_PASS=tu_contraseña_local
+DB_NAME=lubo_db
+SESSION_SECRET=cualquier_string_secreto
 ```
 
 ### 4. Iniciar el servidor
@@ -97,6 +103,7 @@ El sitio estará disponible en `http://localhost:3000`.
 
 ```bash
 DPFS_francisco_schlusselblum/
+├── .env.example
 ├── app.js
 ├── package.json
 ├── .sequelizerc
@@ -113,20 +120,25 @@ DPFS_francisco_schlusselblum/
 │   │   └── Brand.js
 │   ├── structure.sql
 │   ├── data.sql
-│   └── der.pdf
+│   └── DER.pdf
 ├── src/
 │   ├── controllers/
 │   │   ├── main.controller.js
 │   │   ├── products.controller.js
 │   │   └── users.controller.js
 │   ├── middlewares/
-│   │   └── auth.middleware.js
+│   │   ├── auth.middleware.js
+│   │   └── validators/
+│   │       ├── user.validators.js
+│   │       └── product.validators.js
 │   ├── public/
 │   │   ├── css/
 │   │   │   └── style.css
+│   │   ├── js/
+│   │   │   ├── register.validate.js
+│   │   │   ├── login.validate.js
+│   │   │   └── product.validate.js
 │   │   └── images/
-│   │       ├── logo.svg
-│   │       └── carrito.svg
 │   ├── routes/
 │   │   ├── main.routes.js
 │   │   ├── products.routes.js
@@ -183,7 +195,7 @@ El proyecto usa **MySQL** como motor de base de datos y **Sequelize** como ORM.
 
 ### Diagrama de entidades
 
-Ver `database/der.pdf` para el diagrama completo de entidad-relación.
+Ver `database/DER.pdf` para el diagrama completo de entidad-relación.
 
 ### Tablas
 
