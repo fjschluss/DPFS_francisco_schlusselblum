@@ -13,27 +13,40 @@
                 Modificá los datos del producto. Los campos con * son obligatorios.
             </p>
 
-            <form action="/products/<%= product.id %>?_method=PUT" method="POST">
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+                <div class="login-error-banner">
+                    <span>⚠</span>
+                    <ul class="error-list">
+                        <% errors.forEach(error => { %>
+                            <li><%= error %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <form id="product-form" action="/products/<%= product.id %>?_method=PUT" method="POST" novalidate>
 
                 <div class="form-group">
                     <label class="form-label" for="name">Nombre del producto *</label>
                     <input class="form-input" type="text" id="name" name="name"
-                           required value="<%= product.name %>">
+                           value="<%= (typeof old !== 'undefined' && old.name) ? old.name : product.name %>">
+                    <span class="form-error" id="error-name"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="description">Descripción *</label>
                     <textarea class="form-input" id="description" name="description"
-                              rows="4" required><%= product.description %></textarea>
+                              rows="4"><%= (typeof old !== 'undefined' && old.description) ? old.description : product.description %></textarea>
+                    <span class="form-error" id="error-description"></span>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="categoryId">Categoría *</label>
-                        <select class="form-input" id="categoryId" name="categoryId" required>
+                        <select class="form-input" id="categoryId" name="categoryId">
                             <% categories.forEach(cat => { %>
                                 <option value="<%= cat.id %>"
-                                    <%= product.categoryId === cat.id ? 'selected' : '' %>>
+                                    <%= ((typeof old !== 'undefined' && old.categoryId == cat.id) || (typeof old === 'undefined' && product.categoryId === cat.id)) ? 'selected' : '' %>>
                                     <%= cat.name %>
                                 </option>
                             <% }) %>
@@ -41,10 +54,10 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="brandId">Marca *</label>
-                        <select class="form-input" id="brandId" name="brandId" required>
+                        <select class="form-input" id="brandId" name="brandId">
                             <% brands.forEach(brand => { %>
                                 <option value="<%= brand.id %>"
-                                    <%= product.brandId === brand.id ? 'selected' : '' %>>
+                                    <%= ((typeof old !== 'undefined' && old.brandId == brand.id) || (typeof old === 'undefined' && product.brandId === brand.id)) ? 'selected' : '' %>>
                                     <%= brand.name %>
                                 </option>
                             <% }) %>
@@ -55,13 +68,17 @@
                 <div class="form-group">
                     <label class="form-label" for="price">Precio (ARS) *</label>
                     <input class="form-input" type="number" id="price" name="price"
-                           required min="0" step="100" value="<%= product.price %>">
+                           min="0" step="100"
+                           value="<%= (typeof old !== 'undefined' && old.price) ? old.price : product.price %>">
+                    <span class="form-error" id="error-price"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="image">URL de imagen</label>
                     <input class="form-input" type="text" id="image" name="image"
-                           value="<%= product.image %>">
+                           value="<%= (typeof old !== 'undefined' && old.image) ? old.image : product.image %>">
+                    <span class="form-hint">Dejá vacío para mantener la imagen actual. JPG, JPEG, PNG o GIF.</span>
+                    <span class="form-error" id="error-image"></span>
                 </div>
 
                 <div class="form-actions">
@@ -79,5 +96,6 @@
     </main>
 
     <%- include('../partials/footer') %>
+    <script src="/js/product.validate.js"></script>
 </body>
 </html>
