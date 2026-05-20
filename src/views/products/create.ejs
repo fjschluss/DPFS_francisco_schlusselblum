@@ -13,37 +13,57 @@
                 Completá el formulario para agregar un recurso al catálogo.
             </p>
 
-            <form action="/products" method="POST">
+            <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+                <div class="login-error-banner">
+                    <span>⚠</span>
+                    <ul class="error-list">
+                        <% errors.forEach(error => { %>
+                            <li><%= error %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <form id="product-form" action="/products" method="POST" novalidate>
 
                 <div class="form-group">
                     <label class="form-label" for="name">Nombre del producto *</label>
-                    <input class="form-input" type="text" id="name" name="name" required
-                           placeholder="Ej: Tech Pack Básico — Remeras">
+                    <input class="form-input" type="text" id="name" name="name"
+                           placeholder="Ej: Tech Pack Básico — Remeras"
+                           value="<%= typeof old !== 'undefined' ? old.name || '' : '' %>">
+                    <span class="form-error" id="error-name"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="description">Descripción *</label>
                     <textarea class="form-input" id="description" name="description"
-                              rows="4" required
-                              placeholder="Describí qué incluye el recurso..."></textarea>
+                              rows="4"
+                              placeholder="Describí qué incluye el recurso..."><%= typeof old !== 'undefined' ? old.description || '' : '' %></textarea>
+                    <span class="form-error" id="error-description"></span>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="categoryId">Categoría *</label>
-                        <select class="form-input" id="categoryId" name="categoryId" required>
-                            <option value="" disabled selected>Seleccionar...</option>
+                        <select class="form-input" id="categoryId" name="categoryId">
+                            <option value="" disabled <%= (typeof old === 'undefined' || !old.categoryId) ? 'selected' : '' %>>Seleccionar...</option>
                             <% categories.forEach(cat => { %>
-                                <option value="<%= cat.id %>"><%= cat.name %></option>
+                                <option value="<%= cat.id %>"
+                                    <%= (typeof old !== 'undefined' && old.categoryId == cat.id) ? 'selected' : '' %>>
+                                    <%= cat.name %>
+                                </option>
                             <% }) %>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="brandId">Marca *</label>
-                        <select class="form-input" id="brandId" name="brandId" required>
-                            <option value="" disabled selected>Seleccionar...</option>
+                        <select class="form-input" id="brandId" name="brandId">
+                            <option value="" disabled <%= (typeof old === 'undefined' || !old.brandId) ? 'selected' : '' %>>Seleccionar...</option>
                             <% brands.forEach(brand => { %>
-                                <option value="<%= brand.id %>"><%= brand.name %></option>
+                                <option value="<%= brand.id %>"
+                                    <%= (typeof old !== 'undefined' && old.brandId == brand.id) ? 'selected' : '' %>>
+                                    <%= brand.name %>
+                                </option>
                             <% }) %>
                         </select>
                     </div>
@@ -52,14 +72,18 @@
                 <div class="form-group">
                     <label class="form-label" for="price">Precio (ARS) *</label>
                     <input class="form-input" type="number" id="price" name="price"
-                           required min="0" step="100" placeholder="Ej: 3500">
+                           min="0" step="100" placeholder="Ej: 3500"
+                           value="<%= typeof old !== 'undefined' ? old.price || '' : '' %>">
+                    <span class="form-error" id="error-price"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="image">URL de imagen</label>
                     <input class="form-input" type="text" id="image" name="image"
-                           placeholder="/images/mi-producto.jpg">
-                    <span class="form-hint">Ruta relativa dentro de /public/images/</span>
+                           placeholder="/images/mi-producto.jpg"
+                           value="<%= typeof old !== 'undefined' ? old.image || '' : '' %>">
+                    <span class="form-hint">Ruta relativa dentro de /public/images/ — JPG, JPEG, PNG o GIF.</span>
+                    <span class="form-error" id="error-image"></span>
                 </div>
 
                 <div class="form-actions">
@@ -72,5 +96,6 @@
     </main>
 
     <%- include('../partials/footer') %>
+    <script src="/js/product.validate.js"></script>
 </body>
 </html>
