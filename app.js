@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -9,6 +10,11 @@ const { sequelize } = require('./database/models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// CORS — permite peticiones desde el dashboard React
+app.use(cors({
+    origin: 'http://localhost:3001'
+}));
 
 // Motor de templates
 app.set('view engine', 'ejs');
