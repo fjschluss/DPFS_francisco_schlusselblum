@@ -6,24 +6,40 @@ const apiProductsController = {
 
     list: async (req, res) => {
         try {
-            const products = await Product.findAll({
-                include: [
-                    { model: Category, as: 'category' },
-                    { model: Brand,    as: 'brand'    }
-                ],
-                order: [['createdAt', 'DESC']]
-            });
+            const PAGE_SIZE = 10;
+            const page   = parseInt(req.query.page) || 1;
+            const offset = (page - 1) * PAGE_SIZE;
 
-            // countByCategory: { 'Fichas Técnicas': 5, 'Moldes': 3, ... }
+            // countByCategory necesita el total completo (sin limit)
+            const allProducts = await Product.findAll({
+                include: [{ model: Category, as: 'category' }]
+            });
             const countByCategory = {};
-            products.forEach(p => {
+            allProducts.forEach(p => {
                 const catName = p.category ? p.category.name : 'Sin categoría';
                 countByCategory[catName] = (countByCategory[catName] || 0) + 1;
             });
 
+            const { count, rows: products } = await Product.findAndCountAll({
+                include: [
+                    { model: Category, as: 'category' },
+                    { model: Brand,    as: 'brand'    }
+                ],
+                order:    [['createdAt', 'DESC']],
+                limit:    PAGE_SIZE,
+                offset,
+                distinct: true
+            });
+
+            const totalPages = Math.ceil(count / PAGE_SIZE);
+
             res.json({
-                count: products.length,
+                count,
                 countByCategory,
+                page,
+                totalPages,
+                next:     page < totalPages ? `${BASE_URL}/api/products?page=${page + 1}` : null,
+                previous: page > 1         ? `${BASE_URL}/api/products?page=${page - 1}` : null,
                 products: products.map(p => ({
                     id:          p.id,
                     name:        p.name,
