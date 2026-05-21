@@ -1,4 +1,3 @@
-// src/middlewares/auth.middleware.js
 const { User } = require('../../database/models');
 
 // Middleware de aplicación: auto-login por cookie "recordarme"
@@ -39,4 +38,14 @@ const isGuest = (req, res, next) => {
     res.redirect('/users/profile');
 };
 
-module.exports = { rememberMe, isAuthenticated, isGuest };
+// Middleware: solo usuarios admin
+const isAdmin = (req, res, next) => {
+    if (req.session.user && req.session.user.category === 'admin') return next();
+    res.status(403).render('error', {
+        title: 'Acceso denegado',
+        message: 'No tenés permisos para realizar esta acción.',
+        session: req.session
+    });
+};
+
+module.exports = { rememberMe, isAuthenticated, isGuest, isAdmin };

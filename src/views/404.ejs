@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <%- include('partials/head') %>
-
 <body>
-    
-    <!-- HEADER -->
     <%- include('partials/header') %>
 
-    <!-- MAIN -->
-    <main class="page-content page-404">
-        <div class="container text-center">
+    <main class="page-404">
+        <div class="container">
             <h1 class="error-code">404</h1>
             <p class="error-msg">La página que buscás no existe.</p>
-            <a href="/" class="btn-primary">Volver al inicio</a>
+            <a href="/" class="btn btn-accent">Volver al inicio</a>
         </div>
     </main>
-    
-    <!-- FOOTER -->
-    <%- include('partials/footer') %>
 
+    <%- include('partials/footer') %>
 </body>
 </html>
