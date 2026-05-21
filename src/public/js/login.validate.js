@@ -1,4 +1,4 @@
-// src/public/js/login.validate.js
+
 (function () {
     'use strict';
 
