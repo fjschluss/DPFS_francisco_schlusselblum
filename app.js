@@ -36,10 +36,12 @@ app.use(rememberMe);
 const mainRouter     = require('./src/routes/main.routes');
 const productsRouter = require('./src/routes/products.routes');
 const usersRouter    = require('./src/routes/users.routes');
+const apiRouter      = require('./src/routes/api.routes');
 
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
 
 // 404
 app.use((req, res) => {

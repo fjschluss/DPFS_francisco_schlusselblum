@@ -43,7 +43,7 @@ INSERT INTO products (name, description, price, image, categoryId, brandId) VALU
 ('Kit Completo – Colección Invierno', 'Pack combinado: 3 fichas técnicas + 10 flats + 2 moldes para colección de invierno.',                                            9800.00, '/images/kit-invierno.jpg',       1, 1);
 
 -- ── Usuarios ─────────────────────────────────────────────────
--- Nota: las contraseñas están hasheadas con bcrypt (clave: "password123")
+-- Nota: las contraseñas están hasheadas con bcrypt (clave: "password")
 INSERT INTO users (firstName, lastName, email, password, image, category) VALUES
 ('Ludmila',    'Borrelli',    'ludmila@lubo.com',                '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '/images/users/default.jpg', 'admin'),
 ('Valentina',  'Martínez',    'valentina.martinez@gmail.com',    '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '/images/users/default.jpg', 'cliente'),
@@ -55,4 +55,4 @@ INSERT INTO users (firstName, lastName, email, password, image, category) VALUES
 ('Florencia',  'Sánchez',     'florencia.sanchez@gmail.com',     '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '/images/users/default.jpg', 'cliente'),
 ('Ignacio',    'Torres',      'ignacio.torres@hotmail.com',      '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '/images/users/default.jpg', 'cliente'),
 ('Agustina',   'Díaz',        'agustina.diaz@gmail.com',         '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '/images/users/default.jpg', 'cliente');
--- Todos los usuarios del seed tienen contraseña: password123
+-- Todos los usuarios del seed tienen contraseña: password

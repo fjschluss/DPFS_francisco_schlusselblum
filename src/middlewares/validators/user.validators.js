@@ -1,4 +1,3 @@
-// src/middlewares/validators/user.validators.js
 const { body } = require('express-validator');
 
 const registerValidators = [

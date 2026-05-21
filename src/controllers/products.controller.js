@@ -1,4 +1,3 @@
-// src/controllers/products.controller.js
 const { Product, Category, Brand } = require('../../database/models');
 const { Op } = require('sequelize');
 const { validationResult } = require('express-validator');

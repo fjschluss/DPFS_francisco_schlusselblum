@@ -1,4 +1,3 @@
-// src/public/js/register.validate.js
 (function () {
     'use strict';
 

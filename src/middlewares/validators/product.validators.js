@@ -1,4 +1,3 @@
-// src/middlewares/validators/product.validators.js
 const { body } = require('express-validator');
 
 const ALLOWED_IMAGE_EXTENSIONS = /\.(jpg|jpeg|png|gif)$/i;
