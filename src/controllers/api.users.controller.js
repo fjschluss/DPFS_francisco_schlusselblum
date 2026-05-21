@@ -6,11 +6,25 @@ const apiUsersController = {
 
     list: async (req, res) => {
         try {
-            const users = await User.findAll({
-                attributes: ['id', 'firstName', 'lastName', 'email', 'image', 'createdAt']
+            const PAGE_SIZE = 10;
+            const page   = parseInt(req.query.page) || 1;
+            const offset = (page - 1) * PAGE_SIZE;
+
+            const { count, rows: users } = await User.findAndCountAll({
+                attributes: ['id', 'firstName', 'lastName', 'email', 'image', 'createdAt'],
+                limit:  PAGE_SIZE,
+                offset,
+                order:  [['createdAt', 'DESC']]
             });
+
+            const totalPages = Math.ceil(count / PAGE_SIZE);
+
             res.json({
-                count: users.length,
+                count,
+                page,
+                totalPages,
+                next:     page < totalPages ? `${BASE_URL}/api/users?page=${page + 1}` : null,
+                previous: page > 1         ? `${BASE_URL}/api/users?page=${page - 1}` : null,
                 users: users.map(u => ({
                     id:     u.id,
                     name:   `${u.firstName} ${u.lastName}`,
