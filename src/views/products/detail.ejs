@@ -58,18 +58,22 @@
                         </div>
                     <% } %>
 
-                    <div class="add-to-cart-section">
-                        <button class="btn btn-accent btn-cart">Agregar al carrito</button>
-                        <a href="/products/<%= product.id %>/edit" class="btn btn-outline">Editar producto</a>
-                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-accent btn-full">Agregar al carrito</button>
 
-                    <div class="detail-delete-section">
-                        <form action="/products/<%= product.id %>?_method=DELETE" method="POST"
-                              onsubmit="return confirm('¿Estás seguro de que querés eliminar este producto?')">
-                            <button type="submit" class="btn btn-outline btn-danger">
-                                Eliminar producto
-                            </button>
-                        </form>
+                        <% if (session && session.user && session.user.category === 'admin') { %>
+                            <div class="product-actions-admin">
+                                <a href="/products/<%= product.id %>/edit" class="btn btn-outline btn-full">
+                                    Editar producto
+                                </a>
+                                <form action="/products/<%= product.id %>?_method=DELETE" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro de que querés eliminar este producto?')">
+                                    <button type="submit" class="btn btn-outline btn-danger btn-full">
+                                        Eliminar producto
+                                    </button>
+                                </form>
+                            </div>
+                        <% } %>
                     </div>
 
                     <div class="product-meta">
