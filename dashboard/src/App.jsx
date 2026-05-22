@@ -6,7 +6,7 @@ import LastProduct from './components/LastProduct';
 import ProductList from './components/ProductList';
 import './App.css';
 
-const API = 'http://localhost:3000/api';
+const API = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 function App() {
   const [usersData,    setUsersData]    = useState(null);
@@ -16,8 +16,8 @@ function App() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${API}/users`).then(r => r.json()),
-      fetch(`${API}/products`).then(r => r.json())
+      fetch(`${API}/api/users`).then(r => r.json()),
+      fetch(`${API}/api/products`).then(r => r.json())
     ])
     .then(([users, products]) => {
       setUsersData(users);
@@ -45,7 +45,7 @@ function App() {
       </section>
       <section className="panels-grid">
         <CategoryPanel countByCategory={productsData.countByCategory} />
-        <LastProduct   product={lastProduct} apiBase="http://localhost:3000" />
+        <LastProduct product={lastProduct} apiBase={API} />
       </section>
       <ProductList products={productsData.products} />
     </Layout>
