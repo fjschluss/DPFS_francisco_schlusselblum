@@ -268,3 +268,29 @@ body {
 .td-desc {
   color: var(--muted);
 }
+
+/* LastProduct — precio y link */
+.last-product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.last-product-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--terracotta);
+  text-decoration: none;
+}
+
+.last-product-link:hover {
+  text-decoration: underline;
+}
+
+/* ProductList — columna precio */
+.td-price {
+  font-weight: 600;
+  white-space: nowrap;
+}
