@@ -1,7 +1,7 @@
 function LastProduct({ product, apiBase }) {
   if (!product) {
     return (
-      <div className="panel" id="ultimo">
+      <div className="panel">
         <h2 className="panel-title">Último producto creado</h2>
         <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>No hay productos cargados.</p>
       </div>
@@ -11,8 +11,11 @@ function LastProduct({ product, apiBase }) {
   const imageUrl = `${apiBase}${product.image || '/images/placeholder.jpg'}`;
   const fallback = 'https://placehold.co/200x150/D6CFC6/8C8480?text=LuBo';
 
+  const formatPrice = (price) =>
+    new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(price);
+
   return (
-    <div className="panel last-product" id="ultimo">
+    <div className="panel last-product">
       <h2 className="panel-title">Último producto creado</h2>
       <img
         src={imageUrl}
@@ -24,9 +27,20 @@ function LastProduct({ product, apiBase }) {
         {product.categories?.[0] || 'Sin categoría'}
       </p>
       <h3 className="last-product-name">{product.name}</h3>
+      <p className="last-product-price">{formatPrice(product.price)}</p>
       <p className="last-product-desc">
-        {product.description?.substring(0, 120)}...
+        {product.description?.substring(0, 100)}...
       </p>
+      {product.siteUrl && (
+        <a
+          href={product.siteUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="last-product-link"
+        >
+          Ver en el sitio →
+        </a>
+      )}
     </div>
   );
 }

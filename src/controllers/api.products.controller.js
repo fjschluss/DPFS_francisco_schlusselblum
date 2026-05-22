@@ -44,7 +44,10 @@ const apiProductsController = {
                     id:          p.id,
                     name:        p.name,
                     description: p.description,
+                    price:       Number(p.price),
+                    image:       p.image,
                     categories:  p.category ? [p.category.name] : [],
+                    siteUrl:     `${BASE_URL}/products/${p.id}`,
                     detail:      `${BASE_URL}/api/products/${p.id}`
                 }))
             });
@@ -71,6 +74,7 @@ const apiProductsController = {
                 imageUrl:    `${BASE_URL}${product.image}`,
                 categories:  product.category ? [product.category.name] : [],
                 brand:       product.brand    ? product.brand.name    : null,
+                siteUrl: `${BASE_URL}/products/${product.id}`,
                 createdAt:   product.createdAt,
                 updatedAt:   product.updatedAt
             });
