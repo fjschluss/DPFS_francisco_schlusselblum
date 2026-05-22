@@ -30,7 +30,7 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 ## 🛠 Tecnologías utilizadas
 
 | Capa | Tecnología |
-|------|-----------| 
+|------|-----------|
 | Markup | HTML5 semántico |
 | Estilos | CSS3 (variables, grid, flexbox) |
 | Tipografías | Google Fonts: Cormorant Garamond + Inter |
@@ -43,8 +43,9 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 | Cookies | cookie-parser |
 | Upload de imagen | multer |
 | Validaciones | express-validator |
+| CORS | cors |
 | Variables de entorno | dotenv |
-| Frontend framework (próximo) | React |
+| Frontend framework | React |
 
 ---
 
@@ -83,6 +84,7 @@ DB_USER=root
 DB_PASS=tu_contraseña_local
 DB_NAME=lubo_db
 SESSION_SECRET=cualquier_string_secreto
+BASE_URL=http://localhost:3000
 ```
 
 ### 4. Iniciar el servidor
@@ -125,7 +127,9 @@ DPFS_francisco_schlusselblum/
 │   ├── controllers/
 │   │   ├── main.controller.js
 │   │   ├── products.controller.js
-│   │   └── users.controller.js
+│   │   ├── users.controller.js
+│   │   ├── api.users.controller.js
+│   │   └── api.products.controller.js
 │   ├── middlewares/
 │   │   ├── auth.middleware.js
 │   │   └── validators/
@@ -142,7 +146,8 @@ DPFS_francisco_schlusselblum/
 │   ├── routes/
 │   │   ├── main.routes.js
 │   │   ├── products.routes.js
-│   │   └── users.routes.js
+│   │   ├── users.routes.js
+│   │   └── api.routes.js
 │   └── views/
 │       ├── partials/
 │       │   ├── head.ejs
@@ -160,7 +165,21 @@ DPFS_francisco_schlusselblum/
 │       │   └── profile.ejs
 │       ├── index.ejs
 │       ├── cart.ejs
-│       └── 404.ejs
+│       ├── 404.ejs
+│       └── error.ejs
+├── dashboard/
+│   ├── package.json
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       │   ├── Layout.jsx
+│       │   ├── StatCard.jsx
+│       │   ├── CategoryPanel.jsx
+│       │   ├── LastProduct.jsx
+│       │   └── ProductList.jsx
+│       ├── App.jsx
+│       ├── App.css
+│       └── index.js
 ├── design/
 └── wireframes/
 ```
@@ -173,12 +192,12 @@ DPFS_francisco_schlusselblum/
 |--------|------|-------------|------|
 | GET | / | Home con productos destacados | — |
 | GET | /products | Listado con filtro por categoría y búsqueda | — |
-| GET | /products/create | Formulario de creación | ✅ |
-| POST | /products | Acción de creación | ✅ |
+| GET | /products/create | Formulario de creación | ✅ Admin |
+| POST | /products | Acción de creación | ✅ Admin |
 | GET | /products/:id | Detalle de producto | — |
-| GET | /products/:id/edit | Formulario de edición | ✅ |
-| PUT | /products/:id | Acción de edición | ✅ |
-| DELETE | /products/:id | Acción de eliminación | ✅ |
+| GET | /products/:id/edit | Formulario de edición | ✅ Admin |
+| PUT | /products/:id | Acción de edición | ✅ Admin |
+| DELETE | /products/:id | Acción de eliminación | ✅ Admin |
 | GET | /users/register | Formulario de registro | — |
 | POST | /users/register | Acción de registro | — |
 | GET | /users/login | Formulario de login | — |
@@ -186,6 +205,41 @@ DPFS_francisco_schlusselblum/
 | GET | /users/profile | Perfil del usuario autenticado | ✅ |
 | POST | /users/logout | Cierre de sesión | ✅ |
 | GET | /cart | Carrito de compras | — |
+
+---
+
+## 🌐 API REST
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | /api/users | Listado de usuarios (sin datos sensibles) |
+| GET | /api/users/:id | Detalle de usuario |
+| GET | /api/products | Listado de productos |
+| GET | /api/products/:id | Detalle de producto |
+
+Todos los endpoints de listado soportan paginado: `?page=N` (10 resultados por página).
+
+---
+
+## 🖥️ Dashboard React
+
+El dashboard es una SPA independiente ubicada en la carpeta `/dashboard`.
+
+### Cómo levantar el dashboard
+
+**Terminal 1 (servidor/API):**
+```bash
+npm run dev
+```
+
+**Terminal 2 (dashboard):**
+```bash
+cd dashboard
+npm start
+```
+
+El dashboard estará disponible en `http://localhost:3001`.  
+La API debe estar corriendo en `http://localhost:3000`.
 
 ---
 
