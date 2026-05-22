@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import StatCard from './components/StatCard';
 import CategoryPanel from './components/CategoryPanel';
-// import LastProduct from './components/LastProduct';
-// import ProductList from './components/ProductList';
+import LastProduct from './components/LastProduct';
+import ProductList from './components/ProductList';
 import './App.css';
 
 const API = 'http://localhost:3000/api';
@@ -34,7 +34,7 @@ function App() {
   if (error)   return <Layout><p className="error-msg">{error}</p></Layout>;
 
   const totalCategorias = Object.keys(productsData.countByCategory || {}).length;
-  // const lastProduct     = productsData.products?.[0] || null;
+  const lastProduct     = productsData.products?.[0] || null;
 
   return (
     <Layout>
@@ -45,9 +45,9 @@ function App() {
       </section>
       <section className="panels-grid">
         <CategoryPanel countByCategory={productsData.countByCategory} />
-        {/* <LastProduct   product={lastProduct} apiBase="http://localhost:3000" /> */}
+        <LastProduct   product={lastProduct} apiBase="http://localhost:3000" />
       </section>
-      {/* <ProductList products={productsData.products} /> */}
+      <ProductList products={productsData.products} />
     </Layout>
   );
 }
