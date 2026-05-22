@@ -306,3 +306,53 @@ El Sprint 5 implementó el sistema de autenticación completo: registro con bcry
 ## 📝 Conclusión general
 
 El Sprint 6 completó la migración de la capa de datos de JSON a MySQL con Sequelize. La estructura de modelos, asociaciones y el DER quedaron bien definidos, y el servidor valida la conexión antes de iniciar. El punto más crítico fue una credencial hardcodeada en `config.js` en un repo público, resuelta en el Sprint 7 como primera acción. Para el Sprint 7 el foco está en validaciones front-end y back-end con express-validator, cerrando la protección de todos los formularios del sitio.
+
+---
+
+# 🌟 Retrospectiva — Sprint 7
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria  
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Agregar el middleware de control de roles (`isAdmin`) desde el sprint en que se implementa autenticación, no esperar a que lo detecte una revisión externa.
+- Crear vistas de error diferenciadas (404 vs 500) desde el inicio del proyecto.
+
+---
+
+## ➕ Hacer más
+
+- Testear el flujo completo de validaciones (front y back) antes del merge a `main`.
+- Revisar que los mensajes de error sean consistentes en todas las vistas antes de cerrar cada issue.
+
+---
+
+## ✅ Continuar haciendo
+
+- Usar `express-validator` con re-render del form y `old` values para preservar los datos ingresados.
+- Separar los validators en archivos por entidad (`user.validators` / `product.validators`).
+- Mantener el archivo `.env.example` actualizado con cada nueva variable de entorno.
+- Workflow de branches y pull requests por cada issue.
+
+---
+
+## ➖ Hacer menos
+
+- Dejar la protección de rutas por rol para "el sprint que viene".
+- Usar la misma vista (`404.ejs`) para errores de tipos distintos.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Renderizar `res.status(500)` con la vista `404` — confunde el tipo de error al usuario y dificulta el debugging.
+- Asumir que `isAuthenticated` es suficiente sin verificar el rol del usuario.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 7 completó el sistema de validaciones back-end y front-end con `express-validator` en todos los formularios. La arquitectura de middlewares quedó bien organizada y separada por responsabilidad. El punto débil fue la falta de control de roles (`isAdmin`), que permitía a cualquier usuario autenticado crear, editar y eliminar productos — corregido en el Sprint 8 como primera acción. Para el Sprint 8 el foco está en exponer una API REST y construir un dashboard en React que consuma esos datos.
