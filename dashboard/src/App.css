@@ -42,7 +42,7 @@ body {
   width: 100px;
   height: auto;
   display: block;
-  filter: invert(1);
+  filter: brightness(0) invert(1);
 }
 
 .brand-sub {
@@ -57,14 +57,25 @@ body {
   gap: 0.75rem;
 }
 
-.sidebar-nav a {
+.nav-btn {
+  background: none;
+  border: none;
   color: #ccc;
-  text-decoration: none;
   font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  transition: color .15s;
 }
 
-.sidebar-nav a:hover {
+.nav-btn:hover {
   color: #fff;
+}
+
+.nav-btn.nav-active {
+  color: #fff;
+  font-weight: 600;
 }
 
 .main-content {
