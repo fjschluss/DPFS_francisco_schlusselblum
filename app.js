@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 3000;
 
 // CORS — permite peticiones desde el dashboard React
 app.use(cors({
-    origin: 'http://localhost:3001'
+    origin: 'http://localhost:3001',
+    credentials: true
 }));
 
 // Motor de templates

@@ -1,4 +1,12 @@
-function Layout({ children, totalProductos, totalUsuarios }) {
+const NAV_LINKS = [
+  { id: 'totales',    label: 'Totales'          },
+  { id: 'categorias', label: 'Categorías'        },
+  { id: 'ultimo',     label: 'Último producto'   },
+  { id: 'productos',  label: 'Productos'         },
+  { id: 'usuarios',   label: 'Usuarios'          },
+];
+
+function Layout({ children, totalProductos, totalUsuarios, activeSection, onSectionChange }) {
   return (
     <div className="dashboard-wrapper">
       <aside className="sidebar">
@@ -13,10 +21,15 @@ function Layout({ children, totalProductos, totalUsuarios }) {
           <span className="brand-sub">Dashboard</span>
         </div>
         <nav className="sidebar-nav">
-          <a href="#totales">Totales</a>
-          <a href="#categorias">Categorías</a>
-          <a href="#ultimo">Último producto</a>
-          <a href="#productos">Productos</a>
+          {NAV_LINKS.map(({ id, label }) => (
+            <button
+              key={id}
+              className={`nav-btn${activeSection === id ? ' nav-active' : ''}`}
+              onClick={() => onSectionChange(id)}
+            >
+              {label}
+            </button>
+          ))}
         </nav>
       </aside>
       <main className="main-content">
