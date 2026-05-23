@@ -33,7 +33,7 @@ Diseñadores de indumentaria, estudiantes de diseño, talleres y pequeños empre
 |------|-----------|
 | Markup | HTML5 semántico |
 | Estilos | CSS3 (variables, grid, flexbox) |
-| Tipografías | Google Fonts: Cormorant Garamond + Inter |
+| Tipografías | Google Fonts: Cormorant Garamond + DM Sans |
 | Backend | Node.js + Express.js |
 | Template Engine | EJS |
 | HTTP Methods | method-override (PUT/DELETE) |
@@ -96,8 +96,8 @@ npm run dev
 El sitio estará disponible en `http://localhost:3000`.
 
 **Credenciales de prueba** (usuarios del seed):  
-- Email: `ludmila@lubo.com` · Contraseña: `password123` (admin)  
-- Email: `valentina.martinez@gmail.com` · Contraseña: `password123` (cliente)
+- Email: `ludmila@lubo.com` · Contraseña: `password` (admin)  
+- Email: `valentina.martinez@gmail.com` · Contraseña: `password` (cliente)
 
 ---
 
@@ -141,7 +141,7 @@ DPFS_francisco_schlusselblum/
 │   │   ├── js/
 │   │   │   ├── register.validate.js
 │   │   │   ├── login.validate.js
-│   │   │   └── product.validate.js
+│   │   │   └── product-validate.js
 │   │   └── images/
 │   ├── routes/
 │   │   ├── main.routes.js
@@ -162,12 +162,14 @@ DPFS_francisco_schlusselblum/
 │       ├── users/
 │       │   ├── login.ejs
 │       │   ├── register.ejs
-│       │   └── profile.ejs
+│       │   ├── profile.ejs
+│       │   └── admin.ejs
 │       ├── index.ejs
 │       ├── cart.ejs
 │       ├── 404.ejs
 │       └── error.ejs
 ├── dashboard/
+│   ├── .env.example
 │   ├── package.json
 │   ├── public/
 │   └── src/
@@ -176,7 +178,8 @@ DPFS_francisco_schlusselblum/
 │       │   ├── StatCard.jsx
 │       │   ├── CategoryPanel.jsx
 │       │   ├── LastProduct.jsx
-│       │   └── ProductList.jsx
+│       │   ├── ProductList.jsx
+│       │   └── UserList.jsx
 │       ├── App.jsx
 │       ├── App.css
 │       └── index.js
@@ -204,20 +207,25 @@ DPFS_francisco_schlusselblum/
 | POST | /users/login | Acción de login | — |
 | GET | /users/profile | Perfil del usuario autenticado | ✅ |
 | POST | /users/logout | Cierre de sesión | ✅ |
+| GET | /users/admin | Gestión de usuarios | ✅ Admin |
+| PUT | /users/:id/role | Cambiar rol de usuario | ✅ Admin |
+| DELETE | /users/:id | Eliminar usuario | ✅ Admin |
 | GET | /cart | Carrito de compras | — |
 
 ---
 
 ## 🌐 API REST
 
-| Método | Endpoint | Descripción |
-|--------|----------|-------------|
-| GET | /api/users | Listado de usuarios (sin datos sensibles) |
-| GET | /api/users/:id | Detalle de usuario |
-| GET | /api/products | Listado de productos |
-| GET | /api/products/:id | Detalle de producto |
+| Método | Endpoint | Descripción | Auth |
+|--------|----------|-------------|------|
+| GET | /api/users | Listado paginado de usuarios | — |
+| GET | /api/users/:id | Detalle de usuario | — |
+| GET | /api/products | Listado paginado de productos con `countByCategory` | — |
+| GET | /api/products/:id | Detalle de producto | — |
+| PUT | /api/users/:id/role | Alterna el rol `admin`/`cliente` | ✅ Admin |
+| DELETE | /api/users/:id | Elimina un usuario | ✅ Admin |
 
-Todos los endpoints de listado soportan paginado: `?page=N` (10 resultados por página).
+Todos los endpoints de listado soportan paginado: `?page=N` (20 resultados por página).
 
 ---
 
@@ -235,11 +243,21 @@ npm run dev
 **Terminal 2 (dashboard):**
 ```bash
 cd dashboard
+cp .env.example .env
+npm install
 npm start
 ```
 
 El dashboard estará disponible en `http://localhost:3001`.  
 La API debe estar corriendo en `http://localhost:3000`.
+
+### Variable de entorno del dashboard
+
+El archivo `dashboard/.env.example` contiene:
+
+```bash
+REACT_APP_API_URL=http://localhost:3000
+```
 
 ---
 
@@ -270,7 +288,7 @@ Ver `database/DER.pdf` para el diagrama completo de entidad-relación.
 ## 🎨 Diseño visual
 
 Paleta editorial minimalista con acentos cálidos, accesible para daltonismo.  
-Tipografía: **Cormorant Garamond** (display) + **Inter** (body).
+Tipografía: **Cormorant Garamond** (display) + **DM Sans** (body).
 
 ---
 
