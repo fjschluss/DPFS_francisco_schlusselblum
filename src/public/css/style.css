@@ -92,7 +92,6 @@ p { max-width: 65ch; }
   width: 100%;
 }
 
-/* Compensa el espacio que ocupa el header fijo */
 body {
   padding-top: 80px;
 }
@@ -207,6 +206,12 @@ body {
 .nav-username {
   font-size: 0.82rem;
   font-weight: 400;
+}
+
+/* ===== NAV MOBILE — acciones dentro del menú ===== */
+
+.nav-mobile-actions {
+  display: none;
 }
 
 /* ===== BOTONES ===== */
@@ -1100,11 +1105,9 @@ body {
   pointer-events: none;
 }
 
-/* --- Logo en el panel visual --- eliminado del HTML --- */
 .auth-visual-logo {
   display: none;
 }
-
 
 .auth-visual-copy h2 {
   color: var(--white);
@@ -1569,6 +1572,7 @@ body {
 }
 
 /* ===== ADMIN: TABLA DE USUARIOS ===== */
+
 .table-responsive {
     overflow-x: auto;
 }
@@ -1582,16 +1586,16 @@ body {
 .admin-table th {
     text-align: left;
     padding: 0.75rem 1rem;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--soft-tan);
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: .05em;
-    color: var(--muted);
+    color: var(--warm-gray);
 }
 
 .admin-table td {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--soft-tan);
     vertical-align: middle;
 }
 
@@ -1621,16 +1625,16 @@ body {
 
 .role-admin {
     background: #F5EDE6;
-    color: var(--terracotta);
+    color: var(--accent);
 }
 
 .role-cliente {
     background: #F0F0F0;
-    color: #666;
+    color: var(--warm-gray);
 }
 
 .td-date {
-    color: var(--muted);
+    color: var(--warm-gray);
     font-size: 0.85rem;
 }
 
@@ -1641,7 +1645,7 @@ body {
 }
 
 .muted-text {
-    color: var(--muted);
+    color: var(--warm-gray);
     font-size: 0.85rem;
 }
 
@@ -1668,12 +1672,46 @@ body {
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-inner { padding: 0.5rem 1rem; }
+  .nav-actions { display: none; }
+
+  .nav-mobile-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--soft-tan);
+  }
 
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .steps-grid { grid-template-columns: 1fr; }
   .promo-banner { padding: 2rem; }
   .featured-header { flex-direction: column; align-items: flex-start; }
   .form-row { grid-template-columns: 1fr; }
+
+  /* Admin table — responsive */
+  .admin-table thead { display: none; }
+
+  .admin-table tr {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--soft-tan);
+  }
+
+  .admin-table td {
+    display: block;
+    padding: 0.25rem 0;
+    border: none;
+  }
+
+  .td-user {
+    margin-bottom: 0.25rem;
+  }
+
+  .td-date { display: none; }
+
+  .td-actions {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1728,7 +1766,6 @@ html, body {
     display: flex;
   }
 
-  /* Nav mobile abierto */
   .nav-links.open {
     display: flex;
     flex-direction: column;

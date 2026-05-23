@@ -7,6 +7,17 @@
             <li><a href="/">Inicio</a></li>
             <li><a href="/products">Productos</a></li>
             <li><a href="#about">Nosotros</a></li>
+            <li class="nav-mobile-actions">
+                <% if (typeof session !== 'undefined' && session.user) { %>
+                    <a href="/users/profile" class="btn btn-outline btn-sm">Mi perfil</a>
+                    <form action="/users/logout" method="POST">
+                        <button type="submit" class="btn btn-outline btn-sm">Salir</button>
+                    </form>
+                <% } else { %>
+                    <a href="/users/login" class="btn btn-outline btn-sm">Ingresar</a>
+                    <a href="/users/register" class="btn btn-outline btn-sm">Crear cuenta</a>
+                <% } %>
+            </li>
         </ul>
         <button class="btn-hamburger" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
             <span></span>
