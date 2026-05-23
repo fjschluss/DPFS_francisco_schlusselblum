@@ -126,6 +126,78 @@ const usersController = {
         req.session.destroy();
         res.clearCookie('userEmail');
         res.redirect('/');
+    },
+
+    // ── Admin: listado de usuarios ─────────────────────
+    adminList: async (req, res) => {
+        try {
+            const users = await User.findAll({
+                attributes: ['id', 'firstName', 'lastName', 'email', 'image', 'category', 'createdAt'],
+                order: [['createdAt', 'DESC']]
+            });
+            res.render('users/admin', {
+                title:   'Gestión de Usuarios – LuBo',
+                users,
+                session: req.session
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('error', {
+                title:   'Error del servidor',
+                message: 'No se pudo cargar el listado de usuarios.',
+                session: req.session
+            });
+        }
+    },
+
+    // ── Admin: cambiar rol de usuario ──────────────────
+    toggleRole: async (req, res) => {
+        try {
+            const userId = parseInt(req.params.id);
+            if (userId === req.session.user.id) {
+                return res.status(403).render('error', {
+                    title:   'Acción no permitida',
+                    message: 'No podés cambiar tu propio rol.',
+                    session: req.session
+                });
+            }
+            const user = await User.findByPk(userId);
+            if (!user) return res.status(404).render('404', { title: 'Usuario no encontrado', session: req.session });
+            const newRole = user.category === 'admin' ? 'cliente' : 'admin';
+            await user.update({ category: newRole });
+            res.redirect('/users/admin');
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('error', {
+                title:   'Error del servidor',
+                message: 'No se pudo actualizar el rol.',
+                session: req.session
+            });
+        }
+    },
+
+    // ── Admin: eliminar usuario ─────────────────────────
+    destroyUser: async (req, res) => {
+        try {
+            const userId = parseInt(req.params.id);
+            if (userId === req.session.user.id) {
+                return res.status(403).render('error', {
+                    title:   'Acción no permitida',
+                    message: 'No podés eliminarte a vos mismo.',
+                    session: req.session
+                });
+            }
+            const user = await User.findByPk(userId);
+            if (user) await user.destroy();
+            res.redirect('/users/admin');
+        } catch (err) {
+            console.error(err);
+            res.status(500).render('error', {
+                title:   'Error del servidor',
+                message: 'No se pudo eliminar el usuario.',
+                session: req.session
+            });
+        }
     }
 };
 

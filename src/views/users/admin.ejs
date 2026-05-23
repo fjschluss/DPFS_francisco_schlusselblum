@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="section-sm">
+        <div class="container">
+
+            <span class="eyebrow">Administración</span>
+            <h1 class="form-title">Gestión de usuarios</h1>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Registrado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                        <tr>
+                            <td class="td-user">
+                                <img src="<%= user.image %>"
+                                     alt="<%= user.firstName %>"
+                                     class="admin-avatar"
+                                     onerror="this.src='https://placehold.co/36x36/D6CFC6/8C8480?text=U'">
+                                <span><%= user.firstName %> <%= user.lastName %></span>
+                            </td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <span class="role-badge role-<%= user.category %>">
+                                    <%= user.category %>
+                                </span>
+                            </td>
+                            <td class="td-date">
+                                <%= new Date(user.createdAt).toLocaleDateString('es-AR') %>
+                            </td>
+                            <td class="td-actions">
+                                <% if (user.id !== session.user.id) { %>
+                                    <form action="/users/<%= user.id %>/role?_method=PUT" method="POST" style="display:inline">
+                                        <button type="submit" class="btn btn-outline btn-sm">
+                                            <%= user.category === 'admin' ? 'Quitar admin' : 'Hacer admin' %>
+                                        </button>
+                                    </form>
+                                    <form action="/users/<%= user.id %>?_method=DELETE" method="POST" style="display:inline"
+                                          onsubmit="return confirm('¿Eliminar a <%= user.firstName %> <%= user.lastName %>?')">
+                                        <button type="submit" class="btn btn-outline btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                <% } else { %>
+                                    <span class="muted-text">(vos)</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
