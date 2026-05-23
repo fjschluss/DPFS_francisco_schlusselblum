@@ -29,6 +29,9 @@
             </div>
 
             <div class="profile-actions">
+                <% if (user.category === 'admin') { %>
+                    <a href="/users/admin" class="btn btn-outline">Gestión de usuarios</a>
+                <% } %>
                 <form action="/users/logout" method="POST">
                     <button type="submit" class="btn btn-outline btn-danger">Cerrar sesión</button>
                 </form>

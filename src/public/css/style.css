@@ -1568,6 +1568,83 @@ body {
     text-align: center;
 }
 
+/* ===== ADMIN: TABLA DE USUARIOS ===== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--muted);
+}
+
+.admin-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+.td-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.admin-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.role-admin {
+    background: #F5EDE6;
+    color: var(--terracotta);
+}
+
+.role-cliente {
+    background: #F0F0F0;
+    color: #666;
+}
+
+.td-date {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.td-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.muted-text {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 900px) {
