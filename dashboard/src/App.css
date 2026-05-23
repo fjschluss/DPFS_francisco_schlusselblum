@@ -294,3 +294,52 @@ body {
   font-weight: 600;
   white-space: nowrap;
 }
+
+/* UserList — badges de rol y botones */
+.dash-role-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.dash-role-admin {
+  background: #F5EDE6;
+  color: var(--terracotta);
+}
+
+.dash-role-cliente {
+  background: #F0F0F0;
+  color: #666;
+}
+
+.td-user-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dash-btn-sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.78rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.dash-btn-sm:hover {
+  background: var(--cream);
+}
+
+.dash-btn-danger {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+.dash-btn-danger:hover {
+  background: #FDF0EB;
+}

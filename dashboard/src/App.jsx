@@ -4,6 +4,7 @@ import StatCard from './components/StatCard';
 import CategoryPanel from './components/CategoryPanel';
 import LastProduct from './components/LastProduct';
 import ProductList from './components/ProductList';
+import UserList from './components/UserList';
 import './App.css';
 
 const API = process.env.REACT_APP_API_URL || 'http://localhost:3000';
@@ -70,6 +71,10 @@ function App() {
 
       {activeSection === 'productos' && (
         <ProductList products={productsData.products} />
+      )}
+
+      {activeSection === 'usuarios' && (
+        <UserList initialUsers={usersData.users} apiBase={API} />
       )}
 
     </Layout>
