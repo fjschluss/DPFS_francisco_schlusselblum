@@ -356,3 +356,53 @@ El Sprint 6 completó la migración de la capa de datos de JSON a MySQL con Sequ
 ## 📝 Conclusión general
 
 El Sprint 7 completó el sistema de validaciones back-end y front-end con `express-validator` en todos los formularios. La arquitectura de middlewares quedó bien organizada y separada por responsabilidad. El punto débil fue la falta de control de roles (`isAdmin`), que permitía a cualquier usuario autenticado crear, editar y eliminar productos — corregido en el Sprint 8 como primera acción. Para el Sprint 8 el foco está en exponer una API REST y construir un dashboard en React que consuma esos datos.
+
+---
+
+# 🌟 Retrospectiva — Sprint 8
+
+**Proyecto:** LuBo — Marketplace de recursos para diseño de indumentaria
+**Dinámica:** Estrella de Mar
+
+---
+
+## ⬆️ Comenzar a hacer
+
+- Documentar las variables de entorno del dashboard (`REACT_APP_API_URL`) en un `.env.example` desde el primer commit, igual que se hace para el servidor Express.
+- Evitar hardcodear URLs base en los componentes React — si la URL puede cambiar según el entorno, siempre usar variable de entorno.
+
+---
+
+## ➕ Hacer más
+
+- Incluir todos los campos relevantes del modelo (precio, imagen, siteUrl) en los endpoints de listado de la API desde el inicio, para no tener que hacer un segundo commit correctivo.
+- Separar con mayor claridad los nombres de archivos front-end (`product-validate.js`) de los middlewares back-end (`product.validators.js`) desde el primer sprint en que aparecen.
+
+---
+
+## ✅ Continuar haciendo
+
+- Usar `Promise.all` para fetch paralelo en React — más eficiente y más limpio.
+- Mantener CORS acotado a un origen específico (`localhost:3001`) en lugar de usar `origin: '*'`.
+- Separar los API controllers de los controllers de vistas — es una distinción conceptual importante.
+- Usar `useEffect` con array de dependencias vacío para el fetch inicial al montar el componente.
+
+---
+
+## ➖ Hacer menos
+
+- Dejar campos relevantes del modelo fuera de la respuesta de la API sin un motivo explícito.
+- Tener dos archivos con nombres casi idénticos en distintas capas del mismo proyecto.
+
+---
+
+## 🛑 Dejar de hacer
+
+- Hardcodear `http://localhost:3000` en componentes React que se pueden deployar o compartir — siempre variable de entorno.
+- Usar assets genéricos de Create React App (favicon, logo192, logo512) en el proyecto final — deben reemplazarse desde el primer sprint que incluye el dashboard.
+
+---
+
+## 📝 Conclusión general
+
+El Sprint 8 fue el más ambicioso arquitectónicamente: pasó de un servidor de templates a dos aplicaciones separadas comunicándose por HTTP. La API REST quedó bien estructurada y el dashboard React es funcional y visualmente coherente con el sitio. Los puntos débiles fueron de configuración y assets (URL hardcodeada, `.env.example` faltante, favicon genérico), no de lógica — eso muestra que la base técnica es sólida. Para el Sprint 9 el foco está en completar el dashboard (precio, links, navegación por secciones, logo real) y agregar la gestión de usuarios para el administrador.
